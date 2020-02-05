@@ -12,16 +12,45 @@
                 <form name="courseForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="docreatecourses" />
                         Название курса:<br/>
-                        <input type="text" name="course" value=""/>
-
+<%--                        <input type="text" name="course" value=""/>--%>
+                        <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
                         <br/>
                         <input type="submit" value="Создать курс"/>
                 </form>
         </div>
    </c:if>
 
+    <c:if test="${processFlag == 'editcourse'}">
+        Редактирование курсов:
+        <div class="form-group">
+            <form name="courseForm" method="POST" action="controller">
+                <input type="hidden" name="command" value="updatecourse" />
+                Название курса:<br/>
+<%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
+                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course">${editCourse.name}</textarea>
+                <br/>
+                <input type="submit" class="btn btn-primary" value="Сохранить"/>
+            </form>
+            <form name="courseForm" method="POST" action="controller">
+                <input type="hidden" name="command" value="deletecourse" />
+                <button type="submit" class="btn btn-primary"> Удалить! </button>
+            </form>
+        </div>
+    </c:if>
+
     <c:if test="${processFlag == 'viewcourse'}">
-        VIEWCOURSE
+            <table border=1 cellpadding=5>
+                <tr>
+                    <th>Номер</th>
+                    <th>Название курсов</th>
+                </tr>
+                <c:forEach var="element" items="${list}">
+                    <tr>
+                        <td>${element.id}</td>
+                        <td><a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
     </c:if>
 <%--        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>--%>
 <%--        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>--%>

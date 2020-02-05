@@ -1,11 +1,15 @@
 package com.github.ralmnsk.srvlt.web.command;
 
+import com.github.ralmnsk.srvlt.web.command.student.AllCoursesCommand;
 import com.github.ralmnsk.srvlt.web.command.student.StudentCommand;
-import com.github.ralmnsk.srvlt.web.command.tuitor.CreateCourseCommand;
-import com.github.ralmnsk.srvlt.web.command.tuitor.DoCreateCourseCommand;
-import com.github.ralmnsk.srvlt.web.command.tuitor.TuitorCommand;
+import com.github.ralmnsk.srvlt.web.command.tuitor.*;
 
 public enum CommandEnum {
+    ALLCOURSES {
+        {
+            this.command = new AllCoursesCommand();
+        }
+    },
     LOGIN {
         {
             this.command = new LoginCommand();
@@ -51,17 +55,28 @@ public enum CommandEnum {
         }
     },
 
-//    UPDATECOURSE{
-//        {
-//            this.command=new UpdateCourseCommand();
-//        }
-//    },
-//
-//    DELETECOURSE{
-//        {
-//            this.command=new DeleteCourseCommand();
-//        }
-//    },
+    VIEWCOURSE{
+        {
+            this.command=new ViewCourseCommand();
+        }
+    },
+    EDITCOURSE{
+        {
+            this.command=new EditCourseCommand();
+        }
+    },
+
+    UPDATECOURSE{
+        {
+            this.command=new UpdateCourseCommand();
+        }
+    },
+
+    DELETECOURSE{
+        {
+            this.command=new DeleteCourseCommand();
+        }
+    },
 
     LOGOUT {
         {

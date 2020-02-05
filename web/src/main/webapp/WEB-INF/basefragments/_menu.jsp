@@ -24,15 +24,20 @@
            <li><a href="${pageContext.request.contextPath}/">Главная</a></li>
 
             <c:if test="${(userRole == 'STUDENT')}">
+                <br/>
                 <li><a href="${pageContext.request.contextPath}/controller?command=student">Страница студента</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=allcourses">Доступные курсы</a></li>
             </c:if>
 
             <c:if test="${(userRole == 'TUITOR')}">
+                <br/>
                 <li><a href="${pageContext.request.contextPath}/controller?command=tuitor">Страница преподавателя</a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=createcourse">Создать курс</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=viewcourse">Посмотреть свои курсы</a></li>
             </c:if>
 
            <c:if test="${(userRole == 'STUDENT') or (userRole == 'TUITOR')}">
+               <br/>
             <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
            </c:if>
 

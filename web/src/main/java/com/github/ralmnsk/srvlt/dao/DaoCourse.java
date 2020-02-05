@@ -71,7 +71,7 @@ public class DaoCourse implements DaoCourseInterface<Course> {
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     ("select * from mydb.course where id=?",Statement.RETURN_GENERATED_KEYS);
+                     ("select * from mydb.course where id_course=?",Statement.RETURN_GENERATED_KEYS);
         )
         {
             statement.setLong(1, id);
@@ -101,7 +101,7 @@ public class DaoCourse implements DaoCourseInterface<Course> {
     public Course update(Course course) {
         try (Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        ("update mydb.course set name=?, id_tuitor=? where id=?");
+                        ("update mydb.course set name_course=?, id_tuitor=? where id_course=?");
 
         ){
             statement.setString(1, course.getName());
@@ -118,7 +118,7 @@ public class DaoCourse implements DaoCourseInterface<Course> {
     public void delete(long id) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     ("delete from mydb.course where id=?");
+                     ("delete from mydb.course where id_course=?");
         )
         {
             statement.setLong(1, id);
@@ -136,7 +136,7 @@ public class DaoCourse implements DaoCourseInterface<Course> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        ("select * from courses where id_tuitor=?",Statement.RETURN_GENERATED_KEYS);
+                        ("select * from course where id_tuitor=?",Statement.RETURN_GENERATED_KEYS);
         )
         {
             statement.setLong(1,tuitorId);
