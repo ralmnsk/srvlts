@@ -21,8 +21,8 @@
 
 <%--          </c:if>--%>
 
-           <li class="my"><a href="?lang=en">English</a></li>
-           <li class="my"><a href="?lang=ru">Русский</a></li>
+           <li class="my"><a href="${lang_url}?lang=en">English</a></li>
+           <li class="my"><a href="${lang_url}?lang=ru">Русский</a></li>
            <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
 
             <c:if test="${(userRole == 'STUDENT')}">

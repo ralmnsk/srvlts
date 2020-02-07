@@ -52,14 +52,14 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             generatedKeys.close();
             logger.info("Course was created:" + course.getId());
         } catch (SQLException ex) {
-            logger.error("Prblem executing save course ", ex);
+            logger.error("Prblem executing save course {}", ex);
 
         } finally {
             if (generatedKeys!=null){
                 try {
                     generatedKeys.close();
                 } catch (SQLException e) {
-                    logger.error("Prblem executing INSERT, generatedKey close", e);
+                    logger.error("Prblem executing INSERT, generatedKey close {}", e);
                 }
             }
         }
@@ -94,13 +94,13 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing UPDATE", ex);
+            logger.error("Problem executing UPDATE {}", ex);
         }finally{
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing UPDATE.ResultSet close", e);
+                    logger.error("Problem executing UPDATE.ResultSet close {}", e);
                 }
             }
         }

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static com.facultative.service.constants.Constants.MESSAGE_MANAGER_FILE_BASE_NAME;
+import static com.facultative.service.constants.Constants.*;
 
 @WebFilter(urlPatterns= {"/*"},
         initParams =@WebInitParam(name="encoding", value = "UTF-8"))
@@ -25,12 +25,6 @@ public class EncodingFilter implements Filter {
         if (code != null && !code.equalsIgnoreCase(codeRequest)) {
             request.setCharacterEncoding(code);
             response.setCharacterEncoding(code);
-        }
-        if(request.getParameter("lang")!=null){
-            String lang=request.getParameter("lang");
-            Locale.setDefault(new Locale(lang));
-            System.out.println(Locale.getDefault());
-            ResourceBundle.getBundle(MESSAGE_MANAGER_FILE_BASE_NAME, Locale.getDefault());
         }
         chain.doFilter(request, response);
     }

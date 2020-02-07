@@ -20,6 +20,8 @@ public class Constants {
     public static final String MESSAGE_MANAGER_FILE_BASE_NAME="messages";
     public static final String LANGUAGE_RU="ru";
     public static final String LANGUAGE_EN="en";
+    public static final String LANG="lang";
+    public static final String LANG_URL="lang_url";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";

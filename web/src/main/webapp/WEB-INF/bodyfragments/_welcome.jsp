@@ -1,6 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename = "messages" var = "messages"/>
 
 <html>
     <head>
@@ -12,17 +17,8 @@
     </head>
     <body>
         <div class="container">
-            <h2>Welcome</h2>
-            Здраствуйте,
-            <c:if test="${user.role =='ROLE_USER'}">
-                <c:out value="пользователь"/>
-            </c:if>
-            <c:if test="${user.role =='ROLE_ADMIN'}">
-                        <c:out value="администратор"/>
-            </c:if>
 
-            ${user.name}
-
+            <fmt:message key="message.welcome" bundle="${messages}"/>
         </div>
     </body>
 </html>

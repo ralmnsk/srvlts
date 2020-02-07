@@ -5,9 +5,14 @@
          xsi:schemaLocation=
                  "http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
+    <display-name>Optional</display-name>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/old/error.jsp</location> <!--/src/main/webapp/error-404.html-->
+        <location>/WEB-INF/error.jsp</location> <!--/src/main/webapp/error-404.html-->
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/error.jsp</location> <!--/src/main/webapp/error-404.html-->
     </error-page>
 
     <listener>

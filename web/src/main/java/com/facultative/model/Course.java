@@ -7,7 +7,6 @@ public class Course {
     private long id;
     private String name;
     private Tutor tutor;
-    private Set<Mark> marks=new HashSet<Mark>();
 
     public Course() {
     }
@@ -36,11 +35,4 @@ public class Course {
         this.tutor = tutor;
     }
 
-    public Set<Mark> getMarks() {
-        return marks;
-    }
-
-    public void setMarks(Set<Mark> marks) {
-        this.marks = marks;
-    }
 }

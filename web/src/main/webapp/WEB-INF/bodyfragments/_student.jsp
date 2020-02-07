@@ -4,17 +4,21 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename = "messages" var = "messages"/>
+
 <div class="container">
-        <h2>Страница Студента</h2>
+        <h2><fmt:message key="message.student.page" bundle="${messages}"/></h2>
 <p>
         <c:if test="${processFlag == 'viewcourse'}">
-        Чтобы записаться на курс - кликните один из курсов:
+                        <fmt:message key="message.enroll.course" bundle="${messages}"/>
+
         <p/>
         <table border=1 cellpadding=5>
                 <tr>
-                        <th>Номер</th>
-                        <th>Название курсов</th>
-                        <th>Преподаватель</th>
+                        <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
+                        <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                        <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
                         <tr>
@@ -30,11 +34,11 @@
                 <div class="form-group">
                         <form name="courseForm" method="POST" action="controller">
                                 <input type="hidden" name="command" value="doaddmark" />
-                                <p>Название курса:<br/></p>
+                                <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
                                         <%--                        <input type="text" name="course" value=""/>--%>
                                 <p>${course.name}</p>
                                 <br/>
-                                <input class="btn btn-primary" type="submit" value="Записаться на курс"/>
+                                <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enroll" bundle="${messages}"/>>
                         </form>
                 </div>
         </c:if>
@@ -43,27 +47,27 @@
                 <div class="form-group">
                         <form name="courseForm" method="POST" action="controller">
                                 <input type="hidden" name="command" value="dodelmark" />
-                                <p>Название курса:<br/></p>
+                                <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
 
                                         <%--                        <input type="text" name="course" value=""/>--%>
                                 <p>${course.name}</p>
-                                <input class="btn btn-primary" type="submit" value="Удалить курс"/>
+                                <input class="btn btn-primary" type="submit" value=<fmt:message key="message.delete.course" bundle="${messages}"/>/>
                         </form>
                 </div>
         </c:if>
 
         <c:if test="${processFlag == 'viewmark'}">
-                Курсы на которые вы записаны:
+                <fmt:message key="message.enroll.course.you" bundle="${messages}"/>
                 <br/>
-                Для удаления кликните на курс.
+                <fmt:message key="message.course.to.delete" bundle="${messages}"/>
                 <p/>
                 <table border=1 cellpadding=5>
                         <tr>
-                                <th>Номер</th>
-                                <th>Название курсов</th>
-                                <th>Преподаватель</th>
-                                <th>Отметка</th>
-                                <th>Ревью</th>
+                                <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.rate" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.review" bundle="${messages}"/></th>
                         </tr>
                         <c:forEach var="element" items="${list}">
                                 <tr>

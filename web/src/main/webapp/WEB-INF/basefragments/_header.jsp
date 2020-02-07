@@ -4,15 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename = "messages" var = "messages"/>
          <div style="background: #E0E0E0; height: 55px; padding: 5px;">
            <div style="float: left">
-              <h1>Система факультатив</h1>
+              <h1><fmt:message key="message.optional.classes" bundle="${messages}"/></h1>
            </div>
 
            <div style="float: right; padding: 10px; text-align: right;">
-
-
 
            </div>
 

@@ -4,46 +4,49 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename = "messages" var = "messages"/>
+
 <div class="container">
-        <h2>Страница Преподавателя</h2>
+        <h2><fmt:message key="message.tutor.page" bundle="${messages}"/></h2>
 <p>
    <c:if test="${processFlag == 'createcourse'}">
         <div class="form-group">
                 <form name="courseForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="docreatecourses" />
-                        Название курса:<br/>
+                    <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
 <%--                        <input type="text" name="course" value=""/>--%>
                         <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
                         <br/>
-                        <input type="submit" value="Создать курс"/>
+                        <input type="submit" class="btn btn-primary" value=<fmt:message key="message.create.course" bundle="${messages}"/>/>
                 </form>
         </div>
    </c:if>
 
     <c:if test="${processFlag == 'editcourse'}">
-        Редактирование курсов:
+        <fmt:message key="message.edit.courses" bundle="${messages}"/>:
         <div class="form-group">
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="updatecourse" />
-                Название курса:<br/>
+                <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
 <%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
                 <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course">${editCourse.name}</textarea>
                 <br/>
-                <input type="submit" class="btn btn-primary" value="Сохранить"/>
+                <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
             </form>
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="deletecourse" />
-                <button type="submit" class="btn btn-primary"> Удалить! </button>
+                <button type="submit" class="btn btn-primary"> <input type="submit" class="btn btn-primary" value=<fmt:message key="message.delete.course" bundle="${messages}"/>></button>
             </form>
         </div>
     </c:if>
 
     <c:if test="${processFlag == 'viewcourse'}">
-        <p>Для редактирования курса -кликните на него</p>
+        <p><fmt:message key="message.edit.courses" bundle="${messages}"/></p>
             <table border=1 cellpadding=5>
                 <tr>
-                    <th>Номер</th>
-                    <th>Название курсов</th>
+                    <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
+                    <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
                     <tr>
@@ -55,14 +58,14 @@
     </c:if>
 
     <c:if test="${processFlag == 'marks_view'}">
-        <p>Для редактирования отметки - кликните название курсов</p>
+        <p><fmt:message key="message.edit.rate" bundle="${messages}"/></p>
         <table border=1 cellpadding=5>
             <tr>
-                <th>Номер</th>
-                <th>Название курсов</th>
-                <th> ФИО Студента </th>
-                <th> Оценка</th>
-                <th> Ревью </th>
+                <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
+                <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                <th><fmt:message key="message.student" bundle="${messages}"/></th>
+                <th><fmt:message key="message.rate" bundle="${messages}"/></th>
+                <th><fmt:message key="message.review" bundle="${messages}"/></th>
             </tr>
             <c:forEach var="element" items="${list}">
                 <tr>
@@ -77,65 +80,40 @@
     </c:if>
 
     <c:if test="${processFlag == 'edit_mark'}">
-        Выставление оценки:
+        <fmt:message key="message.grading" bundle="${messages}"/>
         <div class="form-group">
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="do_edit_mark" />
 <%--                <input type="hidden" name="mark" value="${mark}" />--%>
                     <%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
-                <p>Номер: ${mark.course.id}</p>
-                <p>Название курса: ${mark.course.name}</p>
-                <p>ФИО Студента: ${mark.student.surname} ${mark.student.name}</p>
-                <p>Оценка: <input type="text" name="mark" value="${mark.mark}"/></p>
-                <p>Ревью:</p>
+                <p><fmt:message key="message.course.number" bundle="${messages}"/>: ${mark.course.id}</p>
+                <p><fmt:message key="message.course.name" bundle="${messages}"/>: ${mark.course.name}</p>
+                <p><fmt:message key="message.student" bundle="${messages}"/>: ${mark.student.surname} ${mark.student.name}</p>
+                <p><fmt:message key="message.rate" bundle="${messages}"/>:
+                    <input type="number" min="1" max="10" name="mark" value="${mark.mark}"/></p>
+                <p><fmt:message key="message.review" bundle="${messages}"/>:</p>
                 <p><textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="review">${mark.review}</textarea></p>
                 <br/>
-                <input type="submit" class="btn btn-primary" value="Сохранить"/>
+                <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
             </form>
         </div>
     </c:if>
 
-<%--        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>--%>
-<%--        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>--%>
 </p>
-<%--            <table>--%>
-<%--                <c:forEach var="entry" items="${map}">--%>
-<%--                    <p><h4>${entry.key.nameNews}</h4>--%>
-<%--                        </br>--%>
-<%--                            ${entry.key.dataNews}<p>--%>
-<%--                        </br>--%>
-<%--                            Автор: ${entry.value.name}--%>
-<%--                        </br>--%>
-<%--                    Дата: <fmt:formatDate type="both" value="${entry.key.dateNews}"/></br>--%>
-
-<%--                    <c:if test = "${(role == 'ROLE_USER')or(role == 'ROLE_ADMIN')}">--%>
-<%--                        <form name="sendToDiscuss" method="POST" action="site/discuss">--%>
-<%--                            <div class="form=group">--%>
-<%--                                <input type="hidden" name="discussNewsId" value="${entry.key.idNews}">--%>
-<%--                                <input class="btn btn-primary" type="submit" value="Перейти к обсуждению"/>--%>
-<%--                            </div>--%>
-<%--                        </form>--%>
-<%--                    </c:if>--%>
-
-
-<%--                    </p>--%>
-<%--                    <hr/>--%>
-<%--                </c:forEach>--%>
-<%--            </table>--%>
         </div>
 
 
 
-<%--        <nav aria-label="Page navigation example">--%>
-<%--          <ul autofocus class="pagination justify-content-center">--%>
+        <nav aria-label="Page navigation example">
+          <ul autofocus class="pagination justify-content-center">
 
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?move=previous">Previous</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?move=next">Next</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=5">5</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=15">15</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=50">50</a></li>--%>
-<%--            <li class="page-item"><a class="page-link">Page: ${currentPage}</a></li>--%>
-<%--            <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>--%>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&move=previous">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&move=next">Next</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=5">5</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=10">10</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=20">20</a></li>
+            <li class="page-item"><a class="page-link">Page: ${currentPage}</a></li>
+            <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
 
-<%--          </ul>--%>
-<%--        </nav>--%>
+          </ul>
+        </nav>
