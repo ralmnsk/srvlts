@@ -5,10 +5,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import static com.facultative.service.constants.Constants.*;
 
 @WebFilter(urlPatterns= {"/*"},
         initParams =@WebInitParam(name="encoding", value = "UTF-8"))
