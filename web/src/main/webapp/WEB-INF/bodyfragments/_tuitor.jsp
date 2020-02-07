@@ -39,6 +39,7 @@
     </c:if>
 
     <c:if test="${processFlag == 'viewcourse'}">
+        <p>Для редактирования курса -кликните на него</p>
             <table border=1 cellpadding=5>
                 <tr>
                     <th>Номер</th>
@@ -52,6 +53,48 @@
                 </c:forEach>
             </table>
     </c:if>
+
+    <c:if test="${processFlag == 'marks_view'}">
+        <p>Для редактирования отметки - кликните название курсов</p>
+        <table border=1 cellpadding=5>
+            <tr>
+                <th>Номер</th>
+                <th>Название курсов</th>
+                <th> ФИО Студента </th>
+                <th> Оценка</th>
+                <th> Ревью </th>
+            </tr>
+            <c:forEach var="element" items="${list}">
+                <tr>
+                    <td>${element.course.id}</td>
+                    <td><a href="${pageContext.request.contextPath}/controller?command=edit_mark&markid=${element.id}"> ${element.course.name}</a></td>
+                    <td>${element.student.surname} ${element.student.name}</td>
+                    <td>${element.mark}</td>
+                    <td>${element.review}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+
+    <c:if test="${processFlag == 'edit_mark'}">
+        Выставление оценки:
+        <div class="form-group">
+            <form name="courseForm" method="POST" action="controller">
+                <input type="hidden" name="command" value="do_edit_mark" />
+<%--                <input type="hidden" name="mark" value="${mark}" />--%>
+                    <%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
+                <p>Номер: ${mark.course.id}</p>
+                <p>Название курса: ${mark.course.name}</p>
+                <p>ФИО Студента: ${mark.student.surname} ${mark.student.name}</p>
+                <p>Оценка: <input type="text" name="mark" value="${mark.mark}"/></p>
+                <p>Ревью:</p>
+                <p><textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="review">${mark.review}</textarea></p>
+                <br/>
+                <input type="submit" class="btn btn-primary" value="Сохранить"/>
+            </form>
+        </div>
+    </c:if>
+
 <%--        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>--%>
 <%--        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>--%>
 </p>

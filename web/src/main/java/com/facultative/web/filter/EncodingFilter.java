@@ -1,0 +1,42 @@
+package com.facultative.web.filter;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import static com.facultative.service.constants.Constants.MESSAGE_MANAGER_FILE_BASE_NAME;
+
+@WebFilter(urlPatterns= {"/*"},
+        initParams =@WebInitParam(name="encoding", value = "UTF-8"))
+public class EncodingFilter implements Filter {
+    private String code;
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        code = filterConfig.getInitParameter("encoding");
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String codeRequest = request.getCharacterEncoding();
+        if (code != null && !code.equalsIgnoreCase(codeRequest)) {
+            request.setCharacterEncoding(code);
+            response.setCharacterEncoding(code);
+        }
+        if(request.getParameter("lang")!=null){
+            String lang=request.getParameter("lang");
+            Locale.setDefault(new Locale(lang));
+            System.out.println(Locale.getDefault());
+            ResourceBundle.getBundle(MESSAGE_MANAGER_FILE_BASE_NAME, Locale.getDefault());
+        }
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        code=null;
+    }
+}

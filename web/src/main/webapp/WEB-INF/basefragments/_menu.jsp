@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename = "messages" var = "messages"/>
 
 <div>
 
@@ -21,24 +23,26 @@
 
            <li class="my"><a href="?lang=en">English</a></li>
            <li class="my"><a href="?lang=ru">Русский</a></li>
-           <li><a href="${pageContext.request.contextPath}/">Главная</a></li>
+           <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
 
             <c:if test="${(userRole == 'STUDENT')}">
                 <br/>
-                <li><a href="${pageContext.request.contextPath}/controller?command=student">Страница студента</a></li>
-                <li><a href="${pageContext.request.contextPath}/controller?command=allcourses">Доступные курсы</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=student"><fmt:message key="message.student.page" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=allcourses"><fmt:message key="message.student.courses" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=viewmark"><fmt:message key="message.yours.courses" bundle="${messages}"/></a></li>
             </c:if>
 
-            <c:if test="${(userRole == 'TUITOR')}">
+            <c:if test="${(userRole == 'TUTOR')}">
                 <br/>
-                <li><a href="${pageContext.request.contextPath}/controller?command=tuitor">Страница преподавателя</a></li>
-                <li><a href="${pageContext.request.contextPath}/controller?command=createcourse">Создать курс</a></li>
-                <li><a href="${pageContext.request.contextPath}/controller?command=viewcourse">Посмотреть свои курсы</a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=tuitor"><fmt:message key="message.tutor.page" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=createcourse"><fmt:message key="message.create.course" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=viewcourse"><fmt:message key="message.see.yours.courses" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=marks"><fmt:message key="message.rate" bundle="${messages}"/></a></li>
             </c:if>
 
-           <c:if test="${(userRole == 'STUDENT') or (userRole == 'TUITOR')}">
+           <c:if test="${(userRole == 'STUDENT') or (userRole == 'TUTOR')}">
                <br/>
-            <li><a href="${pageContext.request.contextPath}/controller?command=logout">Выход</a></li>
+            <li><a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="message.logout" bundle="${messages}"/></a></li>
            </c:if>
 
 

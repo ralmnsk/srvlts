@@ -12,29 +12,29 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename = "messages" var = "messages"/>
         <div class="container">
-            <h2>Пожалуйста зарегистрируйтесь:</h2>
+            <h2><fmt:message key="message.please.register" bundle="${messages}"/></h2>
                 <div class="form-group">
                     <form name="registrationForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="register" />
-                    Логин:<br/>
+                    <br/><fmt:message key="message.login" bundle="${messages}"/><br/>
                     <input type="text" name="login" value=""/>
-                    <br/>Пароль:<br/>
+                    <br/><fmt:message key="message.password" bundle="${messages}"/><br/>
                     <input type="password" name="password" value=""/>
-                    <br/>Фамилия:<br/>
+                    <br/><fmt:message key="message.surname" bundle="${messages}"/><br/>
                     <input type="text" name="surname" value=""/>
-                    <br/>Имя:<br/>
+                    <br/><fmt:message key="message.name" bundle="${messages}"/><br/>
                     <input type="text" name="name" value=""/>
                     <br/>
-                        Выбрать Студент/Учитель
+                        <fmt:message key="message.choose" bundle="${messages}"/>
                     <br/>
                         <select name="selectType">
                             <option value="student"> <fmt:message key="message.student" bundle="${messages}"/>
                             </option>
-                            <option value="tuitor"> <fmt:message key="message.tuitor" bundle="${messages}"/>
+                            <option value="tuitor"> <fmt:message key="message.tutor" bundle="${messages}"/>
                             </option>
                         </select>
                     <br/>
-                    <input type="submit" value="Регистрация"/>
+                        <input class="btn btn-primary" type="submit" value=<fmt:message key="message.registration" bundle="${messages}"/>>
                     </form>
                 </div>
             <hr/>

@@ -7,6 +7,78 @@
 <div class="container">
         <h2>Страница Студента</h2>
 <p>
+        <c:if test="${processFlag == 'viewcourse'}">
+        Чтобы записаться на курс - кликните один из курсов:
+        <p/>
+        <table border=1 cellpadding=5>
+                <tr>
+                        <th>Номер</th>
+                        <th>Название курсов</th>
+                        <th>Преподаватель</th>
+                </tr>
+                <c:forEach var="element" items="${list}">
+                        <tr>
+                                <td>${element.id}</td>
+                                <td><a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a></td>
+                                <td>${element.tutor.surname} ${element.tutor.name}</td>
+                        </tr>
+                </c:forEach>
+        </table>
+        </c:if>
+
+        <c:if test="${processFlag == 'addmark'}">
+                <div class="form-group">
+                        <form name="courseForm" method="POST" action="controller">
+                                <input type="hidden" name="command" value="doaddmark" />
+                                <p>Название курса:<br/></p>
+                                        <%--                        <input type="text" name="course" value=""/>--%>
+                                <p>${course.name}</p>
+                                <br/>
+                                <input class="btn btn-primary" type="submit" value="Записаться на курс"/>
+                        </form>
+                </div>
+        </c:if>
+
+        <c:if test="${processFlag == 'delmark'}">
+                <div class="form-group">
+                        <form name="courseForm" method="POST" action="controller">
+                                <input type="hidden" name="command" value="dodelmark" />
+                                <p>Название курса:<br/></p>
+
+                                        <%--                        <input type="text" name="course" value=""/>--%>
+                                <p>${course.name}</p>
+                                <input class="btn btn-primary" type="submit" value="Удалить курс"/>
+                        </form>
+                </div>
+        </c:if>
+
+        <c:if test="${processFlag == 'viewmark'}">
+                Курсы на которые вы записаны:
+                <br/>
+                Для удаления кликните на курс.
+                <p/>
+                <table border=1 cellpadding=5>
+                        <tr>
+                                <th>Номер</th>
+                                <th>Название курсов</th>
+                                <th>Преподаватель</th>
+                                <th>Отметка</th>
+                                <th>Ревью</th>
+                        </tr>
+                        <c:forEach var="element" items="${list}">
+                                <tr>
+                                        <td>${element.course.id}</td>
+                                        <td><a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a></td>
+                                        <td>${element.course.tutor.surname} ${element.course.tutor.name}</td>
+                                        <td>
+                                                <c:if test="${element.mark==0}">нет</c:if>
+                                                <c:if test="${element.mark!=0}">${element.mark}</c:if>
+                                        </td>
+                                        <td>${element.review}</td>
+                                </tr>
+                        </c:forEach>
+                </table>
+        </c:if>
 <%--        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>--%>
 <%--        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>--%>
 </p>

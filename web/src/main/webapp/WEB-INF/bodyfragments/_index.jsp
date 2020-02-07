@@ -4,11 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<fmt:setBundle basename = "messages" var = "messages"/>
 <div class="container">
-        <h2>Главная станица</h2>
+        <h2><fmt:message key="message.main.page" bundle="${messages}"/></h2>
 <p>
-        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>
-        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>
+        <a href="${pageContext.request.contextPath}/controller?command=tologin"><fmt:message key="message.login" bundle="${messages}"/></a></br>
+        <a href="${pageContext.request.contextPath}/controller?command=toregister"><fmt:message key="message.registration" bundle="${messages}"/></a></br>
 </p>
 <%--            <table>--%>
 <%--                <c:forEach var="entry" items="${map}">--%>
