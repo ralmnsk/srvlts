@@ -4,7 +4,16 @@ import com.facultative.service.messages.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Action factory.
+ */
 public class ActionFactory {
+    /**
+     * Define command action command.
+     *
+     * @param request the request
+     * @return the action command
+     */
     public ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand current = new EmptyCommand();
 //get command name

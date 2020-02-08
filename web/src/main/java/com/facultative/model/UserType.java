@@ -1,5 +1,15 @@
 package com.facultative.model;
 
+/**
+ * The enum User type.
+ */
 public enum UserType {
-    TUTOR,STUDENT
+    /**
+     * Tutor user type.
+     */
+    TUTOR,
+    /**
+     * Student user type.
+     */
+    STUDENT
 }

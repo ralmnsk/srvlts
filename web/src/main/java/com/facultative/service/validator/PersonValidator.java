@@ -3,8 +3,17 @@ package com.facultative.service.validator;
 import com.facultative.model.Person;
 import com.facultative.model.UserType;
 
+/**
+ * The type Person validator.
+ */
 public class PersonValidator implements IValidator {
 
+    /**
+     * Validate login boolean.
+     *
+     * @param login the login
+     * @return the boolean
+     */
     public boolean validateLogin(String login) {
         String regex="[a-zA-Zа-яА-Я]{3,20}";
         if(login.matches(regex)){
@@ -14,6 +23,12 @@ public class PersonValidator implements IValidator {
     }
 
 
+    /**
+     * Validate password boolean.
+     *
+     * @param password the password
+     * @return the boolean
+     */
     public boolean validatePassword(String password) {
         String regex="[a-zA-Zа-яА-Я0-9]{3,20}";
         if(password.matches(regex)){
@@ -23,6 +38,12 @@ public class PersonValidator implements IValidator {
     }
 
 
+    /**
+     * Validate surname boolean.
+     *
+     * @param surname the surname
+     * @return the boolean
+     */
     public boolean validateSurname(String surname) {
         String regex="[a-zA-Zа-яА-Я-]{3,20}";
         if(surname.matches(regex)){
@@ -32,6 +53,12 @@ public class PersonValidator implements IValidator {
     }
 
 
+    /**
+     * Validate name boolean.
+     *
+     * @param name the name
+     * @return the boolean
+     */
     public boolean validateName(String name) {
         return validateSurname(name);
     }
@@ -48,6 +75,11 @@ public class PersonValidator implements IValidator {
         return false;
     }
 
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main(String[] args){
         PersonValidator validator=new PersonValidator();
         Person person=new Person();

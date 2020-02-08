@@ -5,10 +5,19 @@ import com.facultative.dao.IDaoCourse;
 import com.facultative.model.Course;
 import java.util.List;
 
+
+/**
+ * The type Course service.
+ */
 public class CourseServiceImpl implements ICourseService<Course> {
     private IDaoCourse<Course> dao= DaoCourseImpl.getInstance();
     private static volatile ICourseService<Course> instance;
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ICourseService<Course> getInstance() {
         if (instance == null) {
             synchronized (CourseServiceImpl.class) {

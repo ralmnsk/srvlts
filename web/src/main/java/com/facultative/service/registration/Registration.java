@@ -4,6 +4,9 @@ import com.facultative.service.IPersonService;
 import com.facultative.service.PersonServiceImpl;
 import com.facultative.model.Person;
 
+/**
+ * The type Registration.
+ */
 public class Registration implements IRegistration{
         private IPersonService<Person> service= PersonServiceImpl.getInstance();
     @Override

@@ -3,13 +3,16 @@ package com.facultative.dao;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
+/**
+ * The type Data source.
+ */
 public class DataSource {
     private static DataSource dataSource;
     private ComboPooledDataSource cpds;
@@ -36,6 +39,11 @@ public class DataSource {
         }
     }
 
+    /**
+     * Get instance data source.
+     *
+     * @return the data source
+     */
     public static DataSource getInstance(){
         if (dataSource == null) {
             dataSource = new DataSource();
@@ -44,6 +52,11 @@ public class DataSource {
         return dataSource;
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         try {
             return this.cpds.getConnection();

@@ -7,10 +7,19 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import static com.facultative.service.constants.Constants.*;
 
+
+/**
+ * The type Dao person.
+ */
 public class DaoPersonImpl implements IDaoPerson<Person> {
     private static Logger logger= LoggerFactory.getLogger(DaoPersonImpl.class);
     private static volatile IDaoPerson instance;
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static IDaoPerson<Person> getInstance() {
         if (instance == null) {
             synchronized (DaoPersonImpl.class) {

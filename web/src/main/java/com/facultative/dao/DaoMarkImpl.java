@@ -3,18 +3,25 @@ package com.facultative.dao;
 import com.facultative.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.facultative.service.constants.Constants.*;
 
+
+/**
+ * The type Dao mark.
+ */
 public class DaoMarkImpl implements IDaoMark<Mark> {
     private static Logger logger= LoggerFactory.getLogger(DaoMarkImpl.class);
     private static volatile IDaoMark instance;
 
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static IDaoMark<Mark> getInstance() {
         if (instance == null) {
             synchronized (DaoMarkImpl.class) {

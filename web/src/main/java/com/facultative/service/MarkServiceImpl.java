@@ -6,10 +6,18 @@ import com.facultative.model.Mark;
 
 import java.util.List;
 
+/**
+ * The type Mark service.
+ */
 public class MarkServiceImpl implements IMarkService<Mark> {
     private IDaoMark<Mark> dao= DaoMarkImpl.getInstance();
     private static volatile IMarkService<Mark> instance;
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static IMarkService<Mark> getInstance() {
         if (instance == null) {
             synchronized (MarkServiceImpl.class) {

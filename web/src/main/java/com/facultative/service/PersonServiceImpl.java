@@ -4,11 +4,20 @@ import com.facultative.dao.DaoPersonImpl;
 import com.facultative.dao.IDaoPerson;
 import com.facultative.model.Person;
 
+
+/**
+ * The type Person service.
+ */
 public class PersonServiceImpl implements IPersonService<Person> {
     private IDaoPerson<Person> daoPerson= DaoPersonImpl.getInstance();
 
     private static volatile IPersonService<Person> instance;
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static IPersonService<Person> getInstance() {
         if (instance == null) {
             synchronized (PersonServiceImpl.class) {

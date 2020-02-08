@@ -15,8 +15,14 @@ import java.io.IOException;
 
 import static com.facultative.service.constants.Constants.NULL_PAGE;
 
+/**
+ * The type Controller.
+ */
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
+    /**
+     * Instantiates a new Controller.
+     */
     public Controller() {
         super();
     }

@@ -7,8 +7,19 @@ import static com.facultative.service.constants.Constants.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Login logic.
+ */
 public class LoginLogic {
 
+    /**
+     * Check login boolean.
+     *
+     * @param enterLogin the enter login
+     * @param enterPass  the enter pass
+     * @param request    the request
+     * @return the boolean
+     */
     public static boolean checkLogin(String enterLogin, String enterPass, HttpServletRequest request) {
         IPersonService service= PersonServiceImpl.getInstance();
         Person person=(Person)service.getByLogin(enterLogin);

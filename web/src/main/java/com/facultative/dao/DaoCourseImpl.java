@@ -9,14 +9,22 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.facultative.service.constants.Constants.*;
 
+
+/**
+ * The type Dao course.
+ */
 public class DaoCourseImpl implements IDaoCourse<Course> {
     private static Logger logger= LoggerFactory.getLogger(DaoCourseImpl.class);
     private static volatile IDaoCourse instance;
 
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static IDaoCourse<Course> getInstance() {
         if (instance == null) {
             synchronized (DaoCourseImpl.class) {
@@ -31,6 +39,8 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     private Connection getConnection() throws SQLException {
         return DataSource.getInstance().getConnection();
     }
+
+
 
     @Override
     public Course save(Course course){
@@ -65,6 +75,8 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         }
         return course;
     }
+
+
 
     @Override
     public Course get(long id) {
@@ -140,6 +152,14 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     }
 
 
+    /**
+     * Gets all courses with param.
+     *
+     * @param tutorId    the tutor id
+     * @param pageNumber the page number
+     * @param param      the param
+     * @return the all courses with param
+     */
     public List<Course> getAllCoursesWithParam(long tutorId, int pageNumber, String param) {
         List<Course> list=null;
         ResultSet rs=null;
