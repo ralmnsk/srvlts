@@ -15,14 +15,14 @@ import static com.facultative.service.constants.Constants.*;
 public class ViewCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,"viewcourse");
+        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         ICourseService<Course> service= CourseServiceImpl.getInstance();
         long userId=(long)request.getSession().getAttribute(USER_ID);
         int pageNumber= IPagination.getPageNumberTutorCourses(request,userId);
         List<Course> list=service.getCoursesByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 
-        String page = ConfigurationManager.getProperty("path.page.tuitor");
+        String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;
     }
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <html>
 <body>
-<tiles:insertDefinition name="tuitor"/>
+<tiles:insertDefinition name="tutor"/>
 <br/>
 </body>
 </html>

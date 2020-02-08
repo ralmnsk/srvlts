@@ -47,12 +47,17 @@ public class CourseServiceImpl implements ICourseService<Course> {
     }
 
     @Override
-    public List<Course> getCourses() {
-        return dao.getCourses();
+    public List<Course> getCourses(int pageNumber) {
+        return dao.getCourses(pageNumber);
     }
 
     @Override
     public int getCountCoursesByTutorId(long tutorId) {
         return dao.getCountCoursesByTutorId(tutorId);
+    }
+
+    @Override
+    public int getCountCourses() {
+        return dao.getCountCourses();
     }
 }

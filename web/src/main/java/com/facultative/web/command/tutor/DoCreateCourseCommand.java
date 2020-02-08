@@ -19,7 +19,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DoCreateCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,"viewcourse");
+        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         String courseName=request.getParameter(COURSE);
         long userId=(long)request.getSession().getAttribute(USER_ID);
         IPersonService<Person> personService= PersonServiceImpl.getInstance();
@@ -39,8 +39,8 @@ public class DoCreateCourseCommand implements ActionCommand {
         ICourseService<Course> service= CourseServiceImpl.getInstance();
         service.save(course);
         List<Course> list=service.getCoursesByTutorId(userId, IPagination.getPageNumberTutorCourses(request,userId));
-        request.setAttribute("list",list);
-        String page = ConfigurationManager.getProperty("path.page.tuitor");
+        request.setAttribute(LIST_JSP,list);
+        String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;
     }
 }

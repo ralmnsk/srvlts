@@ -50,14 +50,14 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             generatedKeys.close();
             logger.info("Mark was created:" + mark.getId());
         } catch (SQLException ex) {
-            logger.error("Prblem executing save mark ", ex);
+            logger.error("Problem executing save mark ", ex);
 
         } finally {
             if (generatedKeys!=null){
                 try {
                     generatedKeys.close();
                 } catch (SQLException e) {
-                    logger.error("Prblem executing save mark, generatedKey close", e);
+                    logger.error("Problem executing save mark, generatedKey close", e);
                 }
             }
         }
@@ -102,13 +102,13 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing get", ex);
+            logger.error("Problem executing get mark", ex);
         }finally{
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing get.ResultSet close", e);
+                    logger.error("Problem executing get mark ResultSet close", e);
                 }
             }
         }
@@ -126,7 +126,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             statement.setLong(3,mark.getId());
             statement.execute();
         } catch (SQLException ex) {
-            logger.error("Problem executing UPDATE", ex);
+            logger.error("Problem executing mark update", ex);
         }
         return mark;
     }
@@ -142,7 +142,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             statement.execute();
             logger.info("Mark was deleted: id:" +id);
         } catch (SQLException ex) {
-            logger.error("Prblem executing DELETE mark", ex);
+            logger.error("Problem executing delete mark", ex);
         }
     }
 
@@ -202,7 +202,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         }
     //for students to get all courses
     @Override
-    public List<Mark> getMarksByStudentId(long studentId) {
+    public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
         List<Mark> list=null;
         ResultSet rs=null;
         try (
@@ -211,7 +211,12 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                         (SQL_QUERY_MARK_ALL_BY_STUDENT_ID,Statement.RETURN_GENERATED_KEYS);
         )
         {
+            int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
+            int countMark=ITEMS_ON_PAGE;
             statement.setLong(1,studentId);
+            statement.setInt(2,startMark);
+            statement.setLong(3,countMark);
+
             rs = statement.executeQuery();
             while(rs.next()){
                 if(list==null){
@@ -238,13 +243,13 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing getMarksByTutorId", ex);
+            logger.error("Problem executing getMarksByStudentId", ex);
         }finally {
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing getMarksByTutorId, rs close", e);
+                    logger.error("Problem executing getMarksByStudentId, rs close", e);
                 }
             }
         }
@@ -275,6 +280,36 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                     rs.close();
                 } catch (SQLException e) {
                     logger.error("Problem executing getCountMarksByTutorId, rs close", e);
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int getCountMarksByStudentId(long userId) {
+        int count=0;
+        ResultSet rs=null;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        (SQL_QUERY_MARK_BY_STUDENT_ID,Statement.RETURN_GENERATED_KEYS);
+        )
+        {
+            statement.setLong(1,userId);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            logger.error("Problem executing getCountMarksByStudentId", ex);
+        }finally {
+            if (rs!=null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.error("Problem executing getCountMarksByStudentId, rs close", e);
                 }
             }
         }

@@ -104,6 +104,8 @@
 </p>
         </div>
 
+<%--PAGINATION--%>
+
 <c:if test="${processFlag == 'viewcourse' or processFlag == 'marks_view'}">
     <c:if test="${processFlag == 'viewcourse'}">
         <c:set var="process" value="viewcourse"/>

@@ -15,7 +15,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DelMarkCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,"delmark");
+        request.setAttribute(PROCESS_FLAG,DEL_MARK);
 
         long markId=Long.parseLong(request.getParameter(MARK_ID));
         request.getSession().setAttribute(MARK_ID,markId);

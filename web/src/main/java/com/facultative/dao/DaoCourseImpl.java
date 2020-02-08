@@ -1,11 +1,11 @@
 package com.facultative.dao;
 
 import com.facultative.model.Course;
+import com.facultative.model.Mark;
 import com.facultative.model.Tutor;
 import com.facultative.model.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +52,14 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             generatedKeys.close();
             logger.info("Course was created:" + course.getId());
         } catch (SQLException ex) {
-            logger.error("Prblem executing save course {}", ex);
+            logger.error("Problem executing save course", ex);
 
         } finally {
             if (generatedKeys!=null){
                 try {
                     generatedKeys.close();
                 } catch (SQLException e) {
-                    logger.error("Prblem executing INSERT, generatedKey close {}", e);
+                    logger.error("Problem executing save course, generatedKey close", e);
                 }
             }
         }
@@ -94,13 +94,13 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing UPDATE {}", ex);
+            logger.error("Problem executing course get", ex);
         }finally{
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing UPDATE.ResultSet close {}", e);
+                    logger.error("Problem executing course get", e);
                 }
             }
         }
@@ -119,7 +119,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             statement.setLong(3,course.getId());
             statement.execute();
         } catch (SQLException ex) {
-            logger.error("Problem executing UPDATE", ex);
+            logger.error("Problem executing course update", ex);
         }
         return course;
     }
@@ -135,7 +135,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             statement.execute();
             logger.info("Course was deleted: id:" +id);
         } catch (SQLException ex) {
-            logger.error("Prblem executing DELETE course", ex);
+            logger.error("Problem executing course delete", ex);
         }
     }
 
@@ -149,12 +149,15 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                         (param,Statement.RETURN_GENERATED_KEYS);
         )
         {
-            if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
                 int startCourse=(pageNumber-1)*ITEMS_ON_PAGE;
                 int countCourses=ITEMS_ON_PAGE;
+            if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
                 statement.setLong(1,tutorId);
                 statement.setInt(2,startCourse);
                 statement.setLong(3,countCourses);
+            } else{
+                statement.setInt(1,startCourse);
+                statement.setLong(2,countCourses);
             }
             rs = statement.executeQuery();
             while(rs.next()){
@@ -176,13 +179,13 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing getAllCourses", ex);
+            logger.error("Problem executing getAllCoursesWithParam ", ex);
         }finally {
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing getAllCourses, rs close", e);
+                    logger.error("Problem executing getAllCoursesWithParam ", e);
                 }
             }
         }
@@ -195,8 +198,8 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     }
     //for students to get all courses
     @Override
-    public List<Course> getCourses() {
-        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,NO_NUMBER,SQL_QUERY_COURSE_ALL_NO_PARAM);
+    public List<Course> getCourses(int pageNumber) {
+        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,pageNumber,SQL_QUERY_COURSE_ALL_NO_PARAM);
     }
 
     @Override
@@ -216,13 +219,43 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing getAllCourses", ex);
+            logger.error("Problem executing getCountCoursesByTutorId", ex);
         }finally {
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing getAllCourses, rs close", e);
+                    logger.error("Problem executing getCountCoursesByTutorId, rs close", e);
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int getCountCourses() {
+        int count=0;
+        ResultSet rs=null;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        (SQL_QUERY_COURSE_COUNT,Statement.RETURN_GENERATED_KEYS);
+        )
+        {
+//            statement.setLong(1,tutorId);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            logger.error("Problem executing getCountCourses", ex);
+        }finally {
+            if (rs!=null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.error("Problem executing getCountCourses, rs close", e);
                 }
             }
         }

@@ -5,10 +5,10 @@ import com.facultative.web.command.ActionCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class TuitorCommand implements ActionCommand {
+public class TutorCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.tuitor");
+        String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;
     }
 }

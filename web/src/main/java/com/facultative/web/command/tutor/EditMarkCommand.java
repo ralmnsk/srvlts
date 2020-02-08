@@ -27,7 +27,7 @@ public class EditMarkCommand implements ActionCommand {
         mark.getStudent().setSurname(person.getSurname());
         request.getSession().setAttribute(MARK,mark);
 
-        String page = ConfigurationManager.getProperty("path.page.tuitor");
+        String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;
     }
 }

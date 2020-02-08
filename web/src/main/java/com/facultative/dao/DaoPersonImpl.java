@@ -5,7 +5,6 @@ import com.facultative.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.*;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class DaoPersonImpl implements IDaoPerson<Person> {
@@ -83,16 +82,16 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
                 person.setId(generatedKeys.getLong(1));
             }
             generatedKeys.close();
-            logger.info("User was created:" + person.getId()+" login: "+ person.getLogin());
+            logger.info("Person was created:" + person.getId()+" login: "+ person.getLogin());
         } catch (SQLException ex) {
-            logger.error("Prblem executing save", ex);
+            logger.error("Problem executing person save", ex);
 
         } finally {
             if (generatedKeys!=null){
                 try {
                     generatedKeys.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing save, generatedKey close", e);
+                    logger.error("Problem executing person save, generatedKey close", e);
                 }
             }
         }
@@ -122,13 +121,13 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
             }
             rs.close();
         } catch (SQLException ex) {
-            logger.error("Problem executing get", ex);
+            logger.error("Problem executing person get", ex);
         }finally{
             if (rs!=null){
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing get.ResultSet close", e);
+                    logger.error("Problem executing person get.ResultSet close", e);
                 }
             }
         }
@@ -150,7 +149,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
             statement.setLong(6,person.getId());
             statement.execute();
         } catch (SQLException ex) {
-            logger.error("Problem executing UPDATE", ex);
+            logger.error("Problem executing person update", ex);
         }
         return person;
     }
@@ -164,10 +163,9 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
         {
             statement.setLong(1, id);
             statement.execute();
-            logger.info("User was deleted: user id:" +id);
+            logger.info("Person was deleted: person id:" +id);
         } catch (SQLException ex) {
-            logger.error("Problem executing DELETE", ex);
+            logger.error("Problem executing person delte", ex);
         }
-
     }
 }

@@ -75,7 +75,7 @@
                                         <td><a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a></td>
                                         <td>${element.course.tutor.surname} ${element.course.tutor.name}</td>
                                         <td>
-                                                <c:if test="${element.mark==0}">нет</c:if>
+                                                <c:if test="${element.mark==0}"> --- </c:if>
                                                 <c:if test="${element.mark!=0}">${element.mark}</c:if>
                                         </td>
                                         <td>${element.review}</td>
@@ -83,47 +83,30 @@
                         </c:forEach>
                 </table>
         </c:if>
-<%--        <a href="${pageContext.request.contextPath}/controller?command=tologin">Вход</a></br>--%>
-<%--        <a href="${pageContext.request.contextPath}/controller?command=toregister">Регистрация</a></br>--%>
 </p>
-<%--            <table>--%>
-<%--                <c:forEach var="entry" items="${map}">--%>
-<%--                    <p><h4>${entry.key.nameNews}</h4>--%>
-<%--                        </br>--%>
-<%--                            ${entry.key.dataNews}<p>--%>
-<%--                        </br>--%>
-<%--                            Автор: ${entry.value.name}--%>
-<%--                        </br>--%>
-<%--                    Дата: <fmt:formatDate type="both" value="${entry.key.dateNews}"/></br>--%>
 
-<%--                    <c:if test = "${(role == 'ROLE_USER')or(role == 'ROLE_ADMIN')}">--%>
-<%--                        <form name="sendToDiscuss" method="POST" action="site/discuss">--%>
-<%--                            <div class="form=group">--%>
-<%--                                <input type="hidden" name="discussNewsId" value="${entry.key.idNews}">--%>
-<%--                                <input class="btn btn-primary" type="submit" value="Перейти к обсуждению"/>--%>
-<%--                            </div>--%>
-<%--                        </form>--%>
-<%--                    </c:if>--%>
-
-
-<%--                    </p>--%>
-<%--                    <hr/>--%>
-<%--                </c:forEach>--%>
-<%--            </table>--%>
         </div>
 
+<%--PAGINATION--%>
 
+<c:if test="${processFlag == 'viewcourse' or processFlag == 'viewmark'}">
+        <c:if test="${processFlag == 'viewcourse'}">
+                <c:set var="process" value="allcourses"/>
+                <c:set var="pageNumber" value="${pageAllCoursesNumber}"/>
+        </c:if>
+        <c:if test="${processFlag == 'viewmark'}">
+                <c:set var="process" value="viewmark"/>
+                <c:set var="pageNumber" value="${pageMarkStudentNumber}"/>
+        </c:if>
+        <nav aria-label="Page navigation example">
+                <ul autofocus class="pagination justify-content-center">
 
-<%--        <nav aria-label="Page navigation example">--%>
-<%--          <ul autofocus class="pagination justify-content-center">--%>
+                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>
+                                <%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=10">10</a></li>--%>
+                        <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>
+                        <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
 
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?move=previous">Previous</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?move=next">Next</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=5">5</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=15">15</a></li>--%>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/news?maxResults=50">50</a></li>--%>
-<%--            <li class="page-item"><a class="page-link">Page: ${currentPage}</a></li>--%>
-<%--            <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>--%>
-
-<%--          </ul>--%>
-<%--        </nav>--%>
+                </ul>
+        </nav>
+</c:if>

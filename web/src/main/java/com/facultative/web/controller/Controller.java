@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.facultative.service.constants.Constants.NULL_PAGE;
+
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
     public Controller() {
@@ -38,7 +40,7 @@ public class Controller extends HttpServlet {
             dispatcher.forward(req, resp);
         } else {
             page = ConfigurationManager.getProperty("path.page.index");
-            req.getSession().setAttribute("nullPage",
+            req.getSession().setAttribute(NULL_PAGE,
                     MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);
         }

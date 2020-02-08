@@ -77,12 +77,12 @@
         <put-attribute name="footer" value="/WEB-INF/basefragments/_footer.jsp" />
     </definition>
 
-    <definition name="tuitor"
+    <definition name="tutor"
                 template="/WEB-INF/layouts/classic.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/basefragments/_header.jsp" />
         <put-attribute name="menu" value="/WEB-INF/basefragments/_menu.jsp" />
-        <put-attribute name="body" value="/WEB-INF/bodyfragments/_tuitor.jsp" />
+        <put-attribute name="body" value="/WEB-INF/bodyfragments/_tutor.jsp" />
         <put-attribute name="footer" value="/WEB-INF/basefragments/_footer.jsp" />
     </definition>
 

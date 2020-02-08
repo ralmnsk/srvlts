@@ -77,9 +77,9 @@ public enum CommandEnum {
         }
     },
 
-    TUITOR{
+    TUTOR{
         {
-            this.command=new TuitorCommand();
+            this.command=new TutorCommand();
         }
     },
 

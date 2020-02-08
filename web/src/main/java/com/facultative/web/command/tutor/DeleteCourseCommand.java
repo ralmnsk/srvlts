@@ -10,21 +10,23 @@ import com.facultative.web.command.pagination.IPagination;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.facultative.service.constants.Constants.*;
+
 public class DeleteCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute("processFlag","viewcourse");
+        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         ICourseService<Course> service= CourseServiceImpl.getInstance();
-        Course editCourse=(Course)request.getSession().getAttribute("editCourse");
+        Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
         long editCourseId=editCourse.getId();
         service.delete(editCourseId);
-        request.getSession().removeAttribute("editCourse");
+        request.getSession().removeAttribute(EDIT_COURSE);
 
-        long userId=(long)request.getSession().getAttribute("userId");
+        long userId=(long)request.getSession().getAttribute(USER_ID);
         List<Course> list=service.getCoursesByTutorId(userId, IPagination.getPageNumberTutorCourses(request,userId));
-        request.setAttribute("list",list);
+        request.setAttribute(LIST_JSP,list);
 
-        String page = ConfigurationManager.getProperty("path.page.tuitor");
+        String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;
     }
 }

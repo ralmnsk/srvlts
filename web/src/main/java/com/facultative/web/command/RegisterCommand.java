@@ -10,14 +10,16 @@ import com.facultative.model.Person;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.facultative.service.constants.Constants.*;
+
 public class RegisterCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String login=(String)request.getParameter("login");
-        String password=(String)request.getParameter("password");
-        String surname=(String)request.getParameter("surname");
-        String name=(String)request.getParameter("name");
-        UserType userType=UserType.valueOf((String)request.getParameter("selectType").toUpperCase());
+        String login=(String)request.getParameter(LOGIN);
+        String password=(String)request.getParameter(PASSWORD);
+        String surname=(String)request.getParameter(SURNAME);
+        String name=(String)request.getParameter(NAME);
+        UserType userType=UserType.valueOf((String)request.getParameter(SELECT_TYPE).toUpperCase());
         Registration registration=new Registration();
         String page=null;
         page = ConfigurationManager.getProperty("path.page.registration");

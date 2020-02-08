@@ -12,7 +12,4 @@ public class MessageManager {
     public static String getProperty(String key) {
         return resourceBundle.getString(key);
     }
-//    public static void main(String[] args){
-//        System.out.println(MessageManager.getProperty("message.student"));
-//    }
 }
