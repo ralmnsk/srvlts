@@ -72,7 +72,9 @@
                     <td>${element.course.id}</td>
                     <td><a href="${pageContext.request.contextPath}/controller?command=edit_mark&markid=${element.id}"> ${element.course.name}</a></td>
                     <td>${element.student.surname} ${element.student.name}</td>
-                    <td>${element.mark}</td>
+                    <td><c:if test="${element.mark == 0}">---</c:if>
+                        <c:if test="${element.mark != 0}">${element.mark}</c:if>
+                    </td>
                     <td>${element.review}</td>
                 </tr>
             </c:forEach>
@@ -102,18 +104,24 @@
 </p>
         </div>
 
-
-
+<c:if test="${processFlag == 'viewcourse' or processFlag == 'marks_view'}">
+    <c:if test="${processFlag == 'viewcourse'}">
+        <c:set var="process" value="viewcourse"/>
+        <c:set var="pageNumber" value="${pageCourseNumber}"/>
+    </c:if>
+    <c:if test="${processFlag == 'marks_view'}">
+        <c:set var="process" value="marks"/>
+        <c:set var="pageNumber" value="${pageMarkNumber}"/>
+    </c:if>
         <nav aria-label="Page navigation example">
           <ul autofocus class="pagination justify-content-center">
 
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&move=previous">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&move=next">Next</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=5">5</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=10">10</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=20">20</a></li>
-            <li class="page-item"><a class="page-link">Page: ${currentPage}</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>
+<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=10">10</a></li>--%>
+            <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>
             <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
 
           </ul>
         </nav>
+</c:if>

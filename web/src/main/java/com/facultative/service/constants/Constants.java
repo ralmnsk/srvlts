@@ -8,6 +8,9 @@ public class Constants {
     public static final String MARK="mark";
     public static final String MARK_ID="markid";
     public static final String COURSE="course";
+    public static final String PAGE_COURSE_TUTOR_NUMBER="pageCourseNumber";
+    public static final String PAGE_MARK_TUTOR_NUMBER="pageMarkNumber";
+    public static final String PAGES_COUNT="pagesCount";
         //request
     public static final String COURSE_ID="courseid";
     public static final String LIST_JSP="list";
@@ -15,6 +18,9 @@ public class Constants {
     public static final String MARKS_VIEW="marks_view";
     public static final String EDIT_MARK="edit_mark";
     public static final String REVIEW="review";
+    public static final String PARAMETER_MOVE="move";
+    public static final String NEXT="next";
+    public static final String PREVIOUS="previous";
         //internationalization and messages
     public static final String CONFIGURATION_MANAGER_FILE_BASE_NAME="config";
     public static final String MESSAGE_MANAGER_FILE_BASE_NAME="messages";
@@ -34,9 +40,11 @@ public class Constants {
     public static final String SQL_QUERY_COURSE_GET="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_course=?";
     public static final String SQL_QUERY_COURSE_UPDATE="update mydb.course set name_course=?, id_tutor=? where id_course=?";
     public static final String SQL_QUERY_COURSE_DELETE="delete from mydb.course where id_course=?";
-    public static final String SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_tutor=?";
+    public static final String SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_tutor=? limit ?,?";
     public static final String SQL_QUERY_COURSE_ALL_NO_PARAM="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id;";
+    public static final String SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID="SELECT count(*) FROM mydb.course where id_tutor=?";
     public static final long IN_COURSE_ALL_NO_TUTOR_ID=0L;
+    public static final int NO_NUMBER=0;
 
     //DaoMark
     public static final String SQL_QUERY_MARK_SAVE="INSERT INTO mydb.mark (id_course, id_student) VALUES (?, ?)";
@@ -50,10 +58,15 @@ public class Constants {
             "id_mark,mark,review,id_student,surname,name " +
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "join mydb.user on mydb.user.id=mydb.mark.id_student " +
-            "where id_tutor=?";
+            "where id_tutor=? limit ?,?";
     public static final String SQL_QUERY_MARK_ALL_BY_STUDENT_ID="SELECT mydb.course.id_course, name_course, mydb.course.id_tutor, " +
             "surname,name, id_mark,mark,review,id_student" +
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "join mydb.user on mydb.user.id=mydb.course.id_tutor " +
             "where id_student=?";
+    public static final String SQL_QUERY_MARK_BY_TUTOR_ID="SELECT count(*) FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
+            "            join mydb.user on mydb.user.id=mydb.mark.id_student " +
+            "            where id_tutor=?";
+
+    public static final int ITEMS_ON_PAGE=10;
 }

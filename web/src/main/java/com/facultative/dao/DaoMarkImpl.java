@@ -148,7 +148,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
     //for tutor to get only his own courses
     @Override
-    public List<Mark> getMarksByTutorId(long tutorId) {
+    public List<Mark> getMarksByTutorId(long tutorId, int pageNumber) {
             List<Mark> list=null;
             ResultSet rs=null;
             try (
@@ -157,7 +157,12 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                             (SQL_QUERY_MARK_ALL_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS);
             )
             {
+                int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
+                int countMark=ITEMS_ON_PAGE;
                 statement.setLong(1,tutorId);
+                statement.setInt(2,startMark);
+                statement.setLong(3,countMark);
+
                 rs = statement.executeQuery();
                 while(rs.next()){
                     if(list==null){
@@ -244,5 +249,35 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             }
         }
         return list;
+    }
+
+    @Override
+    public int getCountMarksByTutorId(long tutorId) {
+        int count=0;
+        ResultSet rs=null;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        (SQL_QUERY_MARK_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS);
+        )
+        {
+            statement.setLong(1,tutorId);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            logger.error("Problem executing getCountMarksByTutorId", ex);
+        }finally {
+            if (rs!=null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.error("Problem executing getCountMarksByTutorId, rs close", e);
+                }
+            }
+        }
+        return count;
     }
 }

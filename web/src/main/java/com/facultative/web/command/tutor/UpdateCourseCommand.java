@@ -5,6 +5,7 @@ import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
+import com.facultative.web.command.pagination.IPagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,7 +23,7 @@ public class UpdateCourseCommand implements ActionCommand {
         service.update(editCourse);
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Course> list=service.getCoursesByTutorId(userId);
+        List<Course> list=service.getCoursesByTutorId(userId, IPagination.getPageNumberTutorCourses(request,userId));
         request.setAttribute("list",list);
 
         String page = ConfigurationManager.getProperty("path.page.tuitor");

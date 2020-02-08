@@ -140,8 +140,8 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     }
 
 
-    public List<Course> getAllCoursesWithParam(long tutorId, String param) {
-        List<Course> list=new ArrayList<>();
+    public List<Course> getAllCoursesWithParam(long tutorId, int pageNumber, String param) {
+        List<Course> list=null;
         ResultSet rs=null;
         try (
                 Connection connection = getConnection();
@@ -150,10 +150,17 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         )
         {
             if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
+                int startCourse=(pageNumber-1)*ITEMS_ON_PAGE;
+                int countCourses=ITEMS_ON_PAGE;
                 statement.setLong(1,tutorId);
+                statement.setInt(2,startCourse);
+                statement.setLong(3,countCourses);
             }
             rs = statement.executeQuery();
             while(rs.next()){
+                if(list==null){
+                    list=new ArrayList<Course>();
+                }
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
@@ -183,12 +190,42 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     }
     //for tutor to get only his own courses
     @Override
-    public List<Course> getCoursesByTutorId(long tutorId) {
-        return getAllCoursesWithParam(tutorId,SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID);
+    public List<Course> getCoursesByTutorId(long tutorId,int pageNumber) {
+        return getAllCoursesWithParam(tutorId,pageNumber,SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID);
     }
     //for students to get all courses
     @Override
     public List<Course> getCourses() {
-        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,SQL_QUERY_COURSE_ALL_NO_PARAM);
+        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,NO_NUMBER,SQL_QUERY_COURSE_ALL_NO_PARAM);
+    }
+
+    @Override
+    public int getCountCoursesByTutorId(long tutorId) {
+        int count=0;
+        ResultSet rs=null;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement statement = connection.prepareStatement
+                        (SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS);
+        )
+        {
+            statement.setLong(1,tutorId);
+            rs = statement.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            logger.error("Problem executing getAllCourses", ex);
+        }finally {
+            if (rs!=null){
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.error("Problem executing getAllCourses, rs close", e);
+                }
+            }
+        }
+        return count;
     }
 }

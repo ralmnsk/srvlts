@@ -49,6 +49,7 @@ public enum CommandEnum {
             this.command = new DoEditMarkCommand();
         }
     },
+
     LOGIN {
         {
             this.command = new LoginCommand();
