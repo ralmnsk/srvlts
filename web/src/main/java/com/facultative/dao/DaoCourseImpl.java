@@ -39,7 +39,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     private DaoCourseImpl() {
     }
 
-    private Connection getConnection() {
+    private Connection getConnection() throws SQLException {
         return DataSource.getInstance().getConnection();
     }
 
@@ -86,7 +86,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_COURSE_GET,Statement.RETURN_GENERATED_KEYS)
+                     (SQL_QUERY_COURSE_GET)
         )
         {
             statement.setLong(1, id);
@@ -167,7 +167,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (param,Statement.RETURN_GENERATED_KEYS)
+                        (param)
         )
         {
                 int startCourse=(pageNumber-1)*ITEMS_ON_PAGE;
@@ -230,7 +230,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS)
+                        (SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID)
         )
         {
             statement.setLong(1,tutorId);
@@ -260,7 +260,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_COURSE_COUNT,Statement.RETURN_GENERATED_KEYS)
+                        (SQL_QUERY_COURSE_COUNT)
         )
         {
             rs = statement.executeQuery();

@@ -45,8 +45,11 @@ public class DataSource {
      */
     public static DataSource getInstance(){
         if (dataSource == null) {
-            dataSource = new DataSource();
-            return dataSource;
+            synchronized (DaoPersonImpl.class) {
+                if (dataSource == null) {
+                    dataSource = new DataSource();
+                }
+            }
         }
         return dataSource;
     }
@@ -56,12 +59,7 @@ public class DataSource {
      *
      * @return the connection
      */
-    public Connection getConnection() {
-        try {
+    public Connection getConnection() throws SQLException {
             return this.cpds.getConnection();
-        } catch (SQLException e) {
-            logger.error("Exception in DataSource.getConnection",e);
-            return null;
-        }
     }
 }

@@ -26,14 +26,16 @@ public class DoAddMarkCommand implements ActionCommand {
 
         IPersonService<Person> personService=PersonServiceImpl.getInstance();
         Person person=personService.get(studentId);
-        Student student=new Student();
-        student.setId(person.getId());
-        student.setSurname(person.getSurname());
-        student.setName(person.getName());
-
         Mark mark=new Mark();
-        mark.setStudent(student);
-        mark.setCourse(course);
+        if (person != null){
+            Student student=new Student();
+            student.setId(person.getId());
+            student.setSurname(person.getSurname());
+            student.setName(person.getName());
+
+            mark.setStudent(student);
+            mark.setCourse(course);
+        }
 
         int pageNumber= IPagination.getPageNumberStudentCourses(request,studentId);
 

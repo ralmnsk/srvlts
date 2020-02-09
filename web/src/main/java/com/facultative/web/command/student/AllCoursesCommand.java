@@ -29,15 +29,17 @@ public class AllCoursesCommand implements ActionCommand {
             long userId=course.getTutor().getId();
             Person person=personService.get(userId);
 
-            Tutor tutor=new Tutor();
-            tutor.setId(person.getId());
-            tutor.setSurname(person.getSurname());
-            tutor.setName(person.getName());
-            tutor.setLogin(person.getLogin());
-            tutor.setPassword(person.getPassword());
-            tutor.setRole(person.getRole());
+            if(person != null){
+                Tutor tutor=new Tutor();
+                tutor.setId(person.getId());
+                tutor.setSurname(person.getSurname());
+                tutor.setName(person.getName());
+                tutor.setLogin(person.getLogin());
+                tutor.setPassword(person.getPassword());
+                tutor.setRole(person.getRole());
 
-            course.setTutor(tutor);
+                course.setTutor(tutor);
+            }
         }
         request.setAttribute(LIST_JSP,list);
 

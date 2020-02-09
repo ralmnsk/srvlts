@@ -15,7 +15,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DaoMarkImpl implements IDaoMark<Mark> {
 
     private static Logger logger= LoggerFactory.getLogger(DaoMarkImpl.class);
-    private static volatile IDaoMark instance;
+    private static volatile IDaoMark<Mark> instance;
 
 
     /**
@@ -48,7 +48,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
              PreparedStatement statement =
                      connection
                              .prepareStatement(SQL_QUERY_MARK_SAVE
-                                     , Statement.RETURN_GENERATED_KEYS);
+                                     , Statement.RETURN_GENERATED_KEYS)
         )
         {
             statement.setLong(1, mark.getCourse().getId());
@@ -78,13 +78,13 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     @Override
     public Mark get(long id) {
         Mark mark=null;
-        Tutor tutor=null;
-        Course course=null;
-        Student student=null;
+        Tutor tutor;
+        Course course;
+        Student student;
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_MARK_GET,Statement.RETURN_GENERATED_KEYS);
+                     (SQL_QUERY_MARK_GET)
         )
         {
             statement.setLong(1, id);
@@ -130,7 +130,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     public Mark update(Mark mark) {
         try (Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_MARK_UPDATE);
+                        (SQL_QUERY_MARK_UPDATE)
         ){
             statement.setInt(1, mark.getMark());
             statement.setString(2, mark.getReview());
@@ -146,7 +146,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     public void delete(long id) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_MARK_DELETE);
+                     (SQL_QUERY_MARK_DELETE)
         )
         {
             statement.setLong(1, id);
@@ -164,19 +164,18 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             try (
                     Connection connection = getConnection();
                     PreparedStatement statement = connection.prepareStatement
-                            (SQL_QUERY_MARK_ALL_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS);
+                            (SQL_QUERY_MARK_ALL_BY_TUTOR_ID)
             )
             {
                 int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
-                int countMark=ITEMS_ON_PAGE;
                 statement.setLong(1,tutorId);
                 statement.setInt(2,startMark);
-                statement.setLong(3,countMark);
+                statement.setLong(3, ITEMS_ON_PAGE);
 
                 rs = statement.executeQuery();
                 while(rs.next()){
                     if(list==null){
-                        list=new ArrayList<Mark>();
+                        list=new ArrayList<>();
                     }
                     Course course=new Course();
                     course.setId(rs.getLong(1));
@@ -218,19 +217,18 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_MARK_ALL_BY_STUDENT_ID,Statement.RETURN_GENERATED_KEYS);
+                        (SQL_QUERY_MARK_ALL_BY_STUDENT_ID)
         )
         {
             int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
-            int countMark=ITEMS_ON_PAGE;
             statement.setLong(1,studentId);
             statement.setInt(2,startMark);
-            statement.setLong(3,countMark);
+            statement.setLong(3, ITEMS_ON_PAGE);
 
             rs = statement.executeQuery();
             while(rs.next()){
                 if(list==null){
-                    list=new ArrayList<Mark>();
+                    list=new ArrayList<>();
                 }
                 Course course=new Course();
                 course.setId(rs.getLong(1));
@@ -273,7 +271,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_MARK_BY_TUTOR_ID,Statement.RETURN_GENERATED_KEYS);
+                        (SQL_QUERY_MARK_BY_TUTOR_ID)
         )
         {
             statement.setLong(1,tutorId);
@@ -303,7 +301,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_MARK_BY_STUDENT_ID,Statement.RETURN_GENERATED_KEYS);
+                        (SQL_QUERY_MARK_BY_STUDENT_ID)
         )
         {
             statement.setLong(1,userId);

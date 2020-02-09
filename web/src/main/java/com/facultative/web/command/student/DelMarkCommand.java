@@ -19,8 +19,10 @@ public class DelMarkCommand implements ActionCommand {
         request.getSession().setAttribute(MARK_ID,markId);
         IMarkService<Mark> markService=MarkServiceImpl.getInstance();
         Mark mark=markService.get(markId);
-        Course course=mark.getCourse();
-        request.getSession().setAttribute(COURSE,course);
+        if (mark != null){
+            Course course=mark.getCourse();
+            request.getSession().setAttribute(COURSE,course);
+        }
 
         return ConfigurationManager.getProperty("path.page.student");
     }

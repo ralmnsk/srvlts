@@ -14,7 +14,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DaoPersonImpl implements IDaoPerson<Person> {
 
     private static Logger logger= LoggerFactory.getLogger(DaoPersonImpl.class);
-    private static volatile IDaoPerson instance;
+    private static volatile IDaoPerson<Person> instance;
 
     /**
      * Gets instance.
@@ -45,7 +45,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_PERSON_GET_BY_LOGIN,Statement.RETURN_GENERATED_KEYS);
+                     (SQL_QUERY_PERSON_GET_BY_LOGIN)
         )
         {
             statement.setString(1, login);
@@ -81,7 +81,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
              PreparedStatement statement =
                      connection
                              .prepareStatement(SQL_QUERY_PERSON_SAVE
-                                     , Statement.RETURN_GENERATED_KEYS);
+                                     , Statement.RETURN_GENERATED_KEYS)
         )
         {
             statement.setString(1, person.getSurname());
@@ -117,7 +117,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_PERSON_GET,Statement.RETURN_GENERATED_KEYS);
+                     (SQL_QUERY_PERSON_GET)
         )
         {
             statement.setLong(1, id);
@@ -151,7 +151,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
     public Person update(Person person) {
         try (Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_PERSON_UPDATE);
+                        (SQL_QUERY_PERSON_UPDATE)
 
         ){
             statement.setString(1, person.getSurname());
@@ -171,7 +171,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
     public void delete(long id) {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
-                     (SQL_QUERY_PERSON_DELETE);
+                     (SQL_QUERY_PERSON_DELETE)
         )
         {
             statement.setLong(1, id);

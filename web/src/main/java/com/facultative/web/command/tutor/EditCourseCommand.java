@@ -17,7 +17,9 @@ public class EditCourseCommand implements ActionCommand {
         ICourseService<Course> service= CourseServiceImpl.getInstance();
         long editId=Long.parseLong(request.getParameter(EDIT_ID));
         Course editCourse=service.get(editId);
-        request.getSession().setAttribute(EDIT_COURSE,editCourse);
+        if (editCourse !=null ){
+            request.getSession().setAttribute(EDIT_COURSE,editCourse);
+        }
 
         return ConfigurationManager.getProperty("path.page.tutor");
     }

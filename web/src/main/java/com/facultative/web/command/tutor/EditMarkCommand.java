@@ -21,11 +21,15 @@ public class EditMarkCommand implements ActionCommand {
         IMarkService<Mark> markService= MarkServiceImpl.getInstance();
         long markId=Long.parseLong(request.getParameter(MARK_ID));
         Mark mark=markService.get(markId);
-        IPersonService<Person> personService= PersonServiceImpl.getInstance();
-        Person person=personService.get(mark.getStudent().getId());
-        mark.getStudent().setName(person.getName());
-        mark.getStudent().setSurname(person.getSurname());
-        request.getSession().setAttribute(MARK,mark);
+        if(mark !=null){
+            IPersonService<Person> personService= PersonServiceImpl.getInstance();
+            Person person=personService.get(mark.getStudent().getId());
+            if(person != null){
+                mark.getStudent().setName(person.getName());
+                mark.getStudent().setSurname(person.getSurname());
+                request.getSession().setAttribute(MARK,mark);
+            }
+        }
 
         String page = ConfigurationManager.getProperty("path.page.tutor");
         return page;

@@ -17,7 +17,9 @@ public class AddMarkCommand implements ActionCommand {
         request.setAttribute(COURSE_ID,courseId);
         ICourseService<Course> courseService= CourseServiceImpl.getInstance();
         Course course=courseService.get(courseId);
-        request.getSession().setAttribute(COURSE,course);
+        if(course != null){
+            request.getSession().setAttribute(COURSE,course);
+        }
 
         return ConfigurationManager.getProperty("path.page.student");
     }

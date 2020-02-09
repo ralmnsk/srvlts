@@ -24,14 +24,15 @@ public class DoCreateCourseCommand implements ActionCommand {
         long userId=(long)request.getSession().getAttribute(USER_ID);
         IPersonService<Person> personService= PersonServiceImpl.getInstance();
         Person person=personService.get(userId);
-
         Tutor tutor=new Tutor();
-        tutor.setId(person.getId());
-        tutor.setSurname(person.getSurname());
-        tutor.setName(person.getName());
-        tutor.setLogin(person.getLogin());
-        tutor.setPassword(person.getPassword());
-        tutor.setRole(person.getRole());
+        if(person !=null ){
+            tutor.setId(person.getId());
+            tutor.setSurname(person.getSurname());
+            tutor.setName(person.getName());
+            tutor.setLogin(person.getLogin());
+            tutor.setPassword(person.getPassword());
+            tutor.setRole(person.getRole());
+        }
 
         Course course=new Course();
         course.setTutor(tutor);
