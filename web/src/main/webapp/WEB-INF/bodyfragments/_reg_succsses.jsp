@@ -9,7 +9,7 @@
 
         <div class="container">
             <fmt:message key="message.success.registration" bundle="${messages}"/>
-            </br>
+            <br/>
             <a href="${pageContext.request.contextPath}/toregister"><fmt:message key="message.return.registration" bundle="${messages}"/></a>
         </div>
 

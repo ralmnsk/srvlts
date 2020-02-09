@@ -69,7 +69,7 @@ public interface IPagination {
      * @param page_person_number the page person number
      * @return the page number
      */
-//PAGE_MARK_TUTOR_NUMBER
+
     public static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
         int pageNumber=1;
 
@@ -96,16 +96,16 @@ public interface IPagination {
         int count=0;
 
         if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
-            IMarkService<Mark> service= MarkServiceImpl.getInstance();//
-            count=service.getCountMarksByTutorId(userId);//
+            IMarkService<Mark> service= MarkServiceImpl.getInstance();
+            count=service.getCountMarksByTutorId(userId);
         }
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
             ICourseService<Course> service= CourseServiceImpl.getInstance();
             count=service.getCountCoursesByTutorId(userId);
         }
         if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
-            IMarkService<Mark> service= MarkServiceImpl.getInstance();//
-            count=service.getCountMarksByStudentId(userId);//
+            IMarkService<Mark> service= MarkServiceImpl.getInstance();
+            count=service.getCountMarksByStudentId(userId);
         }
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
             ICourseService<Course> service= CourseServiceImpl.getInstance();
@@ -120,7 +120,7 @@ public interface IPagination {
         if (pageNumber>pagesCount){
             pageNumber=pagesCount;
         }
-        request.getSession().setAttribute(page_person_number,pageNumber);// PAGE_COURSE_TUTOR_NUMBER or PAGE_MARK_TUTOR_NUMBER
+        request.getSession().setAttribute(page_person_number,pageNumber);
         request.getSession().setAttribute(PAGES_COUNT,pagesCount);
         return pageNumber;
     }

@@ -153,7 +153,6 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         }
     }
 
-    //for tutor to get only his own courses
     @Override
     public List<Mark> getMarksByTutorId(long tutorId, int pageNumber) {
             List<Mark> list=null;
@@ -207,7 +206,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             }
             return list;
         }
-    //for students to get all courses
+
     @Override
     public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
         List<Mark> list=null;

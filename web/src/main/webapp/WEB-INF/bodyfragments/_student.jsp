@@ -35,7 +35,6 @@
                         <form name="courseForm" method="POST" action="controller">
                                 <input type="hidden" name="command" value="doaddmark" />
                                 <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
-                                        <%--                        <input type="text" name="course" value=""/>--%>
                                 <p>${course.name}</p>
                                 <br/>
                                 <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enroll" bundle="${messages}"/>>
@@ -48,8 +47,6 @@
                         <form name="courseForm" method="POST" action="controller">
                                 <input type="hidden" name="command" value="dodelmark" />
                                 <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
-
-                                        <%--                        <input type="text" name="course" value=""/>--%>
                                 <p>${course.name}</p>
                                 <input class="btn btn-primary" type="submit" value=<fmt:message key="message.delete.course" bundle="${messages}"/>/>
                         </form>

@@ -4,6 +4,8 @@ import com.facultative.service.messages.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.facultative.service.constants.Constants.COMMAND;
+
 /**
  * The type Action factory.
  */
@@ -17,7 +19,7 @@ public class ActionFactory {
     public ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand current = new EmptyCommand();
 //get command name
-        String action = request.getParameter("command");
+        String action = request.getParameter(COMMAND);
         if (action == null || action.isEmpty()) {
 // current = emptyCommand
             return current;

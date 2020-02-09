@@ -1,5 +1,6 @@
 package com.facultative.web.controller;
 
+import com.facultative.service.constants.PermitAddCommandsForLang;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.ActionFactory;
 import com.facultative.service.config.ConfigurationManager;
@@ -13,12 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.facultative.service.constants.Constants.NULL_PAGE;
+import static com.facultative.service.constants.Constants.*;
 
 /**
  * The type Controller.
  */
-@WebServlet("/controller")
+@WebServlet({"/controller","/"})
 public class Controller extends HttpServlet {
     /**
      * Instantiates a new Controller.
@@ -37,13 +38,18 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        String page=null;
+        String page;
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(req);
+
         page = command.execute(req);
         if (page != null) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(req, resp);
+            if(req.getParameter(LANG) != null){
+                resp.sendRedirect((String)req.getSession().getAttribute(OLD_URL));
+            }else{
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+                dispatcher.forward(req, resp);
+            }
         } else {
             page = ConfigurationManager.getProperty("path.page.index");
             req.getSession().setAttribute(NULL_PAGE,
@@ -51,6 +57,4 @@ public class Controller extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + page);
         }
     }
-
-
 }

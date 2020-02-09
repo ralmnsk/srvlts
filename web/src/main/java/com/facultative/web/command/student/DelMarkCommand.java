@@ -6,9 +6,7 @@ import com.facultative.service.IMarkService;
 import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 import static com.facultative.service.constants.Constants.*;
 

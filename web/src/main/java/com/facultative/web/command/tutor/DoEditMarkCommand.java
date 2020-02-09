@@ -24,7 +24,7 @@ public class DoEditMarkCommand implements ActionCommand {
         mark.setReview(review);
         markService.update(mark);
 
-        long userId=(long)request.getSession().getAttribute(USER_ID); //Tutor
+        long userId=(long)request.getSession().getAttribute(USER_ID);
         List<Mark> list=markService.getMarksByTutorId(userId, IPagination.getPageNumberTutorMarks(request,userId));
         request.setAttribute(LIST_JSP,list);
 

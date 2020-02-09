@@ -1,7 +1,6 @@
 package com.facultative.dao;
 
 import com.facultative.model.Course;
-import com.facultative.model.Mark;
 import com.facultative.model.Tutor;
 import com.facultative.model.UserType;
 import org.slf4j.Logger;
@@ -262,7 +261,6 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                         (SQL_QUERY_COURSE_COUNT,Statement.RETURN_GENERATED_KEYS);
         )
         {
-//            statement.setLong(1,tutorId);
             rs = statement.executeQuery();
             while(rs.next()){
                 count=rs.getInt(1);

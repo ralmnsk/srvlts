@@ -17,6 +17,7 @@ public class Constants {
         //request
     public static final String ADD_MARK="addmark";
     public static final String COURSE_ID="courseid";
+    public static final String COMMAND="command";
     public static final String CREATE_COURSE="createcourse";
     public static final String DEL_MARK="delmark";
     public static final String EDIT_MARK="edit_mark";
@@ -27,6 +28,7 @@ public class Constants {
     public static final String NAME="name";
     public static final String NEXT="next";
     public static final String NULL_PAGE="nullPage";
+    public static final String OLD_URL="oldUrl";
     public static final String PROCESS_FLAG="processFlag";
     public static final String PARAMETER_MOVE="move";
     public static final String PASSWORD="password";
@@ -36,10 +38,14 @@ public class Constants {
     public static final String REVIEW="review";
     public static final String VIEW_COURSE="viewcourse";
     public static final String VIEW_MARK="viewmark";
-    //internationalization and messages
+    //internationalization, messages
     public static final String CONFIGURATION_MANAGER_FILE_BASE_NAME="config";
     public static final String MESSAGE_MANAGER_FILE_BASE_NAME="messages";
     public static final String LANG="lang";
+    public static final String LANG_EN="en";
+    public static final String LANG_RU="ru";
+    public static final String OLD_COMMAND="oldCommand";
+    public static final String OLD_PAGE="oldPage";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";

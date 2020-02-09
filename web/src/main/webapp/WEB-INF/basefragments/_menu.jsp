@@ -9,18 +9,8 @@
 
 <div>
 
-   <ul class="my">
-<%--          <c:if test = "${(role == 'ROLE_USER')}">--%>
-<%--               <p>--%>
-<%--              <li class="my">Пользователь ${name}<img width="25" height="30" src="${pageContext.request.contextPath}/images/user.jfif"/></li>--%>
-
-<%--          </c:if>--%>
-<%--          <c:if test = "${(role == 'STUDENT')}">--%>
-<%--            <p>--%>
-<%--              <li class="my">Администратор ${name}<img width="30" height="25" src="${pageContext.request.contextPath}/images/admin.jpg"/></li>--%>
-
-<%--          </c:if>--%>
-
+   <li class="my">
+<%--           <li class="my">${pageContext.request.queryString}</li>--%>
            <li class="my"><a href="?lang=en">English</a></li>
            <li class="my"><a href="?lang=ru">Русский</a></li>
            <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
@@ -34,7 +24,7 @@
 
             <c:if test="${(userRole == 'TUTOR')}">
                 <br/>
-                <li><a href="${pageContext.request.contextPath}/controller?command=tuitor"><fmt:message key="message.tutor.page" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=tutor"><fmt:message key="message.tutor.page" bundle="${messages}"/></a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=createcourse"><fmt:message key="message.create.course" bundle="${messages}"/></a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=viewcourse"><fmt:message key="message.see.yours.courses" bundle="${messages}"/></a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=marks"><fmt:message key="message.rate" bundle="${messages}"/></a></li>

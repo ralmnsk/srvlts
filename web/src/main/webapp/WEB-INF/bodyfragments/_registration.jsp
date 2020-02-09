@@ -3,12 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%--<c:set var="language"--%>
-<%--       value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}"--%>
-<%--       scope="session" />--%>
-<%--<fmt:setLocale value="${language}" />--%>
-<%--${language}--%>
-<%--<fmt:setBundle basename="messages" />--%>
+
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename = "messages" var = "messages"/>
         <div class="container">
@@ -17,20 +12,20 @@
                     <form name="registrationForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="register" />
                     <br/><fmt:message key="message.login" bundle="${messages}"/><br/>
-                    <input type="text" name="login" value=""/>
+                    <input type="text" required minlength="3" maxlength="30" name="login" value=""/>
                     <br/><fmt:message key="message.password" bundle="${messages}"/><br/>
-                    <input type="password" name="password" value=""/>
+                    <input type="password" required minlength="3" maxlength="30" name="password" value=""/>
                     <br/><fmt:message key="message.surname" bundle="${messages}"/><br/>
-                    <input type="text" name="surname" value=""/>
+                    <input type="text" required minlength="2" maxlength="30" name="surname" value=""/>
                     <br/><fmt:message key="message.name" bundle="${messages}"/><br/>
-                    <input type="text" name="name" value=""/>
+                    <input type="text" required minlength="2" maxlength="30" name="name" value=""/>
                     <br/>
                         <fmt:message key="message.choose" bundle="${messages}"/>
                     <br/>
                         <select name="selectType">
                             <option value="student"> <fmt:message key="message.student" bundle="${messages}"/>
                             </option>
-                            <option value="tuitor"> <fmt:message key="message.tutor" bundle="${messages}"/>
+                            <option value="tutor"> <fmt:message key="message.tutor" bundle="${messages}"/>
                             </option>
                         </select>
                     <br/>
@@ -38,12 +33,9 @@
                     </form>
                 </div>
             <hr/>
-            </br>
-<%--            <fmt:message key="message.student" bundle="${messages}"/>--%>
-<%--            request.encoding:<%=request.getCharacterEncoding()%><br/>--%>
-<%--            response.encoding:<%=response.getCharacterEncoding()%><br/>--%>
+            <br/>
             ${errorRegistrationMessage}
-            </br>
+            <br/>
 
         </div>
 

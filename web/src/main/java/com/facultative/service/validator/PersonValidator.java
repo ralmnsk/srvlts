@@ -15,7 +15,7 @@ public class PersonValidator implements IValidator {
      * @return the boolean
      */
     public boolean validateLogin(String login) {
-        String regex="[a-zA-Zа-яА-Я]{3,20}";
+        String regex="[a-zA-Zа-яА-Я]{3,30}";
         if(login.matches(regex)){
             return true;
         }
@@ -30,7 +30,7 @@ public class PersonValidator implements IValidator {
      * @return the boolean
      */
     public boolean validatePassword(String password) {
-        String regex="[a-zA-Zа-яА-Я0-9]{3,20}";
+        String regex="[a-zA-Zа-яА-Я0-9]{3,30}";
         if(password.matches(regex)){
             return true;
         }
@@ -45,7 +45,7 @@ public class PersonValidator implements IValidator {
      * @return the boolean
      */
     public boolean validateSurname(String surname) {
-        String regex="[a-zA-Zа-яА-Я-]{3,20}";
+        String regex="[a-zA-Zа-яА-Я-]{2,30}";
         if(surname.matches(regex)){
             return true;
         }
@@ -73,21 +73,5 @@ public class PersonValidator implements IValidator {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Main.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args){
-        PersonValidator validator=new PersonValidator();
-        Person person=new Person();
-        person.setLogin("qqq");
-        person.setPassword("qqq");
-        person.setSurname("qqq");
-        person.setName("qqq");
-        person.setRole(UserType.STUDENT);
-        System.out.println(validator.isValid(person));
     }
 }

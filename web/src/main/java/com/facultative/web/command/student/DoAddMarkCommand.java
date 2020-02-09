@@ -24,7 +24,6 @@ public class DoAddMarkCommand implements ActionCommand {
         Course course=(Course)request.getSession().getAttribute(COURSE);
         long studentId=(long)request.getSession().getAttribute(USER_ID);
         ICourseService<Course> courseService=CourseServiceImpl.getInstance();
-//        Course course=courseService.get(courseId);
 
         IPersonService<Person> personService=PersonServiceImpl.getInstance();
         Person person=personService.get(studentId);

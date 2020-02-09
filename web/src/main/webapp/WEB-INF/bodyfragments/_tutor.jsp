@@ -15,7 +15,6 @@
                 <form name="courseForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="docreatecourses" />
                     <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
-<%--                        <input type="text" name="course" value=""/>--%>
                         <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
                         <br/>
                         <input type="submit" class="btn btn-primary" value=<fmt:message key="message.create.course" bundle="${messages}"/>/>
@@ -23,13 +22,13 @@
         </div>
    </c:if>
 
-    <c:if test="${processFlag == 'editcourse'}">
+    <c:if test="${processFlag == 'editCourse'}">
         <fmt:message key="message.edit.courses" bundle="${messages}"/>:
         <div class="form-group">
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="updatecourse" />
                 <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
-<%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
+
                 <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course">${editCourse.name}</textarea>
                 <br/>
                 <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
@@ -86,8 +85,7 @@
         <div class="form-group">
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="do_edit_mark" />
-<%--                <input type="hidden" name="mark" value="${mark}" />--%>
-                    <%--                <input type="text" name="course" value="${editCourse.name}"/>--%>
+
                 <p><fmt:message key="message.course.number" bundle="${messages}"/>: ${mark.course.id}</p>
                 <p><fmt:message key="message.course.name" bundle="${messages}"/>: ${mark.course.name}</p>
                 <p><fmt:message key="message.student" bundle="${messages}"/>: ${mark.student.surname} ${mark.student.name}</p>
@@ -120,7 +118,6 @@
 
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>
-<%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=paginate&count=10">10</a></li>--%>
             <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>
             <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
 

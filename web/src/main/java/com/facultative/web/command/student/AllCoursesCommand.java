@@ -40,7 +40,7 @@ public class AllCoursesCommand implements ActionCommand {
 
             list.get(i).setTutor(tutor);
         }
-        request.setAttribute(LIST_JSP,list); //all courses
+        request.setAttribute(LIST_JSP,list);
         String page = ConfigurationManager.getProperty("path.page.student");
         return page;
     }
