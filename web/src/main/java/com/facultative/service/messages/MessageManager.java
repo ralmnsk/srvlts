@@ -1,9 +1,8 @@
 package com.facultative.service.messages;
 
-import com.google.protobuf.Message;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
+
 import static com.facultative.service.constants.Constants.MESSAGE_MANAGER_FILE_BASE_NAME;
 
 /**

@@ -15,11 +15,10 @@ public class EditCourseCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,EDIT_COURSE);
         ICourseService<Course> service= CourseServiceImpl.getInstance();
-        long userId=(long)request.getSession().getAttribute(USER_ID);
         long editId=Long.parseLong(request.getParameter(EDIT_ID));
         Course editCourse=service.get(editId);
         request.getSession().setAttribute(EDIT_COURSE,editCourse);
-        String page = ConfigurationManager.getProperty("path.page.tutor");
-        return page;
+
+        return ConfigurationManager.getProperty("path.page.tutor");
     }
 }

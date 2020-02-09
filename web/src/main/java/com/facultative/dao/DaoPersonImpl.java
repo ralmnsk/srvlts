@@ -12,6 +12,7 @@ import static com.facultative.service.constants.Constants.*;
  * The type Dao person.
  */
 public class DaoPersonImpl implements IDaoPerson<Person> {
+
     private static Logger logger= LoggerFactory.getLogger(DaoPersonImpl.class);
     private static volatile IDaoPerson instance;
 
@@ -29,6 +30,9 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
             }
         }
         return instance;
+    }
+
+    private DaoPersonImpl() {
     }
 
     private Connection getConnection() throws SQLException {

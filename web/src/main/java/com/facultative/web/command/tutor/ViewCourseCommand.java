@@ -22,7 +22,6 @@ public class ViewCourseCommand implements ActionCommand {
         List<Course> list=service.getCoursesByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 
-        String page = ConfigurationManager.getProperty("path.page.tutor");
-        return page;
+        return ConfigurationManager.getProperty("path.page.tutor");
     }
 }

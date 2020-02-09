@@ -12,7 +12,7 @@ public class CreateCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,CREATE_COURSE);
-        String page = ConfigurationManager.getProperty("path.page.tutor");
-        return page;
+
+        return ConfigurationManager.getProperty("path.page.tutor");
     }
 }

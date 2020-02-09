@@ -9,6 +9,7 @@ import com.facultative.model.Person;
  * The type Person service.
  */
 public class PersonServiceImpl implements IPersonService<Person> {
+
     private IDaoPerson<Person> daoPerson= DaoPersonImpl.getInstance();
 
     private static volatile IPersonService<Person> instance;
@@ -28,6 +29,10 @@ public class PersonServiceImpl implements IPersonService<Person> {
         }
         return instance;
     }
+
+    private PersonServiceImpl() {
+    }
+
     @Override
     public Person getByLogin(String login) {
         return daoPerson.getByLogin(login);

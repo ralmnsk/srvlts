@@ -10,6 +10,7 @@ import java.util.List;
  * The type Mark service.
  */
 public class MarkServiceImpl implements IMarkService<Mark> {
+
     private IDaoMark<Mark> dao= DaoMarkImpl.getInstance();
     private static volatile IMarkService<Mark> instance;
 
@@ -21,13 +22,15 @@ public class MarkServiceImpl implements IMarkService<Mark> {
     public static IMarkService<Mark> getInstance() {
         if (instance == null) {
             synchronized (MarkServiceImpl.class) {
-                instance = instance;
                 if (instance == null) {
                     instance = new MarkServiceImpl();
                 }
             }
         }
         return instance;
+    }
+
+    private MarkServiceImpl() {
     }
 
     @Override

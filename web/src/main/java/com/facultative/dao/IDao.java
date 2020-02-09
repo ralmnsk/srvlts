@@ -1,8 +1,5 @@
 package com.facultative.dao;
 
-import java.sql.SQLException;
-
-
 /**
  * The interface Dao.
  *

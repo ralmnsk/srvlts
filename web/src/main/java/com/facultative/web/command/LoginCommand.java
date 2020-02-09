@@ -4,9 +4,7 @@ import com.facultative.model.UserType;
 import com.facultative.service.auth.LoginLogic;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
-
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class LoginCommand implements ActionCommand {

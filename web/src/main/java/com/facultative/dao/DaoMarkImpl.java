@@ -13,6 +13,7 @@ import static com.facultative.service.constants.Constants.*;
  * The type Dao mark.
  */
 public class DaoMarkImpl implements IDaoMark<Mark> {
+
     private static Logger logger= LoggerFactory.getLogger(DaoMarkImpl.class);
     private static volatile IDaoMark instance;
 
@@ -31,6 +32,9 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             }
         }
         return instance;
+    }
+
+    private DaoMarkImpl() {
     }
 
     private Connection getConnection() throws SQLException {

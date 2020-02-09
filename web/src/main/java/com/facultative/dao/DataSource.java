@@ -14,6 +14,7 @@ import java.util.Properties;
  * The type Data source.
  */
 public class DataSource {
+
     private static DataSource dataSource;
     private ComboPooledDataSource cpds;
     private static Logger logger= LoggerFactory.getLogger(DataSource.class);
@@ -32,9 +33,7 @@ public class DataSource {
             cpds.setAcquireIncrement(2);
             cpds.setMaxPoolSize(10);
             cpds.setMaxStatements(180);
-        } catch (PropertyVetoException e) {
-            logger.error("DataSource problem:",e);
-        } catch (IOException e) {
+        } catch (PropertyVetoException | IOException e) {
             logger.error("DataSource problem:",e);
         }
     }

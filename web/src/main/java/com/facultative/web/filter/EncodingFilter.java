@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -15,7 +14,7 @@ import static com.facultative.service.constants.Constants.*;
 public class EncodingFilter implements Filter {
     private String code;
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         code = filterConfig.getInitParameter(ENCODING);
     }
 

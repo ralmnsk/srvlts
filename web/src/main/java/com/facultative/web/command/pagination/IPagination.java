@@ -21,9 +21,8 @@ public interface IPagination {
      * @param userId  the user id
      * @return the int
      */
-    public static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
-        int pageNumber=getPageNumber(request,userId,PAGE_COURSE_TUTOR_NUMBER);
-        return pageNumber;
+    static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
+        return getPageNumber(request,userId,PAGE_COURSE_TUTOR_NUMBER);
     }
 
     /**
@@ -33,9 +32,8 @@ public interface IPagination {
      * @param userId  the user id
      * @return the page number tutor marks
      */
-    public static int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
-        int pageNumber=getPageNumber(request,userId,PAGE_MARK_TUTOR_NUMBER);
-        return pageNumber;
+    static int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
+        return getPageNumber(request,userId,PAGE_MARK_TUTOR_NUMBER);
     }
 
     /**
@@ -46,8 +44,7 @@ public interface IPagination {
      * @return the page number student courses
      */
     static int getPageNumberStudentCourses(HttpServletRequest request, long studentId) {
-        int pageNumber=getPageNumber(request,studentId,PAGE_MARK_STUDENT_NUMBER);
-        return pageNumber;
+        return getPageNumber(request,studentId,PAGE_MARK_STUDENT_NUMBER);
     }
 
     /**
@@ -57,8 +54,7 @@ public interface IPagination {
      * @return the page number all courses
      */
     static int getPageNumberAllCourses(HttpServletRequest request) {
-        int pageNumber=getPageNumber(request,NO_NUMBER,PAGE_ALL_COURSES_NUMBER);
-        return pageNumber;
+        return getPageNumber(request,NO_NUMBER,PAGE_ALL_COURSES_NUMBER);
     }
 
     /**
@@ -70,7 +66,7 @@ public interface IPagination {
      * @return the page number
      */
 
-    public static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
+    static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
         int pageNumber=1;
 
         if(request.getSession().getAttribute(page_person_number)!=null){

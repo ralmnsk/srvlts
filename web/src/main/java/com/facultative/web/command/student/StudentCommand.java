@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 public class StudentCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
-        String page = ConfigurationManager.getProperty("path.page.student");
-        return page;
+        return ConfigurationManager.getProperty("path.page.student");
     }
 }

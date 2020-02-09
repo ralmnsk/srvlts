@@ -28,7 +28,7 @@ public class DoEditMarkCommand implements ActionCommand {
         List<Mark> list=markService.getMarksByTutorId(userId, IPagination.getPageNumberTutorMarks(request,userId));
         request.setAttribute(LIST_JSP,list);
 
-        String page = ConfigurationManager.getProperty("path.page.tutor");
-        return page;
+
+        return ConfigurationManager.getProperty("path.page.tutor");
     }
 }

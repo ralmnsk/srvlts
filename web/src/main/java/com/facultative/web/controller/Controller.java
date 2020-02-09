@@ -1,6 +1,5 @@
 package com.facultative.web.controller;
 
-import com.facultative.service.constants.PermitAddCommandsForLang;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.ActionFactory;
 import com.facultative.service.config.ConfigurationManager;

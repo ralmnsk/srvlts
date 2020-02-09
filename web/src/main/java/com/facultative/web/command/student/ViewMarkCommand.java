@@ -1,10 +1,8 @@
 package com.facultative.web.command.student;
 
-import com.facultative.model.Course;
 import com.facultative.model.Mark;
-import com.facultative.model.Person;
-import com.facultative.model.Student;
-import com.facultative.service.*;
+import com.facultative.service.IMarkService;
+import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.IPagination;
@@ -20,12 +18,11 @@ public class ViewMarkCommand implements ActionCommand {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
 
         long studentId=(long)request.getSession().getAttribute(USER_ID);
-        IMarkService markService=MarkServiceImpl.getInstance();
+        IMarkService<Mark> markService=MarkServiceImpl.getInstance();
         int pageNumber= IPagination.getPageNumberStudentCourses(request,studentId);
         List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 
-        String page = ConfigurationManager.getProperty("path.page.student");
-        return page;
+        return ConfigurationManager.getProperty("path.page.student");
     }
 }

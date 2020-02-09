@@ -10,6 +10,7 @@ import java.util.List;
  * The type Course service.
  */
 public class CourseServiceImpl implements ICourseService<Course> {
+
     private IDaoCourse<Course> dao= DaoCourseImpl.getInstance();
     private static volatile ICourseService<Course> instance;
 
@@ -21,13 +22,15 @@ public class CourseServiceImpl implements ICourseService<Course> {
     public static ICourseService<Course> getInstance() {
         if (instance == null) {
             synchronized (CourseServiceImpl.class) {
-                instance = instance;
                 if (instance == null) {
                     instance = new CourseServiceImpl();
                 }
             }
         }
         return instance;
+    }
+
+    private CourseServiceImpl() {
     }
 
     @Override
