@@ -10,7 +10,6 @@
 <div>
 
    <li class="my">
-<%--           <li class="my">${pageContext.request.queryString}</li>--%>
            <li class="my"><a href="?lang=en">English</a></li>
            <li class="my"><a href="?lang=ru">Русский</a></li>
            <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>

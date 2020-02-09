@@ -11,12 +11,12 @@ import java.util.Locale;
 import static com.facultative.service.constants.Constants.*;
 
 @WebFilter(urlPatterns= {"/*"},
-        initParams =@WebInitParam(name="encoding", value = "UTF-8"))
+        initParams =@WebInitParam(name=ENCODING, value = "UTF-8"))
 public class EncodingFilter implements Filter {
     private String code;
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        code = filterConfig.getInitParameter("encoding");
+        code = filterConfig.getInitParameter(ENCODING);
     }
 
     @Override
@@ -27,10 +27,9 @@ public class EncodingFilter implements Filter {
             response.setCharacterEncoding(code);
         }
 
-
         String url = ((HttpServletRequest) request).getRequestURL()
-                +(( ((HttpServletRequest) request).getQueryString() != null ) ? "?" + ((HttpServletRequest) request).getQueryString()
-                : "" );
+                +(( ((HttpServletRequest) request).getQueryString() != null ) ? QUESTION + ((HttpServletRequest) request).getQueryString()
+                : EMPTY_STRING );
         String oldUrl=url;
         if(((HttpServletRequest) request).getSession().getAttribute(OLD_URL) != null){
             oldUrl=((HttpServletRequest) request).getSession().getAttribute(OLD_URL).toString();
@@ -39,13 +38,13 @@ public class EncodingFilter implements Filter {
             System.out.println(oldUrl);
         if(request.getParameter(LANG) != null ){
             String lang=request.getParameter(LANG);
-            if(lang.equals(LANG_EN)||lang.equals(LANG_RU)) {
-                url=url.replace("?lang="+lang,"");
+            if(lang.equals(LANG_EN) || lang.equals(LANG_RU)) {
+                oldUrl=oldUrl.replace(QUESTION_LANG_EQ+lang,EMPTY_STRING);
+                oldUrl=oldUrl.replace(MOVE_EQ_NEXT,EMPTY_STRING);
+                oldUrl=oldUrl.replace(MOVE_EQ_PREVIOUS,EMPTY_STRING);
                 ((HttpServletRequest) request).getSession().setAttribute(OLD_URL,oldUrl);
                 Locale.setDefault(new Locale(lang));
                 System.out.println(oldUrl);
-
-//                request.getRequestDispatcher("controller"+oldUrl).forward(request,response);
             }
         }
 

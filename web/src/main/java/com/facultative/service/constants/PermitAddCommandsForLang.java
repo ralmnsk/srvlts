@@ -10,8 +10,8 @@ public class PermitAddCommandsForLang {
         set.add("updatecourse");
         set.add("deletecourse");
         set.add("do_edit_mark");
-        set.add("login");
-        set.add("register");
+//        set.add("login");
+//        set.add("register");
         set.add("doaddmark");
         set.add("dodelmark");
     }

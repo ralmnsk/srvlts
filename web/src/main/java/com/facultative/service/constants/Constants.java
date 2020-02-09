@@ -22,9 +22,13 @@ public class Constants {
     public static final String DEL_MARK="delmark";
     public static final String EDIT_MARK="edit_mark";
     public static final String EDIT_ID="editid";
+    public static final String ENCODING="encoding";
+    public static final String EMPTY_STRING="";
     public static final String LOGIN="login";
     public static final String LIST_JSP="list";
     public static final String MARKS_VIEW="marks_view";
+    public static final String MOVE_EQ_NEXT="&move=next";
+    public static final String MOVE_EQ_PREVIOUS="&move=previous";
     public static final String NAME="name";
     public static final String NEXT="next";
     public static final String NULL_PAGE="nullPage";
@@ -33,6 +37,8 @@ public class Constants {
     public static final String PARAMETER_MOVE="move";
     public static final String PASSWORD="password";
     public static final String PREVIOUS="previous";
+    public static final String QUESTION_LANG_EQ="?lang=";
+    public static final String QUESTION="?";
     public static final String SELECT_TYPE="selectType";
     public static final String SURNAME="surname";
     public static final String REVIEW="review";
@@ -44,8 +50,7 @@ public class Constants {
     public static final String LANG="lang";
     public static final String LANG_EN="en";
     public static final String LANG_RU="ru";
-    public static final String OLD_COMMAND="oldCommand";
-    public static final String OLD_PAGE="oldPage";
+
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";
