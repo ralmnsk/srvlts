@@ -11,16 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
 public class DelMarkCommand implements ActionCommand {
+
+    private IMarkService<Mark> markService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,DEL_MARK);
 
-        long markId=Long.parseLong(request.getParameter(MARK_ID));
+        long markId = Long.parseLong(request.getParameter(MARK_ID));
         request.getSession().setAttribute(MARK_ID,markId);
-        IMarkService<Mark> markService=MarkServiceImpl.getInstance();
-        Mark mark=markService.get(markId);
+        markService = MarkServiceImpl.getInstance();
+        Mark mark = markService.get(markId);
         if (mark != null){
-            Course course=mark.getCourse();
+            Course course = mark.getCourse();
             request.getSession().setAttribute(COURSE,course);
         }
 

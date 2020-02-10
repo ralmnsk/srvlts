@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
 public class EditCourseCommand implements ActionCommand {
+
+    private ICourseService<Course> service;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,EDIT_COURSE);
-        ICourseService<Course> service= CourseServiceImpl.getInstance();
-        long editId=Long.parseLong(request.getParameter(EDIT_ID));
-        Course editCourse=service.get(editId);
-        if (editCourse !=null ){
+        service = CourseServiceImpl.getInstance();
+        long editId = Long.parseLong(request.getParameter(EDIT_ID));
+        Course editCourse = service.get(editId);
+        if (editCourse != null ){
             request.getSession().setAttribute(EDIT_COURSE,editCourse);
         }
 

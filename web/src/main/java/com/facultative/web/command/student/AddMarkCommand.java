@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
 public class AddMarkCommand implements ActionCommand {
+
+    private ICourseService<Course> courseService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,ADD_MARK);
         long courseId=Long.parseLong(request.getParameter(COURSE_ID));
         request.setAttribute(COURSE_ID,courseId);
-        ICourseService<Course> courseService= CourseServiceImpl.getInstance();
+        courseService= CourseServiceImpl.getInstance();
         Course course=courseService.get(courseId);
         if(course != null){
             request.getSession().setAttribute(COURSE,course);

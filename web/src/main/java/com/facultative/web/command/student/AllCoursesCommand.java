@@ -17,12 +17,16 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class AllCoursesCommand implements ActionCommand {
+
+    private ICourseService<Course> courseService;
+    private IPersonService<Person> personService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         List<Course> list;
-        ICourseService<Course> courseService= CourseServiceImpl.getInstance();
-        IPersonService<Person> personService= PersonServiceImpl.getInstance();
+        courseService = CourseServiceImpl.getInstance();
+        personService = PersonServiceImpl.getInstance();
         int pageNumber= Pagination.getPageNumberAllCourses(request);
         list=courseService.getCourses(pageNumber);
         for (Course course:list){

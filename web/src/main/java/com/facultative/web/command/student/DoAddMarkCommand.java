@@ -17,16 +17,19 @@ import java.util.stream.Collectors;
 import static com.facultative.service.constants.Constants.*;
 
 public class DoAddMarkCommand implements ActionCommand {
-    private IMarkService<Mark> markService=MarkServiceImpl.getInstance();
+
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
+    private IPersonService<Person> personService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
-        Course course=(Course)request.getSession().getAttribute(COURSE);
-        long studentId=(long)request.getSession().getAttribute(USER_ID);
+        Course course = (Course)request.getSession().getAttribute(COURSE);
+        long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-        IPersonService<Person> personService=PersonServiceImpl.getInstance();
-        Person person=personService.get(studentId);
-        Mark mark=new Mark();
+        personService = PersonServiceImpl.getInstance();
+        Person person = personService.get(studentId);
+        Mark mark = new Mark();
         if (person != null){
             Student student=new Student();
             student.setId(person.getId());
@@ -37,7 +40,7 @@ public class DoAddMarkCommand implements ActionCommand {
             mark.setCourse(course);
         }
 
-        int pageNumber= Pagination.getPageNumberStudentCourses(request,studentId);
+        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
 
         if(!isEnrolled(mark,studentId, pageNumber)){
             markService.save(mark);
@@ -51,7 +54,7 @@ public class DoAddMarkCommand implements ActionCommand {
 
     private boolean isEnrolled(Mark mark,long studentId, int pageNumber) {
         List<Mark> marksByStudentId = markService.getMarksByStudentId(studentId,pageNumber);
-        List<Mark> list=marksByStudentId.stream().filter(m->m.getCourse().getName().equals(mark.getCourse().getName())).collect(Collectors.toList());
+        List<Mark> list = marksByStudentId.stream().filter(m->m.getCourse().getName().equals(mark.getCourse().getName())).collect(Collectors.toList());
 
         return list.size() != 0;
     }

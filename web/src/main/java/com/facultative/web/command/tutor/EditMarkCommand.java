@@ -15,15 +15,19 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class EditMarkCommand implements ActionCommand {
+
+    private IMarkService<Mark> markService;
+    private IPersonService<Person> personService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG, EDIT_MARK);
-        IMarkService<Mark> markService= MarkServiceImpl.getInstance();
-        long markId=Long.parseLong(request.getParameter(MARK_ID));
-        Mark mark=markService.get(markId);
-        if(mark !=null){
-            IPersonService<Person> personService= PersonServiceImpl.getInstance();
-            Person person=personService.get(mark.getStudent().getId());
+        markService = MarkServiceImpl.getInstance();
+        long markId = Long.parseLong(request.getParameter(MARK_ID));
+        Mark mark = markService.get(markId);
+        if(mark != null){
+            personService = PersonServiceImpl.getInstance();
+            Person person = personService.get(mark.getStudent().getId());
             if(person != null){
                 mark.getStudent().setName(person.getName());
                 mark.getStudent().setSurname(person.getSurname());
@@ -31,7 +35,6 @@ public class EditMarkCommand implements ActionCommand {
             }
         }
 
-        String page = ConfigurationManager.getProperty("path.page.tutor");
-        return page;
+        return ConfigurationManager.getProperty("path.page.tutor");
     }
 }

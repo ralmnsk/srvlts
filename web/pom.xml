@@ -25,12 +25,7 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>javax.servlet.jsp</groupId>-->
-<!--      <artifactId>javax.servlet.jsp-api</artifactId>-->
-<!--      <version>2.3.3</version>-->
-<!--      <scope>provided</scope>-->
-<!--    </dependency>-->
+
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -66,6 +61,14 @@
       <artifactId>tiles-extras</artifactId>
       <version>3.0.7</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.2.4</version>
+      <scope>test</scope>
+    </dependency>
+
 
   </dependencies>
 

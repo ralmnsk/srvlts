@@ -13,14 +13,17 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class MarksCommand implements ActionCommand {
+
+    private IMarkService<Mark> markService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
-        IMarkService<Mark> markService= MarkServiceImpl.getInstance();
+        markService = MarkServiceImpl.getInstance();
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        int pageNumber= Pagination.getPageNumberTutorMarks(request,userId);
-        List<Mark> list=markService.getMarksByTutorId(userId,pageNumber);
+        int pageNumber = Pagination.getPageNumberTutorMarks(request,userId);
+        List<Mark> list = markService.getMarksByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

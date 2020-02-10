@@ -13,10 +13,13 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class ViewCourseCommand implements ActionCommand {
+
+    private ICourseService<Course> service;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
-        ICourseService<Course> service= CourseServiceImpl.getInstance();
+        service = CourseServiceImpl.getInstance();
         long userId=(long)request.getSession().getAttribute(USER_ID);
         int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
         List<Course> list=service.getCoursesByTutorId(userId,pageNumber);

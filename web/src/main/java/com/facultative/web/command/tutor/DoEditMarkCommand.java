@@ -13,19 +13,22 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class DoEditMarkCommand implements ActionCommand {
+
+    private IMarkService<Mark> markService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
-        int markInt=Integer.parseInt(request.getParameter(MARK));
-        String review=request.getParameter(REVIEW);
-        IMarkService<Mark> markService= MarkServiceImpl.getInstance();
-        Mark mark=(Mark)request.getSession().getAttribute(MARK);
+        int markInt = Integer.parseInt(request.getParameter(MARK));
+        String review = request.getParameter(REVIEW);
+        markService = MarkServiceImpl.getInstance();
+        Mark mark = (Mark)request.getSession().getAttribute(MARK);
         mark.setMark(markInt);
         mark.setReview(review);
         markService.update(mark);
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Mark> list=markService.getMarksByTutorId(userId, Pagination.getPageNumberTutorMarks(request,userId));
+        List<Mark> list = markService.getMarksByTutorId(userId, Pagination.getPageNumberTutorMarks(request,userId));
         request.setAttribute(LIST_JSP,list);
 
 

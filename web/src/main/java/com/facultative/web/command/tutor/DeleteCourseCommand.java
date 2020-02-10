@@ -13,10 +13,13 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class DeleteCourseCommand implements ActionCommand {
+
+    private ICourseService<Course> service;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
-        ICourseService<Course> service= CourseServiceImpl.getInstance();
+        service= CourseServiceImpl.getInstance();
         Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
         long editCourseId=editCourse.getId();
         service.delete(editCourseId);

@@ -17,13 +17,16 @@ import java.util.List;
 import static com.facultative.service.constants.Constants.*;
 
 public class DoCreateCourseCommand implements ActionCommand {
+
+    private IPersonService<Person> personService;
+
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         String courseName=request.getParameter(COURSE);
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        IPersonService<Person> personService= PersonServiceImpl.getInstance();
-        Person person=personService.get(userId);
+        personService = PersonServiceImpl.getInstance();
+        Person person = personService.get(userId);
         Tutor tutor=new Tutor();
         if(person !=null ){
             tutor.setId(person.getId());
