@@ -8,22 +8,29 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
 public class LoginCommand implements ActionCommand {
+
+    private LoginLogic loginLogic;
+
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
 
         String login = request.getParameter(LOGIN);
         String pass = request.getParameter(PASSWORD);
-
-        if (LoginLogic.checkLogin(login, pass, request)) {
+        loginLogic = new LoginLogic();
+        if (loginLogic.checkLogin(login, pass, request)) {
 
             UserType userType=UserType.valueOf((String)request.getSession().getAttribute(USER_ROLE));
             if(userType.equals(UserType.STUDENT)){
                 page = ConfigurationManager.getProperty("path.page.student");
-            }
-            if(userType.equals(UserType.TUTOR)){
+            } else if(userType.equals(UserType.TUTOR)){
                 page = ConfigurationManager.getProperty("path.page.tutor");
+            } else{
+                request.setAttribute("errorLoginPassMessage",
+                        MessageManager.getProperty("message.role.error"));
+                page = ConfigurationManager.getProperty("path.page.login");
             }
+
         } else {
             request.setAttribute("errorLoginPassMessage",
                     MessageManager.getProperty("message.loginerror"));

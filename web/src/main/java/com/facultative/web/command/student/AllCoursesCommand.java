@@ -9,7 +9,7 @@ import com.facultative.service.PersonServiceImpl;
 import com.facultative.service.IPersonService;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
-import com.facultative.web.command.pagination.IPagination;
+import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,7 +23,7 @@ public class AllCoursesCommand implements ActionCommand {
         List<Course> list;
         ICourseService<Course> courseService= CourseServiceImpl.getInstance();
         IPersonService<Person> personService= PersonServiceImpl.getInstance();
-        int pageNumber= IPagination.getPageNumberAllCourses(request);
+        int pageNumber= Pagination.getPageNumberAllCourses(request);
         list=courseService.getCourses(pageNumber);
         for (Course course:list){
             long userId=course.getTutor().getId();

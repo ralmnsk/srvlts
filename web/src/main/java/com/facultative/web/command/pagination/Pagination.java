@@ -11,9 +11,9 @@ import static com.facultative.service.constants.Constants.*;
 
 
 /**
- * The interface Pagination.
+ * The type Pagination.
  */
-public interface IPagination {
+public class Pagination {
     /**
      * Get page number tutor courses int.
      *
@@ -21,7 +21,7 @@ public interface IPagination {
      * @param userId  the user id
      * @return the int
      */
-    static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
+    public static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
         return getPageNumber(request,userId,PAGE_COURSE_TUTOR_NUMBER);
     }
 
@@ -32,7 +32,7 @@ public interface IPagination {
      * @param userId  the user id
      * @return the page number tutor marks
      */
-    static int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
+    public static int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
         return getPageNumber(request,userId,PAGE_MARK_TUTOR_NUMBER);
     }
 
@@ -43,7 +43,7 @@ public interface IPagination {
      * @param studentId the student id
      * @return the page number student courses
      */
-    static int getPageNumberStudentCourses(HttpServletRequest request, long studentId) {
+    public static int getPageNumberStudentCourses(HttpServletRequest request, long studentId) {
         return getPageNumber(request,studentId,PAGE_MARK_STUDENT_NUMBER);
     }
 
@@ -53,7 +53,7 @@ public interface IPagination {
      * @param request the request
      * @return the page number all courses
      */
-    static int getPageNumberAllCourses(HttpServletRequest request) {
+    public static int getPageNumberAllCourses(HttpServletRequest request) {
         return getPageNumber(request,NO_NUMBER,PAGE_ALL_COURSES_NUMBER);
     }
 
@@ -65,8 +65,7 @@ public interface IPagination {
      * @param page_person_number the page person number
      * @return the page number
      */
-
-    static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
+    public static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
         int pageNumber=1;
 
         if(request.getSession().getAttribute(page_person_number)!=null){

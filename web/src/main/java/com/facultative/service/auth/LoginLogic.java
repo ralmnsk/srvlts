@@ -20,7 +20,7 @@ public class LoginLogic {
      * @param request    the request
      * @return the boolean
      */
-    public static boolean checkLogin(String enterLogin, String enterPass, HttpServletRequest request) {
+    public boolean checkLogin(String enterLogin, String enterPass, HttpServletRequest request) {
         IPersonService service= PersonServiceImpl.getInstance();
         Person person=(Person)service.getByLogin(enterLogin);
         if(person.getLogin()!=null){

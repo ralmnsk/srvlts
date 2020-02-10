@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
 public class RegisterCommand implements ActionCommand {
+
+    private Registration registration;
+    private PersonValidator validator;
+
     @Override
     public String execute(HttpServletRequest request) {
         String login= request.getParameter(LOGIN);
@@ -19,7 +23,7 @@ public class RegisterCommand implements ActionCommand {
         String surname= request.getParameter(SURNAME);
         String name= request.getParameter(NAME);
         UserType userType=UserType.valueOf(request.getParameter(SELECT_TYPE).toUpperCase());
-        Registration registration=new Registration();
+        registration=new Registration();
         String page;
         page = ConfigurationManager.getProperty("path.page.registration");
         if(!registration.isRegistered(login)){
@@ -29,7 +33,7 @@ public class RegisterCommand implements ActionCommand {
             person.setSurname(surname);
             person.setName(name);
             person.setRole(userType);
-            PersonValidator validator=new PersonValidator();
+            validator=new PersonValidator();
             if(validator.isValid(person)){
                 registration.register(person);
                 page = ConfigurationManager.getProperty("path.page.regsuccsses");

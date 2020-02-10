@@ -5,7 +5,7 @@ import com.facultative.service.IMarkService;
 import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
-import com.facultative.web.command.pagination.IPagination;
+import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,7 +25,7 @@ public class DoEditMarkCommand implements ActionCommand {
         markService.update(mark);
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Mark> list=markService.getMarksByTutorId(userId, IPagination.getPageNumberTutorMarks(request,userId));
+        List<Mark> list=markService.getMarksByTutorId(userId, Pagination.getPageNumberTutorMarks(request,userId));
         request.setAttribute(LIST_JSP,list);
 
 

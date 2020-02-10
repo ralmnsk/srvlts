@@ -5,7 +5,7 @@ import com.facultative.service.IMarkService;
 import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
-import com.facultative.web.command.pagination.IPagination;
+import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -19,7 +19,7 @@ public class MarksCommand implements ActionCommand {
         IMarkService<Mark> markService= MarkServiceImpl.getInstance();
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        int pageNumber= IPagination.getPageNumberTutorMarks(request,userId);
+        int pageNumber= Pagination.getPageNumberTutorMarks(request,userId);
         List<Mark> list=markService.getMarksByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 

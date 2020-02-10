@@ -5,7 +5,7 @@ import com.facultative.service.ICourseService;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.model.Course;
 import com.facultative.service.config.ConfigurationManager;
-import com.facultative.web.command.pagination.IPagination;
+import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ViewCourseCommand implements ActionCommand {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         ICourseService<Course> service= CourseServiceImpl.getInstance();
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        int pageNumber= IPagination.getPageNumberTutorCourses(request,userId);
+        int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
         List<Course> list=service.getCoursesByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 

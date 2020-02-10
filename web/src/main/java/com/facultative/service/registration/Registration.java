@@ -8,7 +8,9 @@ import com.facultative.model.Person;
  * The type Registration.
  */
 public class Registration implements IRegistration{
-        private IPersonService<Person> service= PersonServiceImpl.getInstance();
+
+    private IPersonService<Person> service= PersonServiceImpl.getInstance();
+
     @Override
     public boolean isRegistered(String login) {
         Person personByLogin = service.getByLogin(login);
@@ -16,7 +18,8 @@ public class Registration implements IRegistration{
     }
 
     @Override
-    public void register(Person person) {
+    public boolean register(Person person) {
         service.save(person);
+        return isRegistered(person.getLogin());
     }
 }

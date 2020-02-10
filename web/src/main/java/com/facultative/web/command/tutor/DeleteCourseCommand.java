@@ -5,7 +5,7 @@ import com.facultative.service.ICourseService;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.model.Course;
-import com.facultative.web.command.pagination.IPagination;
+import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,7 +23,7 @@ public class DeleteCourseCommand implements ActionCommand {
         request.getSession().removeAttribute(EDIT_COURSE);
 
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Course> list=service.getCoursesByTutorId(userId, IPagination.getPageNumberTutorCourses(request,userId));
+        List<Course> list=service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

@@ -17,11 +17,11 @@ public class ActionFactory {
      * @return the action command
      */
     public ActionCommand defineCommand(HttpServletRequest request) {
-        ActionCommand current = new EmptyCommand();
+        ActionCommand current = new IndexCommand();
 //get command name
         String action = request.getParameter(COMMAND);
         if (action == null || action.isEmpty()) {
-// current = emptyCommand
+// current = indexCommand
             return current;
         }
 // get object acording to the command

@@ -18,6 +18,7 @@ public interface IRegistration {
      * Register.
      *
      * @param person the person
+     * @return the boolean
      */
-    void register(Person person);
+    boolean register(Person person);
 }
