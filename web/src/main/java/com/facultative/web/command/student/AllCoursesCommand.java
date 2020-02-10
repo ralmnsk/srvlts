@@ -2,7 +2,6 @@ package com.facultative.web.command.student;
 
 import com.facultative.model.Course;
 import com.facultative.model.Person;
-import com.facultative.model.Tutor;
 import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.PersonServiceImpl;
@@ -31,17 +30,9 @@ public class AllCoursesCommand implements ActionCommand {
         list=courseService.getCourses(pageNumber);
         for (Course course:list){
             long userId=course.getTutor().getId();
-            Person person=personService.get(userId);
+            Person tutor=personService.get(userId);
 
-            if(person != null){
-                Tutor tutor=new Tutor();
-                tutor.setId(person.getId());
-                tutor.setSurname(person.getSurname());
-                tutor.setName(person.getName());
-                tutor.setLogin(person.getLogin());
-                tutor.setPassword(person.getPassword());
-                tutor.setRole(person.getRole());
-
+            if(tutor != null){
                 course.setTutor(tutor);
             }
         }

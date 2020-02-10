@@ -24,8 +24,8 @@ public class UpdateCourseCommand implements ActionCommand {
         editCourse.setName(request.getParameter(COURSE));
         service.update(editCourse);
 
-        long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Course> list=service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
+        long userId = (long)request.getSession().getAttribute(USER_ID);
+        List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

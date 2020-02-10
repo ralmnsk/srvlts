@@ -63,7 +63,8 @@ public class Constants {
     public static final String SQL_QUERY_COURSE_GET="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_course=?";
     public static final String SQL_QUERY_COURSE_UPDATE="update mydb.course set name_course=?, id_tutor=? where id_course=?";
     public static final String SQL_QUERY_COURSE_DELETE="delete from mydb.course where id_course=?";
-    public static final String SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_tutor=? limit ?,?";
+    public static final String SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID_LIMIT="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_tutor=? limit ?,?";
+    public static final String SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id where id_tutor=?";
     public static final String SQL_QUERY_COURSE_ALL_NO_PARAM="SELECT id_course,name_course,id_tutor,surname,name,login,password,role FROM mydb.course join mydb.user on id_tutor=id limit ?,?";
     public static final String SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID="SELECT count(*) FROM mydb.course where id_tutor=?";
     public static final String SQL_QUERY_COURSE_COUNT="SELECT count(*) FROM mydb.course";
@@ -83,14 +84,20 @@ public class Constants {
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "join mydb.user on mydb.user.id=mydb.mark.id_student " +
             "where id_tutor=? limit ?,?";
-    public static final String SQL_QUERY_MARK_ALL_BY_STUDENT_ID="SELECT mydb.course.id_course, name_course, mydb.course.id_tutor, " +
+    public static final String SQL_QUERY_MARK_ALL_BY_STUDENT_ID_LIMIT="SELECT mydb.course.id_course, name_course, mydb.course.id_tutor, " +
             "surname,name, id_mark,mark,review,id_student" +
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "join mydb.user on mydb.user.id=mydb.course.id_tutor " +
             "where id_student=? limit ?,?";
+    public static final String SQL_QUERY_MARK_ALL_BY_STUDENT_ID="SELECT mydb.course.id_course, name_course, mydb.course.id_tutor, " +
+            "surname,name, id_mark,mark,review,id_student" +
+            " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
+            "join mydb.user on mydb.user.id=mydb.course.id_tutor " +
+            "where id_student=?";
     public static final String SQL_QUERY_MARK_BY_TUTOR_ID="SELECT count(*) FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "            join mydb.user on mydb.user.id=mydb.mark.id_student " +
             "            where id_tutor=?";
     public static final String SQL_QUERY_MARK_BY_STUDENT_ID="SELECT count(*) FROM mydb.mark where id_student=?";
     public static final int ITEMS_ON_PAGE=10;
+    public static final int ALL_MARKS=-1;
 }

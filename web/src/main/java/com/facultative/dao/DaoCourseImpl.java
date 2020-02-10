@@ -1,7 +1,7 @@
 package com.facultative.dao;
 
 import com.facultative.model.Course;
-import com.facultative.model.Tutor;
+import com.facultative.model.Person;
 import com.facultative.model.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +82,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     @Override
     public Course get(long id) {
         Course course=null;
-        Tutor tutor;
+        Person tutor;
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
@@ -96,7 +96,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                 course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
-                tutor=new Tutor();
+                tutor=new Person();
                 tutor.setId(rs.getLong(3));
                 tutor.setSurname(rs.getString(4));
                 tutor.setName(rs.getString(5));
@@ -174,8 +174,10 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                 int countCourses=ITEMS_ON_PAGE;
             if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
                 statement.setLong(1,tutorId);
-                statement.setInt(2,startCourse);
-                statement.setLong(3,countCourses);
+                if(pageNumber != ALL_MARKS){
+                    statement.setInt(2,startCourse);
+                    statement.setLong(3,countCourses);
+                }
             } else{
                 statement.setInt(1,startCourse);
                 statement.setLong(2,countCourses);
@@ -188,7 +190,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
-                Tutor tutor=new Tutor();
+                Person tutor=new Person();
                 tutor.setId(rs.getLong(3));
                 tutor.setSurname(rs.getString(4));
                 tutor.setName(rs.getString(5));
@@ -215,7 +217,11 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     //for tutor to get only his own courses
     @Override
     public List<Course> getCoursesByTutorId(long tutorId,int pageNumber) {
-        return getAllCoursesWithParam(tutorId,pageNumber,SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID);
+        String sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID_LIMIT;
+        if(pageNumber == ALL_MARKS){
+            sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID;
+        }
+        return getAllCoursesWithParam(tutorId,pageNumber,sqlQuery);
     }
     //for students to get all courses
     @Override

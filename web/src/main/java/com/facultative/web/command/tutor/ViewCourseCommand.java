@@ -20,7 +20,7 @@ public class ViewCourseCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         service = CourseServiceImpl.getInstance();
-        long userId=(long)request.getSession().getAttribute(USER_ID);
+        long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
         List<Course> list=service.getCoursesByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);

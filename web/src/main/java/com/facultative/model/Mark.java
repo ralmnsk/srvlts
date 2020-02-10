@@ -6,7 +6,7 @@ package com.facultative.model;
  */
 public class Mark {
     private long id;
-    private Student student;
+    private Person student;
     private Course course;
     private int mark;
     private String review;
@@ -34,7 +34,7 @@ public class Mark {
      *
      * @return the student
      */
-    public Student getStudent() {
+    public Person getStudent() {
         return student;
     }
 
@@ -43,7 +43,7 @@ public class Mark {
      *
      * @param student the student
      */
-    public void setStudent(Student student) {
+    public void setStudent(Person student) {
         this.student = student;
     }
 

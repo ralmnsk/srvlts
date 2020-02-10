@@ -21,7 +21,7 @@ public class MarksCommand implements ActionCommand {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
         markService = MarkServiceImpl.getInstance();
 
-        long userId=(long)request.getSession().getAttribute(USER_ID);
+        long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber = Pagination.getPageNumberTutorMarks(request,userId);
         List<Mark> list = markService.getMarksByTutorId(userId,pageNumber);
         request.setAttribute(LIST_JSP,list);

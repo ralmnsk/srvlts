@@ -6,7 +6,7 @@ package com.facultative.model;
 public class Course {
     private long id;
     private String name;
-    private Tutor tutor;
+    private Person tutor;
 
     /**
      * Instantiates a new Course.
@@ -55,7 +55,7 @@ public class Course {
      *
      * @return the tutor
      */
-    public Tutor getTutor() {
+    public Person getTutor() {
         return tutor;
     }
 
@@ -64,7 +64,7 @@ public class Course {
      *
      * @param tutor the tutor
      */
-    public void setTutor(Tutor tutor) {
+    public void setTutor(Person tutor) {
         this.tutor = tutor;
     }
 

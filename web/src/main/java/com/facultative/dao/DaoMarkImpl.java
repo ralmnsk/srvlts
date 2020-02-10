@@ -78,9 +78,9 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     @Override
     public Mark get(long id) {
         Mark mark=null;
-        Tutor tutor;
+        Person tutor;
         Course course;
-        Student student;
+        Person student;
         ResultSet rs=null;
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement
@@ -100,11 +100,11 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 course.setId(rs.getLong(4));
                 course.setName(rs.getString(5));
 
-                tutor=new Tutor();
+                tutor=new Person();
                 tutor.setId(rs.getLong(6));
                 tutor.setSurname(rs.getString(7));
                 tutor.setName(rs.getString(8));
-                student=new Student();
+                student=new Person();
                 student.setId(rs.getLong(9));
                 mark.setStudent(student);
                 course.setTutor(tutor);
@@ -185,7 +185,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                     mark.setMark(rs.getInt(5));
                     mark.setReview(rs.getString(6));
 
-                    Student student=new Student();
+                    Person student=new Person();
                     student.setId(rs.getLong(7));
                     student.setSurname(rs.getString(8));
                     student.setName(rs.getString(9));
@@ -214,16 +214,22 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
         List<Mark> list=null;
         ResultSet rs=null;
-        try (
-                Connection connection = getConnection();
+        String sqlQuery=SQL_QUERY_MARK_ALL_BY_STUDENT_ID_LIMIT;
+        if(pageNumber == ALL_MARKS){
+            sqlQuery = SQL_QUERY_MARK_ALL_BY_STUDENT_ID;
+        }
+        try (   Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_MARK_ALL_BY_STUDENT_ID)
-        )
+                        (sqlQuery)
+            )
         {
-            int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
             statement.setLong(1,studentId);
+
+        if(pageNumber != ALL_MARKS){
+            int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
             statement.setInt(2,startMark);
             statement.setLong(3, ITEMS_ON_PAGE);
+        }
 
             rs = statement.executeQuery();
             while(rs.next()){
@@ -234,7 +240,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
 
-                Tutor tutor=new Tutor();
+                Person tutor=new Person();
                 tutor.setId(rs.getLong(3));
                 tutor.setSurname(rs.getString(4));
                 tutor.setName(rs.getString(5));

@@ -20,13 +20,13 @@ public class DoDelMarkCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
-        long markId=(Long)request.getSession().getAttribute(MARK_ID);
+        long markId = (Long)request.getSession().getAttribute(MARK_ID);
         markService = MarkServiceImpl.getInstance();
         markService.delete(markId);
 
-        long studentId=(long)request.getSession().getAttribute(USER_ID);
-        int pageNumber= Pagination.getPageNumberStudentCourses(request,studentId);
-        List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber);
+        long studentId = (long)request.getSession().getAttribute(USER_ID);
+        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
+        List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.student");

@@ -3,7 +3,6 @@ package com.facultative.web.command.student;
 import com.facultative.model.Course;
 import com.facultative.model.Mark;
 import com.facultative.model.Person;
-import com.facultative.model.Student;
 import com.facultative.service.*;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.web.command.ActionCommand;
@@ -28,21 +27,16 @@ public class DoAddMarkCommand implements ActionCommand {
         long studentId = (long)request.getSession().getAttribute(USER_ID);
 
         personService = PersonServiceImpl.getInstance();
-        Person person = personService.get(studentId);
+        Person student = personService.get(studentId);
         Mark mark = new Mark();
-        if (person != null){
-            Student student=new Student();
-            student.setId(person.getId());
-            student.setSurname(person.getSurname());
-            student.setName(person.getName());
-
+        if (student != null){
             mark.setStudent(student);
             mark.setCourse(course);
         }
 
         int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
 
-        if(!isEnrolled(mark,studentId, pageNumber)){
+        if(!isEnrolled(mark,studentId)){
             markService.save(mark);
         }
 
@@ -52,8 +46,8 @@ public class DoAddMarkCommand implements ActionCommand {
         return ConfigurationManager.getProperty("path.page.student");
     }
 
-    private boolean isEnrolled(Mark mark,long studentId, int pageNumber) {
-        List<Mark> marksByStudentId = markService.getMarksByStudentId(studentId,pageNumber);
+    private boolean isEnrolled(Mark mark,long studentId) {
+        List<Mark> marksByStudentId = markService.getMarksByStudentId(studentId,ALL_MARKS);
         List<Mark> list = marksByStudentId.stream().filter(m->m.getCourse().getName().equals(mark.getCourse().getName())).collect(Collectors.toList());
 
         return list.size() != 0;

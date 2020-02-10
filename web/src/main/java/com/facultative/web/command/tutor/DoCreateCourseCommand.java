@@ -1,7 +1,6 @@
 package com.facultative.web.command.tutor;
 
 import com.facultative.model.Person;
-import com.facultative.model.Tutor;
 import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.IPersonService;
@@ -13,12 +12,14 @@ import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.facultative.service.constants.Constants.*;
 
 public class DoCreateCourseCommand implements ActionCommand {
 
     private IPersonService<Person> personService;
+    private ICourseService<Course> courseService;
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -26,25 +27,28 @@ public class DoCreateCourseCommand implements ActionCommand {
         String courseName=request.getParameter(COURSE);
         long userId=(long)request.getSession().getAttribute(USER_ID);
         personService = PersonServiceImpl.getInstance();
-        Person person = personService.get(userId);
-        Tutor tutor=new Tutor();
-        if(person !=null ){
-            tutor.setId(person.getId());
-            tutor.setSurname(person.getSurname());
-            tutor.setName(person.getName());
-            tutor.setLogin(person.getLogin());
-            tutor.setPassword(person.getPassword());
-            tutor.setRole(person.getRole());
+        Person tutor = personService.get(userId);
+        Course course=new Course();
+
+        if(tutor !=null ){
+            course.setTutor(tutor);
         }
 
-        Course course=new Course();
-        course.setTutor(tutor);
         course.setName(courseName);
-        ICourseService<Course> service= CourseServiceImpl.getInstance();
-        service.save(course);
-        List<Course> list=service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
+        courseService = CourseServiceImpl.getInstance();
+        if(!isExist(userId, course)){
+            courseService.save(course);
+        }
+        List<Course> list=courseService.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");
+    }
+
+    private boolean isExist(long userId, Course course) {
+        List<Course> coursesByTutorId = courseService.getCoursesByTutorId(userId,ALL_MARKS);
+        List<Course> list = coursesByTutorId.stream().filter(m->m.getName().equals(course.getName())).collect(Collectors.toList());
+
+        return list.size() != 0;
     }
 }
