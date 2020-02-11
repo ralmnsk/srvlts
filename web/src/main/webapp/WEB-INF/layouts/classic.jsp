@@ -10,6 +10,16 @@
         <title><tiles:getAsString name="title" /></title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style type="text/css">
+            table{
+                height:100%;
+                vertical-align: top;
+            }
+            td{
+                vertical-align: top;
+            }
+            body{
+                min-height: 100%;
+            }
 
         </style>
 
@@ -28,12 +38,12 @@
             <td width="20%" nowrap="nowrap" >
                  <tiles:insertAttribute name="menu" />
              </td>
-            <td width="80%">
+            <td width="80%" height="100%">
                  <tiles:insertAttribute name="body" />
              </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2" >
                  <tiles:insertAttribute name="footer" />
             </td>
         </tr>

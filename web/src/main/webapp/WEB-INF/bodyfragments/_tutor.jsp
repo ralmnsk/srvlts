@@ -9,6 +9,8 @@
 
 <div class="container">
         <h2><fmt:message key="message.tutor.page" bundle="${messages}"/></h2>
+            ${courseExists}
+            <jsp:include page="_info.jsp"/>
 <p>
    <c:if test="${processFlag == 'createcourse'}">
         <div class="form-group">
@@ -114,7 +116,7 @@
         <c:set var="pageNumber" value="${pageMarkNumber}"/>
     </c:if>
         <nav aria-label="Page navigation example">
-          <ul autofocus class="pagination justify-content-center">
+          <ul autofocus class="pagination justify-content-center" vertical-align="bottom">
 
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>

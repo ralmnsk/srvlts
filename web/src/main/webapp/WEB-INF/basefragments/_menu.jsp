@@ -9,9 +9,8 @@
 
 <div>
 
-   <ul class="my">
-           <li class="my"><a href="?lang=en">English</a></li>
-           <li class="my"><a href="?lang=ru">Русский</a></li>
+   <ul class="my" >
+
            <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
 
             <c:if test="${(userRole == 'STUDENT')}">
@@ -27,6 +26,8 @@
                 <li><a href="${pageContext.request.contextPath}/controller?command=createcourse"><fmt:message key="message.create.course" bundle="${messages}"/></a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=viewcourse"><fmt:message key="message.see.yours.courses" bundle="${messages}"/></a></li>
                 <li><a href="${pageContext.request.contextPath}/controller?command=marks"><fmt:message key="message.rate" bundle="${messages}"/></a></li>
+                <li><a href="${pageContext.request.contextPath}/controller?command=allcourses"><fmt:message key="message.student.courses" bundle="${messages}"/></a></li>
+
             </c:if>
 
            <c:if test="${(userRole == 'STUDENT') or (userRole == 'TUTOR')}">

@@ -6,12 +6,16 @@
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename = "messages" var = "messages"/>
-         <div style="background: #E0E0E0; height: 55px; padding: 5px;">
+         <div style="background: #E0E0E0; height: 65px; padding: 5px;">
            <div style="float: left">
               <h1><fmt:message key="message.optional.classes" bundle="${messages}"/></h1>
            </div>
 
            <div style="float: right; padding: 10px; text-align: right;">
+               <ul class="my">
+                   <li class="my"><a href="?lang=en">English</a></li>
+                   <li class="my"><a href="?lang=ru">Русский</a></li>
+               </ul>
 
            </div>
 

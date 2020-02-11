@@ -12,20 +12,18 @@ import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class AllCoursesCommand implements ActionCommand {
 
-    private ICourseService<Course> courseService;
-    private IPersonService<Person> personService;
+    private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
+    private IPersonService<Person> personService = PersonServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         List<Course> list;
-        courseService = CourseServiceImpl.getInstance();
-        personService = PersonServiceImpl.getInstance();
+
         int pageNumber= Pagination.getPageNumberAllCourses(request);
         list=courseService.getCourses(pageNumber);
         for (Course course:list){

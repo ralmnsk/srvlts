@@ -25,12 +25,6 @@ public class PersonValidator {
         return surname.matches(regex);
     }
 
-
-    private boolean validateName(String name) {
-        return validateSurname(name);
-    }
-
-
     /**
      * Is valid boolean.
      *
@@ -41,7 +35,7 @@ public class PersonValidator {
         boolean isLoginNormal=validateLogin(person.getLogin());
         boolean isPasswordNormal=validatePassword(person.getPassword());
         boolean isSurnameNormal=validateSurname(person.getSurname());
-        boolean isNameNormal=validateName(person.getName());
+        boolean isNameNormal=validateSurname(person.getName());
 
         return (isLoginNormal&&isPasswordNormal && isSurnameNormal&&isNameNormal);
     }

@@ -14,15 +14,17 @@ import static com.facultative.service.constants.Constants.*;
 
 public class UpdateCourseCommand implements ActionCommand {
 
-    private ICourseService<Course> service;
+    private ICourseService<Course> service = CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
-        service = CourseServiceImpl.getInstance();
+
         Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
-        editCourse.setName(request.getParameter(COURSE));
-        service.update(editCourse);
+        if(editCourse !=null ){
+            editCourse.setName(request.getParameter(COURSE));
+            service.update(editCourse);
+        }
 
         long userId = (long)request.getSession().getAttribute(USER_ID);
         List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));

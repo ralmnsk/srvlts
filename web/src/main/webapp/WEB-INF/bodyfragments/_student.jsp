@@ -8,11 +8,18 @@
 <fmt:setBundle basename = "messages" var = "messages"/>
 
 <div class="container">
-        <h2><fmt:message key="message.student.page" bundle="${messages}"/></h2>
+        <c:if test="${(userRole == 'TUTOR')}">
+                <h2><fmt:message key="message.student.courses" bundle="${messages}"/></h2>
+        </c:if>
+        <c:if test="${(userRole == 'STUDENT')}">
+                <h2><fmt:message key="message.student.page" bundle="${messages}"/></h2>
+        </c:if>
+        <jsp:include page="_info.jsp"/>
 <p>
         <c:if test="${processFlag == 'viewcourse'}">
+                <c:if test="${(userRole == 'STUDENT')}">
                         <fmt:message key="message.enroll.course" bundle="${messages}"/>
-
+                </c:if>
         <p/>
         <table border=1 cellpadding=5>
                 <tr>
@@ -23,7 +30,15 @@
                 <c:forEach var="element" items="${list}">
                         <tr>
                                 <td>${element.id}</td>
-                                <td><a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a></td>
+                                <td>
+                                        <c:if test="${(userRole == 'TUTOR')}">
+                                                ${element.name}
+                                        </c:if>
+                                        <c:if test="${(userRole == 'STUDENT')}">
+                                                <a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a>
+                                        </c:if>
+
+                                </td>
                                 <td>${element.tutor.surname} ${element.tutor.name}</td>
                         </tr>
                 </c:forEach>

@@ -11,14 +11,14 @@ import static com.facultative.service.constants.Constants.*;
 
 public class AddMarkCommand implements ActionCommand {
 
-    private ICourseService<Course> courseService;
+    private ICourseService<Course> courseService= CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,ADD_MARK);
         long courseId=Long.parseLong(request.getParameter(COURSE_ID));
         request.setAttribute(COURSE_ID,courseId);
-        courseService= CourseServiceImpl.getInstance();
+
         Course course=courseService.get(courseId);
         if(course != null){
             request.getSession().setAttribute(COURSE,course);

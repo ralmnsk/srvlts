@@ -14,14 +14,13 @@ import static com.facultative.service.constants.Constants.*;
 
 public class ViewMarkCommand implements ActionCommand {
 
-    private IMarkService<Mark> markService;
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
-
         long studentId = (long)request.getSession().getAttribute(USER_ID);
-        markService = MarkServiceImpl.getInstance();
+
         int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
         List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber);
         request.setAttribute(LIST_JSP,list);

@@ -12,12 +12,12 @@ import static com.facultative.service.constants.Constants.*;
 
 public class EditCourseCommand implements ActionCommand {
 
-    private ICourseService<Course> service;
+    private ICourseService<Course> service = CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,EDIT_COURSE);
-        service = CourseServiceImpl.getInstance();
+
         long editId = Long.parseLong(request.getParameter(EDIT_ID));
         Course editCourse = service.get(editId);
         if (editCourse != null ){

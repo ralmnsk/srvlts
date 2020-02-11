@@ -14,16 +14,17 @@ import static com.facultative.service.constants.Constants.*;
 
 public class DeleteCourseCommand implements ActionCommand {
 
-    private ICourseService<Course> service;
+    private ICourseService<Course> service = CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
-        service = CourseServiceImpl.getInstance();
-        Course editCourse = (Course)request.getSession().getAttribute(EDIT_COURSE);
-        long editCourseId = editCourse.getId();
-        service.delete(editCourseId);
-        request.getSession().removeAttribute(EDIT_COURSE);
+        if(request.getSession().getAttribute(EDIT_COURSE) !=null ){
+            Course editCourse = (Course)request.getSession().getAttribute(EDIT_COURSE);
+            long editCourseId = editCourse.getId();
+            service.delete(editCourseId);
+            request.getSession().removeAttribute(EDIT_COURSE);
+        }
 
         long userId = (long)request.getSession().getAttribute(USER_ID);
         List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));

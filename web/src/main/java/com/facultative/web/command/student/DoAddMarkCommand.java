@@ -18,7 +18,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DoAddMarkCommand implements ActionCommand {
 
     private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
-    private IPersonService<Person> personService;
+    private IPersonService<Person> personService = PersonServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -26,7 +26,6 @@ public class DoAddMarkCommand implements ActionCommand {
         Course course = (Course)request.getSession().getAttribute(COURSE);
         long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-        personService = PersonServiceImpl.getInstance();
         Person student = personService.get(studentId);
         Mark mark = new Mark();
         if (student != null){
@@ -34,12 +33,12 @@ public class DoAddMarkCommand implements ActionCommand {
             mark.setCourse(course);
         }
 
-        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
 
         if(!isEnrolled(mark,studentId)){
             markService.save(mark);
         }
 
+        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
         List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber);
         request.setAttribute(LIST_JSP,list);
 

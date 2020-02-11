@@ -14,15 +14,15 @@ import static com.facultative.service.constants.Constants.*;
 
 public class DoEditMarkCommand implements ActionCommand {
 
-    private IMarkService<Mark> markService;
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
-        int markInt = Integer.parseInt(request.getParameter(MARK));
+        int markInt = Integer.parseInt(request.getParameter(MARK));//Mark.getMark() == markInt
         String review = request.getParameter(REVIEW);
-        markService = MarkServiceImpl.getInstance();
-        Mark mark = (Mark)request.getSession().getAttribute(MARK);
+
+        Mark mark = (Mark)request.getSession().getAttribute(MARK);//object of Mark.class
         mark.setMark(markInt);
         mark.setReview(review);
         markService.update(mark);

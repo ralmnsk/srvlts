@@ -12,7 +12,7 @@ import static com.facultative.service.constants.Constants.*;
 
 public class DelMarkCommand implements ActionCommand {
 
-    private IMarkService<Mark> markService;
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -20,7 +20,7 @@ public class DelMarkCommand implements ActionCommand {
 
         long markId = Long.parseLong(request.getParameter(MARK_ID));
         request.getSession().setAttribute(MARK_ID,markId);
-        markService = MarkServiceImpl.getInstance();
+
         Mark mark = markService.get(markId);
         if (mark != null){
             Course course = mark.getCourse();

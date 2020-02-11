@@ -6,6 +6,7 @@ import com.facultative.service.ICourseService;
 import com.facultative.service.IPersonService;
 import com.facultative.service.PersonServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
+import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.model.Course;
 import com.facultative.web.command.pagination.Pagination;
@@ -18,15 +19,15 @@ import static com.facultative.service.constants.Constants.*;
 
 public class DoCreateCourseCommand implements ActionCommand {
 
-    private IPersonService<Person> personService;
-    private ICourseService<Course> courseService;
+    private IPersonService<Person> personService = PersonServiceImpl.getInstance();
+    private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         String courseName=request.getParameter(COURSE);
         long userId=(long)request.getSession().getAttribute(USER_ID);
-        personService = PersonServiceImpl.getInstance();
+
         Person tutor = personService.get(userId);
         Course course=new Course();
 
@@ -35,9 +36,11 @@ public class DoCreateCourseCommand implements ActionCommand {
         }
 
         course.setName(courseName);
-        courseService = CourseServiceImpl.getInstance();
+
         if(!isExist(userId, course)){
             courseService.save(course);
+        } else{
+            request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
         }
         List<Course> list=courseService.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
         request.setAttribute(LIST_JSP,list);

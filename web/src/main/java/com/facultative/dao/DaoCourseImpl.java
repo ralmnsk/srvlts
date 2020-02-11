@@ -162,7 +162,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
      * @return the all courses with param
      */
     private List<Course> getAllCoursesWithParam(long tutorId, int pageNumber, String param) {
-        List<Course> list=null;
+        List<Course> list=new ArrayList<>();//to escape NullPointerException in Commands
         ResultSet rs=null;
         try (
                 Connection connection = getConnection();
@@ -184,9 +184,6 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
             }
             rs = statement.executeQuery();
             while(rs.next()){
-                if(list==null){
-                    list=new ArrayList<>();
-                }
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));

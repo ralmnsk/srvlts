@@ -20,4 +20,8 @@
             <br/>
             Message from exception: ${pageContext.exception.message}
 
+            <c:if test="$nullPage != null">
+                ${nullPage}
+            </c:if>
+
         </div>

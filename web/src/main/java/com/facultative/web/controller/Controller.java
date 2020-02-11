@@ -50,7 +50,7 @@ public class Controller extends HttpServlet {
                 dispatcher.forward(req, resp);
             }
         } else {
-            page = ConfigurationManager.getProperty("path.page.index");
+            page = ConfigurationManager.getProperty("path.page.error");
             req.getSession().setAttribute(NULL_PAGE,
                     MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);

@@ -84,37 +84,41 @@ public class Pagination {
             }
         }
 
-        if(pageNumber<=0){
-            pageNumber=1;
-        }
-
         int count=0;
 
         if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
-            IMarkService<Mark> service= MarkServiceImpl.getInstance();
-            count=service.getCountMarksByTutorId(userId);
+            IMarkService<Mark> service = MarkServiceImpl.getInstance();
+            count = service.getCountMarksByTutorId(userId);
         }
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
-            ICourseService<Course> service= CourseServiceImpl.getInstance();
-            count=service.getCountCoursesByTutorId(userId);
+            ICourseService<Course> service = CourseServiceImpl.getInstance();
+            count = service.getCountCoursesByTutorId(userId);
         }
         if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
-            IMarkService<Mark> service= MarkServiceImpl.getInstance();
-            count=service.getCountMarksByStudentId(userId);
+            IMarkService<Mark> service = MarkServiceImpl.getInstance();
+            count = service.getCountMarksByStudentId(userId);
         }
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
-            ICourseService<Course> service= CourseServiceImpl.getInstance();
-            count=service.getCountCourses();
+            ICourseService<Course> service = CourseServiceImpl.getInstance();
+            count = service.getCountCourses();
         }
 
-        int pagesCount=count/ITEMS_ON_PAGE;
+        int pagesCount = count/ITEMS_ON_PAGE;
         if(count%ITEMS_ON_PAGE>0){
             pagesCount++;
         }
 
-        if (pageNumber>pagesCount){
-            pageNumber=pagesCount;
+        if (pageNumber > pagesCount){
+            pageNumber = pagesCount;
         }
+
+        if(pageNumber <= 0){
+            pageNumber = 1;
+        }
+        if(pagesCount <= 0){
+            pagesCount = 1;
+        }
+
         request.getSession().setAttribute(page_person_number,pageNumber);
         request.getSession().setAttribute(PAGES_COUNT,pagesCount);
         return pageNumber;

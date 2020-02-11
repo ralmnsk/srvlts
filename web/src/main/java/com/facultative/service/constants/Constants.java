@@ -13,11 +13,13 @@ public class Constants {
     public static final String PAGE_MARK_TUTOR_NUMBER="pageMarkNumber";
     public static final String PAGE_ALL_COURSES_NUMBER="pageAllCoursesNumber";
     public static final String PAGES_COUNT="pagesCount";
+    public static final String PERSON="person";
     public static final String EDIT_COURSE="editCourse";
         //request
     public static final String ADD_MARK="addmark";
     public static final String COURSE_ID="courseid";
     public static final String COMMAND="command";
+    public static final String COURSE_EXISTS="courseExists";
     public static final String CREATE_COURSE="createcourse";
     public static final String DEL_MARK="delmark";
     public static final String EDIT_MARK="edit_mark";

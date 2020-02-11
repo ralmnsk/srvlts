@@ -15,13 +15,12 @@ import static com.facultative.service.constants.Constants.*;
 
 public class DoDelMarkCommand implements ActionCommand {
 
-    private IMarkService<Mark> markService;
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
         long markId = (Long)request.getSession().getAttribute(MARK_ID);
-        markService = MarkServiceImpl.getInstance();
         markService.delete(markId);
 
         long studentId = (long)request.getSession().getAttribute(USER_ID);

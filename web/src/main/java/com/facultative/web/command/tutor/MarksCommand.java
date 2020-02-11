@@ -14,12 +14,11 @@ import static com.facultative.service.constants.Constants.*;
 
 public class MarksCommand implements ActionCommand {
 
-    private IMarkService<Mark> markService;
+    private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
-        markService = MarkServiceImpl.getInstance();
 
         long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber = Pagination.getPageNumberTutorMarks(request,userId);

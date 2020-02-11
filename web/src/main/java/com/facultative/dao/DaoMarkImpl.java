@@ -159,7 +159,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
     @Override
     public List<Mark> getMarksByTutorId(long tutorId, int pageNumber) {
-            List<Mark> list=null;
+            List<Mark> list=new ArrayList<>();
             ResultSet rs=null;
             try (
                     Connection connection = getConnection();
@@ -174,9 +174,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
                 rs = statement.executeQuery();
                 while(rs.next()){
-                    if(list==null){
-                        list=new ArrayList<>();
-                    }
+
                     Course course=new Course();
                     course.setId(rs.getLong(1));
                     course.setName(rs.getString(2));
@@ -212,7 +210,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
     @Override
     public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
-        List<Mark> list=null;
+        List<Mark> list = new ArrayList<>();
         ResultSet rs=null;
         String sqlQuery=SQL_QUERY_MARK_ALL_BY_STUDENT_ID_LIMIT;
         if(pageNumber == ALL_MARKS){
@@ -233,9 +231,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
             rs = statement.executeQuery();
             while(rs.next()){
-                if(list==null){
-                    list=new ArrayList<>();
-                }
+
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
