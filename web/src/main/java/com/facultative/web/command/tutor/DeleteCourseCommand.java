@@ -27,7 +27,8 @@ public class DeleteCourseCommand implements ActionCommand {
         }
 
         long userId = (long)request.getSession().getAttribute(USER_ID);
-        List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
+        int scale = Pagination.getScale(request);
+        List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId), scale);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

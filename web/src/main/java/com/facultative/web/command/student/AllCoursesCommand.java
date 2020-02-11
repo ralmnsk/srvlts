@@ -24,8 +24,8 @@ public class AllCoursesCommand implements ActionCommand {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         List<Course> list;
 
-        int pageNumber= Pagination.getPageNumberAllCourses(request);
-        list=courseService.getCourses(pageNumber);
+        int pageNumber = Pagination.getPageNumberAllCourses(request);
+        list=courseService.getCourses(pageNumber,Pagination.getScale(request)); //scale = items on the page
         for (Course course:list){
             long userId=course.getTutor().getId();
             Person tutor=personService.get(userId);

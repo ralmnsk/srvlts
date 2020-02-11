@@ -25,7 +25,8 @@ public class DoDelMarkCommand implements ActionCommand {
 
         long studentId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-        List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber);
+        int scale = Pagination.getScale(request);
+        List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.student");

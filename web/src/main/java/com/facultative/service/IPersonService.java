@@ -1,7 +1,5 @@
 package com.facultative.service;
 
-import com.facultative.dao.IDao;
-
 /**
  * The interface Person service.
  *

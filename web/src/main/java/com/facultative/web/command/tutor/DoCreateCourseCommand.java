@@ -37,19 +37,20 @@ public class DoCreateCourseCommand implements ActionCommand {
 
         course.setName(courseName);
 
-        if(!isExist(userId, course)){
+        int scale = Pagination.getScale(request);
+        if(!isExist(userId, course, scale)){
             courseService.save(course);
         } else{
             request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
         }
-        List<Course> list=courseService.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId));
+        List<Course> list=courseService.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId),scale);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");
     }
 
-    private boolean isExist(long userId, Course course) {
-        List<Course> coursesByTutorId = courseService.getCoursesByTutorId(userId,ALL_MARKS);
+    private boolean isExist(long userId, Course course, int scale) {
+        List<Course> coursesByTutorId = courseService.getCoursesByTutorId(userId,ALL_MARKS, scale);
         List<Course> list = coursesByTutorId.stream().filter(m->m.getName().equals(course.getName())).collect(Collectors.toList());
 
         return list.size() != 0;

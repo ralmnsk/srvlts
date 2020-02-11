@@ -16,7 +16,7 @@ public interface IDaoCourse<T> extends IDao<T> {
      * @param pageNumber the page number
      * @return the courses by tutor id
      */
-    List<T> getCoursesByTutorId(long tutorId, int pageNumber);
+    List<T> getCoursesByTutorId(long tutorId, int pageNumber, int scale);
 
     /**
      * Gets courses.
@@ -24,7 +24,7 @@ public interface IDaoCourse<T> extends IDao<T> {
      * @param pageNumber the page number
      * @return the courses
      */
-    List<T> getCourses(int pageNumber);
+    List<T> getCourses(int pageNumber, int scale);
 
     /**
      * Gets count courses by tutor id.

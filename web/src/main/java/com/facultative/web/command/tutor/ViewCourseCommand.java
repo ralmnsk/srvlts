@@ -20,9 +20,10 @@ public class ViewCourseCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
 
+        int scale = Pagination.getScale(request);
         long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
-        List<Course> list=service.getCoursesByTutorId(userId,pageNumber);
+        List<Course> list=service.getCoursesByTutorId(userId,pageNumber,scale);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

@@ -120,9 +120,13 @@
 
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=10">10</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=20">20</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=50">50</a></li>
             <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>
             <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
 
           </ul>
         </nav>
+
 </c:if>

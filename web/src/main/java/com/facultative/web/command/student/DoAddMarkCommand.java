@@ -33,20 +33,21 @@ public class DoAddMarkCommand implements ActionCommand {
             mark.setCourse(course);
         }
 
+        int scale=Pagination.getScale(request);
 
-        if(!isEnrolled(mark,studentId)){
+        if(!isEnrolled(mark,studentId, scale)){
             markService.save(mark);
         }
 
         int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-        List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber);
+        List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber, scale) ;
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.student");
     }
 
-    private boolean isEnrolled(Mark mark,long studentId) {
-        List<Mark> marksByStudentId = markService.getMarksByStudentId(studentId,ALL_MARKS);
+    private boolean isEnrolled(Mark mark,long studentId, int scale) {
+        List<Mark> marksByStudentId = markService.getMarksByStudentId(studentId,ALL_MARKS, scale);
         List<Mark> list = marksByStudentId.stream().filter(m->m.getCourse().getName().equals(mark.getCourse().getName())).collect(Collectors.toList());
 
         return list.size() != 0;

@@ -1,7 +1,5 @@
 package com.facultative.service;
 
-import java.sql.SQLException;
-
 /**
  * The interface Service.
  *

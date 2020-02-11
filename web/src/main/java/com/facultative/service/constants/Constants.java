@@ -15,6 +15,7 @@ public class Constants {
     public static final String PAGES_COUNT="pagesCount";
     public static final String PERSON="person";
     public static final String EDIT_COURSE="editCourse";
+    public static final String SCALE="scale";
         //request
     public static final String ADD_MARK="addmark";
     public static final String COURSE_ID="courseid";

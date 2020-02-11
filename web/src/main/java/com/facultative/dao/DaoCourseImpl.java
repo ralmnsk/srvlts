@@ -161,7 +161,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
      * @param param      the param
      * @return the all courses with param
      */
-    private List<Course> getAllCoursesWithParam(long tutorId, int pageNumber, String param) {
+    private List<Course> getAllCoursesWithParam(long tutorId, int pageNumber, String param, int scale) {
         List<Course> list=new ArrayList<>();//to escape NullPointerException in Commands
         ResultSet rs=null;
         try (
@@ -170,8 +170,8 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                         (param)
         )
         {
-                int startCourse=(pageNumber-1)*ITEMS_ON_PAGE;
-                int countCourses=ITEMS_ON_PAGE;
+                int startCourse=(pageNumber-1)*scale;
+                int countCourses=scale;
             if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
                 statement.setLong(1,tutorId);
                 if(pageNumber != ALL_MARKS){
@@ -213,17 +213,17 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     }
     //for tutor to get only his own courses
     @Override
-    public List<Course> getCoursesByTutorId(long tutorId,int pageNumber) {
+    public List<Course> getCoursesByTutorId(long tutorId,int pageNumber, int scale) {
         String sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID_LIMIT;
         if(pageNumber == ALL_MARKS){
             sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID;
         }
-        return getAllCoursesWithParam(tutorId,pageNumber,sqlQuery);
+        return getAllCoursesWithParam(tutorId,pageNumber,sqlQuery, scale);
     }
     //for students to get all courses
     @Override
-    public List<Course> getCourses(int pageNumber) {
-        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,pageNumber,SQL_QUERY_COURSE_ALL_NO_PARAM);
+    public List<Course> getCourses(int pageNumber, int scale) {
+        return getAllCoursesWithParam(IN_COURSE_ALL_NO_TUTOR_ID,pageNumber,SQL_QUERY_COURSE_ALL_NO_PARAM, scale);
     }
 
     @Override

@@ -34,8 +34,8 @@ public class CourseServiceImpl implements ICourseService<Course> {
     }
 
     @Override
-    public List<Course> getCoursesByTutorId(long tutorId, int pageNumber) {
-        return dao.getCoursesByTutorId(tutorId, pageNumber);
+    public List<Course> getCoursesByTutorId(long tutorId, int pageNumber, int scale) {
+        return dao.getCoursesByTutorId(tutorId, pageNumber, scale);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class CourseServiceImpl implements ICourseService<Course> {
     }
 
     @Override
-    public List<Course> getCourses(int pageNumber) {
-        return dao.getCourses(pageNumber);
+    public List<Course> getCourses(int pageNumber, int scale) {
+        return dao.getCourses(pageNumber, scale);
     }
 
     @Override

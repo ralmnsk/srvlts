@@ -22,7 +22,8 @@ public class MarksCommand implements ActionCommand {
 
         long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber = Pagination.getPageNumberTutorMarks(request,userId);
-        List<Mark> list = markService.getMarksByTutorId(userId,pageNumber);
+        int scale = Pagination.getScale(request);
+        List<Mark> list = markService.getMarksByTutorId(userId,pageNumber,scale);
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

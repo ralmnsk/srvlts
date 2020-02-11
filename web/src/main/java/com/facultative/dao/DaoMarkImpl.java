@@ -158,7 +158,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
     }
 
     @Override
-    public List<Mark> getMarksByTutorId(long tutorId, int pageNumber) {
+    public List<Mark> getMarksByTutorId(long tutorId, int pageNumber, int scale) {
             List<Mark> list=new ArrayList<>();
             ResultSet rs=null;
             try (
@@ -167,10 +167,10 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                             (SQL_QUERY_MARK_ALL_BY_TUTOR_ID)
             )
             {
-                int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
+                int startMark=(pageNumber-1)*scale;//scale = items on page
                 statement.setLong(1,tutorId);
                 statement.setInt(2,startMark);
-                statement.setLong(3, ITEMS_ON_PAGE);
+                statement.setLong(3, scale);
 
                 rs = statement.executeQuery();
                 while(rs.next()){
@@ -209,7 +209,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
         }
 
     @Override
-    public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
+    public List<Mark> getMarksByStudentId(long studentId, int pageNumber, int scale) {
         List<Mark> list = new ArrayList<>();
         ResultSet rs=null;
         String sqlQuery=SQL_QUERY_MARK_ALL_BY_STUDENT_ID_LIMIT;
@@ -224,9 +224,9 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
             statement.setLong(1,studentId);
 
         if(pageNumber != ALL_MARKS){
-            int startMark=(pageNumber-1)*ITEMS_ON_PAGE;
+            int startMark=(pageNumber-1)*scale;
             statement.setInt(2,startMark);
-            statement.setLong(3, ITEMS_ON_PAGE);
+            statement.setLong(3, scale);
         }
 
             rs = statement.executeQuery();

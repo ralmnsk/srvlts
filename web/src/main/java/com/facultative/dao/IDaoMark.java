@@ -16,7 +16,7 @@ public interface IDaoMark<T> extends IDao<T> {
      * @param pageNumber the page number
      * @return the marks by tutor id
      */
-    List<T> getMarksByTutorId(long tutorId, int pageNumber);
+    List<T> getMarksByTutorId(long tutorId, int pageNumber, int scale);
 
     /**
      * Gets marks by student id.
@@ -25,7 +25,7 @@ public interface IDaoMark<T> extends IDao<T> {
      * @param pageNumber the page number
      * @return the marks by student id
      */
-    List<T> getMarksByStudentId(long studentId, int pageNumber);
+    List<T> getMarksByStudentId(long studentId, int pageNumber, int scale);
 
     /**
      * Gets count marks by tutor id.

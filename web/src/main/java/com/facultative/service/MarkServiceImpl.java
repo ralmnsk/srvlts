@@ -54,13 +54,13 @@ public class MarkServiceImpl implements IMarkService<Mark> {
     }
 
     @Override
-    public List<Mark> getMarksByTutorId(long tutorId, int pageNumber) {
-        return dao.getMarksByTutorId(tutorId, pageNumber);
+    public List<Mark> getMarksByTutorId(long tutorId, int pageNumber, int scale) {
+        return dao.getMarksByTutorId(tutorId, pageNumber, scale);
     }
 
     @Override
-    public List<Mark> getMarksByStudentId(long studentId, int pageNumber) {
-        return dao.getMarksByStudentId(studentId, pageNumber);
+    public List<Mark> getMarksByStudentId(long studentId, int pageNumber, int scale) {
+        return dao.getMarksByStudentId(studentId, pageNumber, scale);
     }
 
     @Override
