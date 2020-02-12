@@ -53,7 +53,13 @@ public class Constants {
     public static final String LANG="lang";
     public static final String LANG_EN="en";
     public static final String LANG_RU="ru";
-
+    public static final String LOGIN_ERROR="loginError";
+    public static final String PASSWORD_ERROR="passwordError";
+    public static final String SURNAME_ERROR="surnameError";
+    public static final String NAME_ERROR="nameError";
+    public static final String ERROR_REG_MESSAGE="errorRegistrationMessage";
+    public static final String NONE_STRING="";
+    public static final String SPACE=" ";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";

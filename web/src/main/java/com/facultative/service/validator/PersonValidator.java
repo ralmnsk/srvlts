@@ -8,19 +8,19 @@ import com.facultative.model.Person;
  */
 public class PersonValidator {
 
-    private boolean validateLogin(String login) {
-        String regex="[a-zA-Zа-яА-Я]{3,30}";
+    public boolean validateLogin(String login) {
+        String regex="[a-zA-Zа-яА-Я0-9]{3,30}";
         return login.matches(regex);
     }
 
 
-    private boolean validatePassword(String password) {
+    public boolean validatePassword(String password) {
         String regex="[a-zA-Zа-яА-Я0-9]{3,30}";
         return password.matches(regex);
     }
 
 
-    private boolean validateSurname(String surname) {
+    public boolean validateSurname(String surname) {
         String regex="[a-zA-Zа-яА-Я-]{2,30}";
         return surname.matches(regex);
     }

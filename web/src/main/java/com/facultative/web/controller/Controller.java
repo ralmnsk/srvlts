@@ -7,6 +7,7 @@ import com.facultative.service.messages.MessageManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import static com.facultative.service.constants.Constants.*;
 /**
  * The type Controller.
  */
-@WebServlet({"/controller","/"})
+@WebServlet(value = {"/controller","/"})
 public class Controller extends HttpServlet {
     /**
      * Instantiates a new Controller.

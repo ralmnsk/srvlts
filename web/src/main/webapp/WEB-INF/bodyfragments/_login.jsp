@@ -21,7 +21,9 @@
                     <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enter" bundle="${messages}"/>>
                 </form><hr/>
             </div>
-        ${errorLoginPassMessage}
+        <c:if test="${errorLoginPassMessage != null}" >
+            <fmt:message key="message.loginerror" bundle="${messages}"/>
+        </c:if>
         ${wrongAction}
         ${nullPage}
 

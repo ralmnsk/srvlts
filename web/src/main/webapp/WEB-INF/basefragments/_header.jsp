@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="ctg" uri="customtags"%>
+
 
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename = "messages" var = "messages"/>
@@ -11,10 +13,12 @@
               <h1><fmt:message key="message.optional.classes" bundle="${messages}"/></h1>
            </div>
 
-           <div style="float: right; padding: 10px; text-align: right;">
+
+             <div style="float: right; padding: 10px; text-align: right;">
                <ul class="my">
                    <li class="my"><a href="?lang=en">English</a></li>
                    <li class="my"><a href="?lang=ru">Русский</a></li>
+                   <ctg:person/>
                </ul>
 
            </div>

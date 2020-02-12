@@ -26,7 +26,8 @@ public class RegisterCommand implements ActionCommand {
 
         String page;
         page = ConfigurationManager.getProperty("path.page.registration");
-        if(!registration.isRegistered(login)){
+        boolean isRegistered = registration.isRegistered(login);
+        if(!isRegistered){
             Person person=new Person();
             person.setLogin(login);
             person.setPassword(password);
@@ -38,9 +39,16 @@ public class RegisterCommand implements ActionCommand {
                 registration.register(person);
                 page = ConfigurationManager.getProperty("path.page.regsuccsses");
                 return page;
+            } else{
+                if (!validator.validateLogin(person.getLogin())) request.setAttribute(LOGIN_ERROR,MessageManager.getProperty("message.login.error"));
+                if (!validator.validatePassword(person.getPassword())) request.setAttribute(PASSWORD_ERROR,MessageManager.getProperty("message.password.error"));
+                if (!validator.validateSurname(person.getSurname())) request.setAttribute(SURNAME_ERROR,MessageManager.getProperty("message.surname.error"));
+                if (!validator.validateSurname(person.getName())) request.setAttribute(NAME_ERROR,MessageManager.getProperty("message.name.error"));
+                return page;
             }
         }
-        request.setAttribute("errorRegistrationMessage", MessageManager.getProperty("message.registration.error"));
+
+        request.setAttribute(ERROR_REG_MESSAGE, MessageManager.getProperty("message.is.registered"));
         return page;
     }
 }

@@ -34,7 +34,12 @@
                 </div>
             <hr/>
             <br/>
-            ${errorRegistrationMessage}
+                ${errorRegistrationMessage}
+                ${loginError}
+                ${passwordError}
+                ${surnameError}
+                ${nameError}
+
             <br/>
 
         </div>

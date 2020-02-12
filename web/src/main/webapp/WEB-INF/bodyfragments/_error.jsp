@@ -10,18 +10,29 @@
 
         <div class="container">
             <h2><fmt:message key="message.error" bundle="${messages}"/></h2>
-            Request from ${pageContext.errorData.requestURI} is failed
-            <br/>
-            Servlet name: ${pageContext.errorData.servletName}
-            <br/>
-            Status code: ${pageContext.errorData.statusCode}
-            <br/>
-            Exception: ${pageContext.exception}
-            <br/>
-            Message from exception: ${pageContext.exception.message}
+            <c:if test="${pageContext.errorData.requestURI != null}">
+                Request from ${pageContext.errorData.requestURI} is failed
+                <br/>
+            </c:if>
+            <c:if test="${pageContext.errorData.servletName != null}">
+                Servlet name: ${pageContext.errorData.servletName}
+                <br/>
+            </c:if>
+            <c:if test="${pageContext.errorData.statusCode != null}">
+                Status code: ${pageContext.errorData.statusCode}
+                <br/>
+            </c:if>
+            <c:if test="${pageContext.exception != null}">
+                Exception: ${pageContext.exception}
+                <br/>
+                Message from exception: ${pageContext.exception.message}
+            </c:if>
 
-            <c:if test="$nullPage != null">
+            <c:if test="${nullPage != null}">
                 ${nullPage}
+            </c:if>
+            <c:if test="${wrongAction != null}">
+                <h3>${wrongAction}<fmt:message key="message.wrongaction" bundle="${messages}"/></h3>
             </c:if>
 
         </div>

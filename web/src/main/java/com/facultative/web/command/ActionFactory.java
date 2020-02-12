@@ -17,20 +17,19 @@ public class ActionFactory {
      * @return the action command
      */
     public ActionCommand defineCommand(HttpServletRequest request) {
-        ActionCommand current = new IndexCommand();
+            ActionCommand current = new IndexCommand();
 //get command name
         String action = request.getParameter(COMMAND);
         if (action == null || action.isEmpty()) {
-// current = indexCommand
             return current;
         }
-// get object acording to the command
+// get object according to the command
         try {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCurrentCommand();
         } catch (IllegalArgumentException e) {
-            request.setAttribute("wrongAction", action
-                    + MessageManager.getProperty("message.wrongaction"));
+            request.setAttribute("wrongAction", action.toString());
+            return new ErrorCommand();
         }
         return current;
     }

@@ -56,5 +56,6 @@ class LoginLogicTest {
         when(request.getSession()).thenReturn(session);
         boolean check=loginLogic.checkLogin("Valdemar","123j",request);
         assertFalse(check);
+
     }
 }
