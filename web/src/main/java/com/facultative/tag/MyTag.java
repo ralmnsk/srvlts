@@ -8,7 +8,6 @@ import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.util.Locale;
 
 import static com.facultative.service.constants.Constants.NONE_STRING;
 import static com.facultative.service.constants.Constants.SPACE;

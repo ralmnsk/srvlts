@@ -105,28 +105,4 @@
         </div>
 
 <%--PAGINATION--%>
-
-<c:if test="${processFlag == 'viewcourse' or processFlag == 'marks_view'}">
-    <c:if test="${processFlag == 'viewcourse'}">
-        <c:set var="process" value="viewcourse"/>
-        <c:set var="pageNumber" value="${pageCourseNumber}"/>
-    </c:if>
-    <c:if test="${processFlag == 'marks_view'}">
-        <c:set var="process" value="marks"/>
-        <c:set var="pageNumber" value="${pageMarkNumber}"/>
-    </c:if>
-        <nav aria-label="Page navigation example">
-          <ul autofocus class="pagination justify-content-center" vertical-align="bottom">
-
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=10">10</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=20">20</a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=50">50</a></li>
-            <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>
-            <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>
-
-          </ul>
-        </nav>
-
-</c:if>
+<jsp:include page="_pagination.jsp"/>

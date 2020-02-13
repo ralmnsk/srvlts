@@ -1,7 +1,5 @@
 package com.facultative.web.command;
 
-import com.facultative.service.messages.MessageManager;
-
 import javax.servlet.http.HttpServletRequest;
 
 import static com.facultative.service.constants.Constants.COMMAND;

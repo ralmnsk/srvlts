@@ -18,6 +18,7 @@ public class Constants {
     public static final String SCALE="scale";
         //request
     public static final String ADD_MARK="addmark";
+    public static final String ALL_COURSES="allcourses";
     public static final String COURSE_ID="courseid";
     public static final String COMMAND="command";
     public static final String COURSE_EXISTS="courseExists";
@@ -35,6 +36,7 @@ public class Constants {
     public static final String NAME="name";
     public static final String NEXT="next";
     public static final String NULL_PAGE="nullPage";
+    public static final String PAGE_NUMBER="pageNumber";
     public static final String OLD_URL="oldUrl";
     public static final String PROCESS_FLAG="processFlag";
     public static final String PARAMETER_MOVE="move";

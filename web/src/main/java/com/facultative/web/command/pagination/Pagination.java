@@ -34,6 +34,11 @@ public class Pagination {
         cursorPosition = getCursorPosition(request, page_person_number);
         int scale = getScale(request);//20 items on the page
 
+        if(request.getParameter(PAGE_NUMBER) != null){
+            int pageNumberForCursor = Integer.parseInt(request.getParameter(PAGE_NUMBER));
+            cursorPosition = pageNumberForCursor*scale;
+        }
+
         if(request.getParameter(PARAMETER_MOVE)!=null){
             String move=request.getParameter(PARAMETER_MOVE);
             if(move.equals(PREVIOUS)){
@@ -64,12 +69,12 @@ public class Pagination {
             ICourseService<Course> service = CourseServiceImpl.getInstance();
             count = service.getCountCourses();
         }
+
         if(cursorPosition >count){
             cursorPosition = count;
         } else if (cursorPosition <= 0){
             cursorPosition = 1;
         }
-
 
         int pagesCount = count/scale;// 44/20    44 - items in database
         if(count%scale > 0){             // 44%20>0
@@ -91,7 +96,6 @@ public class Pagination {
             pagesCount = 1;
         }
 
-
         setCursorPosition(request,page_person_number,cursorPosition);
         request.getSession().setAttribute(SCALE,scale);
         request.getSession().setAttribute(page_person_number,pageNumber);
@@ -107,15 +111,15 @@ public class Pagination {
             cursorPositionAttribute = "cursorPositionMark";
         }
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourse";
+            cursorPositionAttribute = "cursorPositionCourseYours";
         }
         if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
             cursorPositionAttribute = "cursorPositionMark";
         }
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourse";
+            cursorPositionAttribute = "cursorPositionCourseAvailable";
         }
-        if (!cursorPositionAttribute.equals("")){
+        if (!cursorPositionAttribute.equals(NONE_STRING)){
             if (request.getSession().getAttribute(cursorPositionAttribute) != null){
                 cursorPosition=(int)request.getSession().getAttribute(cursorPositionAttribute);
             }
@@ -134,13 +138,13 @@ public class Pagination {
             cursorPositionAttribute = "cursorPositionMark";
         }
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourse";
+            cursorPositionAttribute = "cursorPositionCourseYours";        //Your courses (Tutor)
         }
         if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
             cursorPositionAttribute = "cursorPositionMark";
         }
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourse";
+            cursorPositionAttribute = "cursorPositionCourseAvailable";       //Available courses
         }
         if (!cursorPositionAttribute.equals("")){
             request.getSession().setAttribute(cursorPositionAttribute, cursorPosition);

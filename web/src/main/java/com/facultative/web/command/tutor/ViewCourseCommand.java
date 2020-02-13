@@ -23,7 +23,7 @@ public class ViewCourseCommand implements ActionCommand {
         int scale = Pagination.getScale(request);
         long userId = (long)request.getSession().getAttribute(USER_ID);
         int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
-        List<Course> list=service.getCoursesByTutorId(userId,pageNumber,scale);
+        List<Course> list=service.getCoursesByTutorId(userId,pageNumber,scale);//number of the page to go
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.tutor");

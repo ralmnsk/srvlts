@@ -2,6 +2,7 @@ package com.facultative.web.command.student;
 
 import com.facultative.model.Course;
 import com.facultative.model.Person;
+import com.facultative.model.UserType;
 import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.PersonServiceImpl;
@@ -34,6 +35,10 @@ public class AllCoursesCommand implements ActionCommand {
                 course.setTutor(tutor);
             }
         }
+        Person user=(Person)request.getSession().getAttribute(PERSON);
+                if (user.getRole() == UserType.TUTOR){
+                    request.setAttribute(PROCESS_FLAG,ALL_COURSES); //pagination all courses (Command of student) are made by tutor
+                }
         request.setAttribute(LIST_JSP,list);
 
         return ConfigurationManager.getProperty("path.page.student");
