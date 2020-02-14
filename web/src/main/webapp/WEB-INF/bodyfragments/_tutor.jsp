@@ -17,7 +17,7 @@
                 <form name="courseForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="docreatecourses" />
                     <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
-                        <textarea type="text" maxlength="99" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
+                        <textarea type="text" minlength="1" maxlength="99" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
                         <br/>
                         <input type="submit" class="btn btn-primary" value=<fmt:message key="message.create.course" bundle="${messages}"/>/>
                 </form>

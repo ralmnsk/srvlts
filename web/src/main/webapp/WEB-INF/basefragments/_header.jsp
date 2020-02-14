@@ -13,11 +13,10 @@
               <h1><fmt:message key="message.optional.classes" bundle="${messages}"/></h1>
            </div>
 
-
              <div style="float: right; padding: 10px; text-align: right;">
                <ul class="my">
-                   <li class="my"><a href="?lang=en">English</a></li>
-                   <li class="my"><a href="?lang=ru">Русский</a></li>
+                   <li class="my"><a href="${pageContext.request.contextPath}/controller?command=lang&lang=en" >English</a></li>
+                   <li class="my"><a href="${pageContext.request.contextPath}/controller?command=lang&lang=ru" >Русский</a></li>
                    <ctg:person/>
                </ul>
 

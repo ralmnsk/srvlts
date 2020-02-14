@@ -4,6 +4,11 @@ import com.facultative.web.command.student.*;
 import com.facultative.web.command.tutor.*;
 
 public enum CommandEnum {
+    INDEX {
+        {
+            this.command = new IndexCommand();
+        }
+    },
     ALLCOURSES {
         {
             this.command = new AllCoursesCommand();
@@ -70,6 +75,11 @@ public enum CommandEnum {
             this.command=new RegisterCommand();
         }
     },
+    REG_SUCCESS{
+        {
+            this.command=new RegSuccessCommand();
+        }
+    },
 
     STUDENT{
         {
@@ -115,6 +125,12 @@ public enum CommandEnum {
     DELETECOURSE{
         {
             this.command=new DeleteCourseCommand();
+        }
+    },
+
+    LANG{
+        {
+            this.command=new LanguageCommand();
         }
     },
 

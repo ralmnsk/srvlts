@@ -19,16 +19,9 @@ public class DoDelMarkCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,VIEW_MARK);
         long markId = (Long)request.getSession().getAttribute(MARK_ID);
         markService.delete(markId);
 
-        long studentId = (long)request.getSession().getAttribute(USER_ID);
-        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-        int scale = Pagination.getScale(request);
-        List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
-        request.setAttribute(LIST_JSP,list);
-
-        return ConfigurationManager.getProperty("path.page.student");
+        return "/controller?command=viewmark";
     }
 }

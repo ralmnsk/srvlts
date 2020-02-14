@@ -1,5 +1,7 @@
 package com.facultative.web.controller;
 
+import com.facultative.model.Person;
+import com.facultative.model.UserType;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.ActionFactory;
 import com.facultative.service.config.ConfigurationManager;
@@ -44,7 +46,7 @@ public class Controller extends HttpServlet {
         page = command.execute(req);
         if (page != null) {
             if(req.getParameter(LANG) != null){
-                resp.sendRedirect((String)req.getSession().getAttribute(OLD_URL));
+                resp.sendRedirect(req.getContextPath() + page);
             }else{
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
                 dispatcher.forward(req, resp);
@@ -54,6 +56,36 @@ public class Controller extends HttpServlet {
             req.getSession().setAttribute(NULL_PAGE,
                     MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);
+        }
+        //Language
+        if(req.getParameter(COMMAND) !=null){
+            String oldCommand = INDEX;
+            String action = req.getParameter(COMMAND);
+            switch (action){
+                case DO_ADD_MARK: oldCommand = VIEW_MARK; break;
+                case DEL_MARK: oldCommand = VIEW_MARK; break;
+                case DELETE_COURSE: oldCommand = VIEW_COURSE; break;
+                case DO_CREATE_COURSES: oldCommand = VIEW_COURSE; break;
+                case DO_EDIT_MARK: oldCommand = MARKS; break;
+                case UPDATE_COURSE: oldCommand = VIEW_COURSE; break;
+                case LOGIN:
+                    if(req.getSession().getAttribute(PERSON) !=null){
+                        Person person = (Person)req.getSession().getAttribute(PERSON);
+                        if (person.getRole() == UserType.STUDENT){
+                            oldCommand = STUDENT;
+                        } else if (person.getRole() == UserType.TUTOR){
+                            oldCommand = TUTOR;
+                        } else {
+                            oldCommand = LOGIN;
+                        }
+                    }
+                    break;
+                case REGISTER:
+                         oldCommand = TO_REGISTER;
+                    break;
+                default: oldCommand = action; break;
+            }
+            req.getSession().setAttribute(OLD_COMMAND,oldCommand);
         }
     }
 }

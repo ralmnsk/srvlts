@@ -39,11 +39,7 @@ public class DoAddMarkCommand implements ActionCommand {
             markService.save(mark);
         }
 
-        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-        List<Mark> list=markService.getMarksByStudentId(studentId,pageNumber, scale) ;
-        request.setAttribute(LIST_JSP,list);
-
-        return ConfigurationManager.getProperty("path.page.student");
+        return "/controller?command=viewmark";
     }
 
     private boolean isEnrolled(Mark mark,long studentId, int scale) {

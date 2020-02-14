@@ -18,7 +18,6 @@ public class DeleteCourseCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         if(request.getSession().getAttribute(EDIT_COURSE) !=null ){
             Course editCourse = (Course)request.getSession().getAttribute(EDIT_COURSE);
             long editCourseId = editCourse.getId();
@@ -26,11 +25,6 @@ public class DeleteCourseCommand implements ActionCommand {
             request.getSession().removeAttribute(EDIT_COURSE);
         }
 
-        long userId = (long)request.getSession().getAttribute(USER_ID);
-        int scale = Pagination.getScale(request);
-        List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId), scale);
-        request.setAttribute(LIST_JSP,list);
-
-        return ConfigurationManager.getProperty("path.page.tutor");
+        return "/controller?command=viewcourse";
     }
 }

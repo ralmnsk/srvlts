@@ -21,6 +21,7 @@ public class ActionFactory {
         if (action == null || action.isEmpty()) {
             return current;
         }
+
 // get object according to the command
         try {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());

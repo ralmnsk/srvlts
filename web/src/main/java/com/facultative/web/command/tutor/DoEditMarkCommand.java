@@ -27,12 +27,6 @@ public class DoEditMarkCommand implements ActionCommand {
         mark.setReview(review);
         markService.update(mark);
 
-        int scale = Pagination.getScale(request);
-        long userId=(long)request.getSession().getAttribute(USER_ID);
-        List<Mark> list = markService.getMarksByTutorId(userId, Pagination.getPageNumberTutorMarks(request,userId), scale);
-        request.setAttribute(LIST_JSP,list);
-
-
-        return ConfigurationManager.getProperty("path.page.tutor");
+        return "/controller?command=marks";
     }
 }

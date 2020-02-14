@@ -25,25 +25,11 @@ public class EncodingFilter implements Filter {
             request.setCharacterEncoding(code);
             response.setCharacterEncoding(code);
         }
-
-        String url = ((HttpServletRequest) request).getRequestURL()
-                +(( ((HttpServletRequest) request).getQueryString() != null ) ? QUESTION + ((HttpServletRequest) request).getQueryString()
-                : EMPTY_STRING );
-        String oldUrl=url;
-        if(((HttpServletRequest) request).getSession().getAttribute(OLD_URL) != null){
-            oldUrl=((HttpServletRequest) request).getSession().getAttribute(OLD_URL).toString();
-        }
-            ((HttpServletRequest) request).getSession().setAttribute(OLD_URL,url);
-            System.out.println(oldUrl);
+        //Language
         if(request.getParameter(LANG) != null ){
             String lang=request.getParameter(LANG);
             if(lang.equals(LANG_EN) || lang.equals(LANG_RU)) {
-                oldUrl=oldUrl.replace(QUESTION_LANG_EQ+lang,EMPTY_STRING);
-                oldUrl=oldUrl.replace(MOVE_EQ_NEXT,EMPTY_STRING);
-                oldUrl=oldUrl.replace(MOVE_EQ_PREVIOUS,EMPTY_STRING);
-                ((HttpServletRequest) request).getSession().setAttribute(OLD_URL,oldUrl);
                 Locale.setDefault(new Locale(lang));
-                System.out.println(oldUrl);
             }
         }
 

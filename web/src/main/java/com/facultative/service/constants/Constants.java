@@ -62,6 +62,18 @@ public class Constants {
     public static final String ERROR_REG_MESSAGE="errorRegistrationMessage";
     public static final String NONE_STRING="";
     public static final String SPACE=" ";
+    public static final String INDEX = "index";
+    public static final String DO_ADD_MARK = "doaddmark";
+    public static final String DELETE_COURSE = "deletecourse";
+    public static final String MARKS = "marks";
+    public static final String DO_CREATE_COURSES = "docreatecourses";
+    public static final String DO_EDIT_MARK= "do_edit_mark";
+    public static final String UPDATE_COURSE = "updatecourse";
+    public static final String STUDENT = "student";
+    public static final String TUTOR = "tutor";
+    public static final String REGISTER = "register";
+    public static final String TO_REGISTER = "toregister";
+    public static final String OLD_COMMAND = "oldCommand";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";
@@ -81,6 +93,7 @@ public class Constants {
     public static final String SQL_QUERY_COURSE_COUNT="SELECT count(*) FROM mydb.course";
     public static final long IN_COURSE_ALL_NO_TUTOR_ID=0L;
     public static final int NO_NUMBER=0;
+
 
     //DaoMark
     public static final String SQL_QUERY_MARK_SAVE="INSERT INTO mydb.mark (id_course, id_student) VALUES (?, ?)";

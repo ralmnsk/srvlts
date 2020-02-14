@@ -24,7 +24,6 @@ public class DoCreateCourseCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
         String courseName=request.getParameter(COURSE);
         long userId=(long)request.getSession().getAttribute(USER_ID);
 
@@ -43,10 +42,7 @@ public class DoCreateCourseCommand implements ActionCommand {
         } else{
             request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
         }
-        List<Course> list=courseService.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId),scale);
-        request.setAttribute(LIST_JSP,list);
-
-        return ConfigurationManager.getProperty("path.page.tutor");
+        return "/controller?command=viewcourse";
     }
 
     private boolean isExist(long userId, Course course, int scale) {

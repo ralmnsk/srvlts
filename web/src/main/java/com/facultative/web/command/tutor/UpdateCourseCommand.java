@@ -18,7 +18,6 @@ public class UpdateCourseCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
 
         Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
         if(editCourse !=null ){
@@ -26,11 +25,6 @@ public class UpdateCourseCommand implements ActionCommand {
             service.update(editCourse);
         }
 
-        int scale = Pagination.getScale(request);
-        long userId = (long)request.getSession().getAttribute(USER_ID);
-        List<Course> list = service.getCoursesByTutorId(userId, Pagination.getPageNumberTutorCourses(request,userId),scale);
-        request.setAttribute(LIST_JSP,list);
-
-        return ConfigurationManager.getProperty("path.page.tutor");
+        return "/controller?command=viewcourse";
     }
 }
