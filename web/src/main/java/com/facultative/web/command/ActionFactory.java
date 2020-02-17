@@ -18,7 +18,10 @@ public class ActionFactory {
             ActionCommand current = new IndexCommand();
 //get command name
         String action = request.getParameter(COMMAND);
-        if (action == null || action.isEmpty()) {
+        if (request.getAttribute(COMMAND) != null){
+            action = (String)request.getAttribute(COMMAND); //this is a command from RoleFilter
+        }                                                   //that sets attribute COMMAND if user has
+        if (action == null || action.isEmpty()) {           //GUEST role
             return current;
         }
 

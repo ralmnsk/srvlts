@@ -11,5 +11,9 @@ public enum UserType {
     /**
      * Student user type.
      */
-    STUDENT
+    STUDENT,
+    /**
+     * Guest user type.
+     */
+    GUEST
 }

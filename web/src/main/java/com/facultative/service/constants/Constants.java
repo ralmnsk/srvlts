@@ -74,6 +74,7 @@ public class Constants {
     public static final String TUTOR = "tutor";
     public static final String REGISTER = "register";
     public static final String TO_REGISTER = "toregister";
+    public static final String TO_LOGIN = "tologin";
     public static final String OLD_COMMAND = "oldCommand";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
