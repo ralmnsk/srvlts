@@ -55,6 +55,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         {
             statement.setString(1, course.getName());
             statement.setLong(2, course.getTutor().getId());
+            statement.setString(3,course.getDescription());
             statement.execute();
             generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -96,13 +97,14 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                 course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
+                course.setDescription(rs.getString(3));
                 tutor=new Person();
-                tutor.setId(rs.getLong(3));
-                tutor.setSurname(rs.getString(4));
-                tutor.setName(rs.getString(5));
-                tutor.setLogin(rs.getString(6));
-                tutor.setPassword(rs.getString(7));
-                tutor.setRole(UserType.valueOf(rs.getString(8)));
+                tutor.setId(rs.getLong(4));
+                tutor.setSurname(rs.getString(5));
+                tutor.setName(rs.getString(6));
+                tutor.setLogin(rs.getString(7));
+                tutor.setPassword(rs.getString(8));
+                tutor.setRole(UserType.valueOf(rs.getString(9)));
                 course.setTutor(tutor);
             }
             rs.close();
@@ -128,8 +130,9 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
 
         ){
             statement.setString(1, course.getName());
-            statement.setLong(2, course.getTutor().getId());
-            statement.setLong(3,course.getId());
+            statement.setString(2, course.getDescription());
+            statement.setLong(3, course.getTutor().getId());
+            statement.setLong(4,course.getId());
             statement.execute();
         } catch (SQLException ex) {
             logger.error("Problem executing course update", ex);
@@ -187,13 +190,14 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
+                course.setDescription(rs.getString(3));
                 Person tutor=new Person();
-                tutor.setId(rs.getLong(3));
-                tutor.setSurname(rs.getString(4));
-                tutor.setName(rs.getString(5));
-                tutor.setLogin(rs.getString(6));
-                tutor.setPassword(rs.getString(7));
-                tutor.setRole(UserType.valueOf(rs.getString(8)));
+                tutor.setId(rs.getLong(4));
+                tutor.setSurname(rs.getString(5));
+                tutor.setName(rs.getString(6));
+                tutor.setLogin(rs.getString(7));
+                tutor.setPassword(rs.getString(8));
+                tutor.setRole(UserType.valueOf(rs.getString(9)));
                 course.setTutor(tutor);
                 list.add(course);
             }

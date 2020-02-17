@@ -22,6 +22,7 @@ public class UpdateCourseCommand implements ActionCommand {
         Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
         if(editCourse !=null ){
             editCourse.setName(request.getParameter(COURSE));
+            editCourse.setDescription(request.getParameter(DESCRIPTION));
             service.update(editCourse);
         }
 

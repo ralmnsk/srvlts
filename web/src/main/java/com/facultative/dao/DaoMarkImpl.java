@@ -99,13 +99,14 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 course=new Course();
                 course.setId(rs.getLong(4));
                 course.setName(rs.getString(5));
+                course.setDescription(rs.getString(6));
 
                 tutor=new Person();
-                tutor.setId(rs.getLong(6));
-                tutor.setSurname(rs.getString(7));
-                tutor.setName(rs.getString(8));
+                tutor.setId(rs.getLong(7));
+                tutor.setSurname(rs.getString(8));
+                tutor.setName(rs.getString(9));
                 student=new Person();
-                student.setId(rs.getLong(9));
+                student.setId(rs.getLong(10));
                 mark.setStudent(student);
                 course.setTutor(tutor);
 
@@ -178,15 +179,16 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                     Course course=new Course();
                     course.setId(rs.getLong(1));
                     course.setName(rs.getString(2));
+                    course.setDescription(rs.getString(3));
                     Mark mark=new Mark();
-                    mark.setId(rs.getLong(4));
-                    mark.setMark(rs.getInt(5));
-                    mark.setReview(rs.getString(6));
+                    mark.setId(rs.getLong(5));
+                    mark.setMark(rs.getInt(6));
+                    mark.setReview(rs.getString(7));
 
                     Person student=new Person();
-                    student.setId(rs.getLong(7));
-                    student.setSurname(rs.getString(8));
-                    student.setName(rs.getString(9));
+                    student.setId(rs.getLong(8));
+                    student.setSurname(rs.getString(9));
+                    student.setName(rs.getString(10));
 
                     mark.setCourse(course);
                     mark.setStudent(student);
@@ -235,16 +237,17 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 Course course=new Course();
                 course.setId(rs.getLong(1));
                 course.setName(rs.getString(2));
+                course.setDescription(rs.getString(3));
 
                 Person tutor=new Person();
-                tutor.setId(rs.getLong(3));
-                tutor.setSurname(rs.getString(4));
-                tutor.setName(rs.getString(5));
+                tutor.setId(rs.getLong(4));
+                tutor.setSurname(rs.getString(5));
+                tutor.setName(rs.getString(6));
 
                 Mark mark=new Mark();
-                mark.setId(rs.getLong(6));
-                mark.setMark(rs.getInt(7));
-                mark.setReview(rs.getString(8));
+                mark.setId(rs.getLong(7));
+                mark.setMark(rs.getInt(8));
+                mark.setReview(rs.getString(9));
 
                 course.setTutor(tutor);
                 mark.setCourse(course);

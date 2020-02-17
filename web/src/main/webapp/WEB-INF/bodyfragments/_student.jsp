@@ -26,6 +26,7 @@
                 <tr>
                         <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
                         <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                        <th><fmt:message key="message.description" bundle="${messages}"/></th>
                         <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
@@ -40,6 +41,7 @@
                                         </c:if>
 
                                 </td>
+                                <td>${element.description}</td>
                                 <td>${element.tutor.surname} ${element.tutor.name}</td>
                         </tr>
                 </c:forEach>
@@ -53,6 +55,9 @@
                                 <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
                                 <p>${course.name}</p>
                                 <br/>
+                                <p><fmt:message key="message.description" bundle="${messages}"/>:<br/></p>
+                                <p>${course.description}</p>
+                                <br/>
                                 <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enroll" bundle="${messages}"/>>
                         </form>
                 </div>
@@ -64,6 +69,10 @@
                                 <input type="hidden" name="command" value="dodelmark" />
                                 <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>
                                 <p>${course.name}</p>
+                                <br/>
+                                <p><fmt:message key="message.description" bundle="${messages}"/>:<br/></p>
+                                <p>${course.description}</p>
+                                <br/>
                                 <input class="btn btn-primary" type="submit" value=<fmt:message key="message.delete.course" bundle="${messages}"/>/>
                         </form>
                 </div>
@@ -78,6 +87,7 @@
                         <tr>
                                 <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.description" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.rate" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.review" bundle="${messages}"/></th>
@@ -86,6 +96,7 @@
                                 <tr>
                                         <td>${element.course.id}</td>
                                         <td><a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a></td>
+                                        <td>${element.course.description}</td>
                                         <td>${element.course.tutor.surname} ${element.course.tutor.name}</td>
                                         <td>
                                                 <c:if test="${element.mark==0}"> --- </c:if>

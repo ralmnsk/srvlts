@@ -19,6 +19,9 @@
                     <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
                         <textarea type="text" minlength="1" maxlength="99" aria-label="With textarea" class="form-control" rows="5" name="course"></textarea>
                         <br/>
+                    <fmt:message key="message.description" bundle="${messages}"/>:<br/>
+                        <textarea type="text" minlength="1" maxlength="999" aria-label="With textarea" class="form-control" rows="5" name="description"></textarea>
+                        <br/>
                         <input type="submit" class="btn btn-primary" value=<fmt:message key="message.create.course" bundle="${messages}"/>/>
                 </form>
         </div>
@@ -30,9 +33,12 @@
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="updatecourse" />
                 <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
-
                 <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course">${editCourse.name}</textarea>
                 <br/>
+                <fmt:message key="message.description" bundle="${messages}"/>:<br/>
+                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="description">${editCourse.description}</textarea>
+                <br/>
+
                 <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
             </form>
             <form name="courseForm" method="POST" action="controller">
@@ -48,11 +54,13 @@
                 <tr>
                     <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
                     <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
+                    <th><fmt:message key="message.description" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
                     <tr>
                         <td>${element.id}</td>
                         <td><a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a></td>
+                        <td>${element.description}</td>
                     </tr>
                 </c:forEach>
             </table>

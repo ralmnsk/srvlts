@@ -25,6 +25,7 @@ public class DoCreateCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String courseName=request.getParameter(COURSE);
+        String description=request.getParameter(DESCRIPTION);
         long userId=(long)request.getSession().getAttribute(USER_ID);
 
         Person tutor = personService.get(userId);
@@ -35,6 +36,7 @@ public class DoCreateCourseCommand implements ActionCommand {
         }
 
         course.setName(courseName);
+        course.setDescription(description);
 
         int scale = Pagination.getScale(request);
         if(!isExist(userId, course, scale)){

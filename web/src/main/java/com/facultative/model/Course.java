@@ -6,12 +6,31 @@ package com.facultative.model;
 public class Course {
     private long id;
     private String name;
+    private String description;
     private Person tutor;
 
     /**
      * Instantiates a new Course.
      */
     public Course() {
+    }
+
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Sets description.
+     *
+     * @param description the description
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
