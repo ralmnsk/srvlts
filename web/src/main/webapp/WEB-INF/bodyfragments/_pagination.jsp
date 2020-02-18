@@ -41,7 +41,7 @@
         <nav aria-label="Page navigation example">
           <ul autofocus class="pagination justify-content-center" vertical-align="bottom">
 
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=1"> First </a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=1"> <fmt:message key="message.first" bundle="${messages}"/> </a></li>
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous"> << </a></li>
               <c:if test="${pageNumber >= 2}">
                   <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=${pageNumber - 1}"> ${pageNumber - 1} </a></li>
@@ -51,7 +51,7 @@
                   <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=${pageNumber + 1}"> ${pageNumber + 1} </a></li>
               </c:if>
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next"> >> </a></li>
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=${pagesCount}"> Last </a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=${pagesCount}"> <fmt:message key="message.last" bundle="${messages}"/> </a></li>
               <select name="selectScale" onchange="if (this.value) window.location.href=this.value">
                   <option>${scale} <c:if test="${scale == null}">10</c:if></option>
                   <option value="${pageContext.request.contextPath}/controller?command=${process}&scale=10">10</option>
@@ -62,7 +62,7 @@
 <%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=20">20</a></li>--%>
 <%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=50">50</a></li>--%>
 <%--            <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>--%>
-            <li class="page-item"><a class="page-link">Total pages: ${pagesCount}</a></li>
+            <li class="page-item"><a class="page-link"><fmt:message key="message.total.pages" bundle="${messages}"/> ${pagesCount}</a></li>
 
           </ul>
         </nav>

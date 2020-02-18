@@ -28,21 +28,41 @@
                         <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
                         <th><fmt:message key="message.description" bundle="${messages}"/></th>
                         <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
+                        <c:if test="${(userRole == 'STUDENT')}">
+                                <th><fmt:message key="message.enroll" bundle="${messages}"/></th>
+                        </c:if>
                 </tr>
                 <c:forEach var="element" items="${list}">
                         <tr>
                                 <td>${element.id}</td>
                                 <td>
-                                        <c:if test="${(userRole == 'TUTOR')}">
+<%--                                        <c:if test="${(userRole == 'TUTOR')}">--%>
                                                 ${element.name}
-                                        </c:if>
-                                        <c:if test="${(userRole == 'STUDENT')}">
-                                                <a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a>
-                                        </c:if>
+<%--                                        </c:if>--%>
+<%--                                        <c:if test="${(userRole == 'STUDENT')}">--%>
+<%--&lt;%&ndash;                                                <a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a>&ndash;%&gt;--%>
+<%--                                        </c:if>--%>
 
                                 </td>
                                 <td>${element.description}</td>
                                 <td>${element.tutor.surname} ${element.tutor.name}</td>
+                                <c:if test="${(userRole == 'STUDENT')}">
+                                <td>
+                                        <div class="form-group">
+                                                <form name="enrollCourseForm" method="POST" action="controller">
+                                                        <input type="hidden" name="command" value="addmark" />
+                                                        <input type="hidden" name="courseid" value="${element.id}" />
+<%--                                                        <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>--%>
+<%--                                                        <p>${course.name}</p>--%>
+<%--                                                        <br/>--%>
+<%--                                                        <p><fmt:message key="message.description" bundle="${messages}"/>:<br/></p>--%>
+<%--                                                        <p>${course.description}</p>--%>
+<%--                                                        <br/>--%>
+                                                        <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enroll" bundle="${messages}"/>>
+                                                </form>
+                                        </div>
+                                </td>
+                                </c:if>
                         </tr>
                 </c:forEach>
         </table>
@@ -91,11 +111,15 @@
                                 <th><fmt:message key="message.tutor" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.rate" bundle="${messages}"/></th>
                                 <th><fmt:message key="message.review" bundle="${messages}"/></th>
+                                <th><fmt:message key="message.edit" bundle="${messages}"/></th>
                         </tr>
                         <c:forEach var="element" items="${list}">
                                 <tr>
                                         <td>${element.course.id}</td>
-                                        <td><a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a></td>
+                                        <td>
+<%--                                                <a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a>--%>
+                                                        ${element.course.name}
+                                        </td>
                                         <td>${element.course.description}</td>
                                         <td>${element.course.tutor.surname} ${element.course.tutor.name}</td>
                                         <td>
@@ -103,9 +127,19 @@
                                                 <c:if test="${element.mark!=0}">${element.mark}</c:if>
                                         </td>
                                         <td>${element.review}</td>
+                                        <td>
+                                                <div class="form-group">
+                                                        <form name="myCourseStudentForm" method="POST" action="controller">
+                                                                <input type="hidden" name="command" value="delmark" />
+                                                                <input type="hidden" name="markid" value="${element.id}" />
+                                                                <input class="btn btn-primary" type="submit" value=<fmt:message key="message.edit" bundle="${messages}"/>>
+                                                        </form>
+                                                </div>
+                                        </td>
                                 </tr>
                         </c:forEach>
-                </table>
+                </table
+                        ${enrollErrorMessage}
         </c:if>
 </p>
 
@@ -113,28 +147,4 @@
 
 <%--PAGINATION--%>
 
-<%--<c:if test="${processFlag == 'viewcourse' or processFlag == 'viewmark'}">--%>
-<%--        <c:if test="${processFlag == 'viewcourse'}">--%>
-<%--                <c:set var="process" value="allcourses"/>--%>
-<%--                <c:set var="pageNumber" value="${pageAllCoursesNumber}"/>--%>
-<%--        </c:if>--%>
-<%--        <c:if test="${processFlag == 'viewmark'}">--%>
-<%--                <c:set var="process" value="viewmark"/>--%>
-<%--                <c:set var="pageNumber" value="${pageMarkStudentNumber}"/>--%>
-<%--        </c:if>--%>
-<%--        <nav aria-label="Page navigation example">--%>
-<%--                <ul autofocus class="pagination justify-content-center">--%>
-
-<%--                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous">Previous</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=next">Next</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=10">10</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=20">20</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&scale=50">50</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link">Page: ${pageNumber}</a></li>--%>
-<%--                        <li class="page-item"><a class="page-link">Total: ${pagesCount}</a></li>--%>
-
-<%--                </ul>--%>
-<%--        </nav>--%>
-
-<%--</c:if>--%>
 <jsp:include page="_pagination.jsp"/>

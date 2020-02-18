@@ -4,6 +4,7 @@ import com.facultative.model.Course;
 import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.config.ConfigurationManager;
+import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
 
@@ -19,13 +20,16 @@ public class UpdateCourseCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
 
+        if(request.getSession().getAttribute(EDIT_COURSE) !=null ){
         Course editCourse=(Course)request.getSession().getAttribute(EDIT_COURSE);
-        if(editCourse !=null ){
             editCourse.setName(request.getParameter(COURSE));
             editCourse.setDescription(request.getParameter(DESCRIPTION));
             service.update(editCourse);
+
+            return "/controller?command=viewcourse";
         }
 
-        return "/controller?command=viewcourse";
+        request.setAttribute(NULL_PAGE, MessageManager.getProperty("message.error.edit"));
+        return ConfigurationManager.getProperty("path.page.error");
     }
 }

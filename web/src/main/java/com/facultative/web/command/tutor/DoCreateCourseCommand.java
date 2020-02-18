@@ -1,6 +1,7 @@
 package com.facultative.web.command.tutor;
 
 import com.facultative.model.Person;
+import com.facultative.model.UserType;
 import com.facultative.service.CourseServiceImpl;
 import com.facultative.service.ICourseService;
 import com.facultative.service.IPersonService;
@@ -33,18 +34,20 @@ public class DoCreateCourseCommand implements ActionCommand {
 
         if(tutor !=null ){
             course.setTutor(tutor);
-        }
 
-        course.setName(courseName);
-        course.setDescription(description);
+            course.setName(courseName);
+            course.setDescription(description);
 
-        int scale = Pagination.getScale(request);
-        if(!isExist(userId, course, scale)){
-            courseService.save(course);
-        } else{
-            request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
+            int scale = Pagination.getScale(request);
+            if(!isExist(userId, course, scale) && (tutor.getRole() == UserType.TUTOR)){
+                courseService.save(course);
+                return "/controller?command=viewcourse";
+            } else{
+                request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
+            }
         }
-        return "/controller?command=viewcourse";
+            request.setAttribute(NULL_PAGE,MessageManager.getProperty("message.error.person"));
+            return ConfigurationManager.getProperty("path.page.error");
     }
 
     private boolean isExist(long userId, Course course, int scale) {

@@ -50,4 +50,10 @@ class PersonValidatorTest {
     void isValidIncorrectLoginPass() {
         assertFalse(validator.isValid(incorrectPersonName));
     }
+
+    @Test
+    void isValidLoginNull(){
+        assertFalse(validator.validateLogin(null));
+
+    }
 }

@@ -8,6 +8,7 @@ import com.facultative.service.ICourseService;
 import com.facultative.service.PersonServiceImpl;
 import com.facultative.service.IPersonService;
 import com.facultative.service.config.ConfigurationManager;
+import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
 
@@ -23,10 +24,9 @@ public class AllCoursesCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
-        List<Course> list;
 
         int pageNumber = Pagination.getPageNumberAllCourses(request);
-        list=courseService.getCourses(pageNumber,Pagination.getScale(request)); //scale = items on the page
+        List<Course> list=courseService.getCourses(pageNumber,Pagination.getScale(request)); //scale = items on the page
         for (Course course:list){
             long userId=course.getTutor().getId();
             Person tutor=personService.get(userId);
@@ -38,12 +38,15 @@ public class AllCoursesCommand implements ActionCommand {
 
         if (request.getSession().getAttribute(PERSON) !=null){
             Person user=(Person)request.getSession().getAttribute(PERSON);
-                    if (user.getRole() == UserType.TUTOR){
+                    if ((user.getRole() == UserType.STUDENT) || (user.getRole() == UserType.TUTOR)){
                         request.setAttribute(PROCESS_FLAG,ALL_COURSES); //pagination all courses (Command of student) are made by tutor
+                        request.setAttribute(LIST_JSP,list);
+
+                        return ConfigurationManager.getProperty("path.page.student");
                     }
         }
-        request.setAttribute(LIST_JSP,list);
 
-        return ConfigurationManager.getProperty("path.page.student");
+        request.setAttribute(NULL_PAGE, MessageManager.getProperty("message.error.courses"));
+        return ConfigurationManager.getProperty("path.page.error");
     }
 }

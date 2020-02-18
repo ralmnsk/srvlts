@@ -239,7 +239,8 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 course.setName(rs.getString(2));
                 course.setDescription(rs.getString(3));
 
-                Person tutor=new Person();
+                Person tutor = new Person();
+                Person student = new Person();
                 tutor.setId(rs.getLong(4));
                 tutor.setSurname(rs.getString(5));
                 tutor.setName(rs.getString(6));
@@ -248,8 +249,10 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
                 mark.setId(rs.getLong(7));
                 mark.setMark(rs.getInt(8));
                 mark.setReview(rs.getString(9));
+                student.setId(rs.getLong(10));
 
                 course.setTutor(tutor);
+                mark.setStudent(student);
                 mark.setCourse(course);
 
                 list.add(mark);

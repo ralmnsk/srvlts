@@ -1,9 +1,11 @@
 package com.facultative.web.command.student;
 
 import com.facultative.model.Mark;
+import com.facultative.model.Person;
 import com.facultative.service.IMarkService;
 import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
+import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
 
@@ -19,9 +21,26 @@ public class DoDelMarkCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        long markId = (Long)request.getSession().getAttribute(MARK_ID);
-        markService.delete(markId);
+        if(request.getSession().getAttribute(MARK_ID) != null){
+            long markId = (Long)request.getSession().getAttribute(MARK_ID);
+            Mark mark = markService.get(markId);
+            if (mark != null ){
+                Person student = mark.getStudent();
+                if (student !=null){
+                    long studentIdFromMark = student.getId();
+                    if (request.getSession().getAttribute(USER_ID) != null){
+                        long userId = (long)request.getSession().getAttribute(USER_ID);
+                        if (userId == studentIdFromMark){
+                            markService.delete(markId);
+                            request.getSession().removeAttribute(MARK_ID);
+                            return "/controller?command=viewmark";
+                        }
+                    }
+                }
+            }
+        }
 
-        return "/controller?command=viewmark";
+        request.setAttribute(NULL_PAGE, MessageManager.getProperty("message.enroll.error"));
+        return ConfigurationManager.getProperty("path.page.error");
     }
 }

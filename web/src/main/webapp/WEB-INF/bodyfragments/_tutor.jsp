@@ -55,12 +55,26 @@
                     <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
                     <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
                     <th><fmt:message key="message.description" bundle="${messages}"/></th>
+                    <th><fmt:message key="message.edit.courses" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
                     <tr>
                         <td>${element.id}</td>
-                        <td><a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a></td>
+                        <td>
+<%--                            <a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a>--%>
+                                ${element.name}
+                        </td>
                         <td>${element.description}</td>
+                        <td align="center">
+                            <div class="form-group">
+                                <form name="editСourseForm" method="POST" action="controller">
+                                    <input type="hidden" name="command" value="editcourse" />
+                                    <input type="hidden" name="editid" value="${element.id}" />
+
+                                    <input type="submit" class="btn btn-primary" value=<fmt:message key="message.edit" bundle="${messages}"/>>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
@@ -75,16 +89,30 @@
                 <th><fmt:message key="message.student" bundle="${messages}"/></th>
                 <th><fmt:message key="message.rate" bundle="${messages}"/></th>
                 <th><fmt:message key="message.review" bundle="${messages}"/></th>
+                <th><fmt:message key="message.edit" bundle="${messages}"/></th>
             </tr>
             <c:forEach var="element" items="${list}">
                 <tr>
                     <td>${element.course.id}</td>
-                    <td><a href="${pageContext.request.contextPath}/controller?command=edit_mark&markid=${element.id}"> ${element.course.name}</a></td>
+                    <td>
+<%--                        <a href="${pageContext.request.contextPath}/controller?command=edit_mark&markid=${element.id}"> ${element.course.name}</a>--%>
+                        ${element.course.name}
+                    </td>
                     <td>${element.student.surname} ${element.student.name}</td>
                     <td><c:if test="${element.mark == 0}">---</c:if>
                         <c:if test="${element.mark != 0}">${element.mark}</c:if>
                     </td>
                     <td>${element.review}</td>
+                    <td align="center">
+                        <div class="form-group">
+                            <form name="editMarkForm" method="POST" action="controller">
+                                <input type="hidden" name="command" value="edit_mark" />
+                                <input type="hidden" name="markid" value="${element.id}" />
+
+                                <input type="submit" class="btn btn-primary" value=<fmt:message key="message.edit" bundle="${messages}"/>>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

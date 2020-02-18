@@ -218,11 +218,10 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
     //for tutor to get only his own courses
     @Override
     public List<Course> getCoursesByTutorId(long tutorId,int pageNumber, int scale) {
-        String sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID_LIMIT;
         if(pageNumber == ALL_MARKS){
-            sqlQuery = SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID;
+            return getAllCoursesWithParam(tutorId,pageNumber,SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID, scale);
         }
-        return getAllCoursesWithParam(tutorId,pageNumber,sqlQuery, scale);
+        return getAllCoursesWithParam(tutorId,pageNumber,SQL_QUERY_COURSE_BY_TUTOR_PARAM_ID_LIMIT, scale);
     }
     //for students to get all courses
     @Override

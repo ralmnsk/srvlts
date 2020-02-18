@@ -17,10 +17,17 @@
                <ul class="my">
                    <li class="my"><a href="${pageContext.request.contextPath}/controller?command=lang&lang=en" >English</a></li>
                    <li class="my"><a href="${pageContext.request.contextPath}/controller?command=lang&lang=ru" >Русский</a></li>
-                   <ctg:person/>
                </ul>
-
            </div>
 
          </div>
+                   <h6 align="right">
+                       <c:if test="${person.role == 'STUDENT'}">
+                           <fmt:message key="message.student" bundle="${messages}"/> :
+                       </c:if>
+                       <c:if test="${person.role == 'TUTOR'}">
+                           <fmt:message key="message.tutor" bundle="${messages}"/> :
+                       </c:if>
+                        <ctg:person/>
+                   </h6>
 

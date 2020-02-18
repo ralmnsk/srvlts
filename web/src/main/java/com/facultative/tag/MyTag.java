@@ -31,15 +31,7 @@ public class MyTag extends TagSupport {
             if( pageContext.getSession().getAttribute("person") != null){
                 JspWriter out = pageContext.getOut();
                 Person person = (Person)pageContext.getSession().getAttribute("person");
-                String role;
-                if(person.getRole() == UserType.STUDENT){
-                    role = MessageManager.getProperty("message.student");
-                } else if (person.getRole() == UserType.TUTOR){
-                    role = MessageManager.getProperty("message.tutor");
-                } else {
-                    role = NONE_STRING;
-                }
-                out.write(role + SPACE + person.getSurname() + SPACE + person.getName());
+                out.write(person.getSurname() + SPACE + person.getName());
             }
 
         } catch (IOException e) {
@@ -49,12 +41,12 @@ public class MyTag extends TagSupport {
     }
 
     @Override
-    public int doAfterBody() throws JspTagException {
+    public int doAfterBody() {
         return SKIP_BODY;
     }
 
     @Override
-    public int doEndTag() throws JspTagException {
+    public int doEndTag() {
         return EVAL_PAGE;
     }
 }

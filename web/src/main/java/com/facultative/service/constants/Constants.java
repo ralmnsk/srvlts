@@ -76,6 +76,7 @@ public class Constants {
     public static final String TO_REGISTER = "toregister";
     public static final String TO_LOGIN = "tologin";
     public static final String OLD_COMMAND = "oldCommand";
+    public static final String ENROLL_ERROR_MESSAGE = "enrollErrorMessage";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";

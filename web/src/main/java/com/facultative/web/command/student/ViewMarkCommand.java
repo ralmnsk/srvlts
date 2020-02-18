@@ -4,6 +4,7 @@ import com.facultative.model.Mark;
 import com.facultative.service.IMarkService;
 import com.facultative.service.MarkServiceImpl;
 import com.facultative.service.config.ConfigurationManager;
+import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
 
@@ -19,13 +20,19 @@ public class ViewMarkCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_MARK);
-        long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-        int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-        int scale = Pagination.getScale(request);
-        List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
-        request.setAttribute(LIST_JSP,list);
+        if (request.getSession().getAttribute(USER_ID) != null){
+            long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-        return ConfigurationManager.getProperty("path.page.student");
+            int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
+            int scale = Pagination.getScale(request);
+            List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
+            request.setAttribute(LIST_JSP,list);
+
+            return ConfigurationManager.getProperty("path.page.student");
+        }
+
+        request.setAttribute(NULL_PAGE, MessageManager.getProperty("message.error.marks"));
+        return ConfigurationManager.getProperty("path.page.error");
     }
 }

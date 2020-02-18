@@ -39,14 +39,14 @@ public class Controller extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        String page;
+
         ActionFactory client = new ActionFactory();
         ActionCommand command = client.defineCommand(req);
 
-        page = command.execute(req);
+        String page = command.execute(req);
         if (page != null) {
-            if(req.getParameter(LANG) != null){
-                resp.sendRedirect(req.getContextPath() + page);
+            if(req.getParameter(LANG) != null){                         //if language was pressed
+                resp.sendRedirect(req.getContextPath() + page); //send to last page
             }else{
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
                 dispatcher.forward(req, resp);

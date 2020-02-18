@@ -13,13 +13,11 @@ public class LoginLogic {
 
     public boolean checkLogin(String enterLogin, String enterPass, HttpServletRequest request) {
         Person person=(Person)service.getByLogin(enterLogin);
-        if(person.getLogin()!= null){
-            if(person.getPassword().equals(enterPass)){
+        if((person.getLogin()!= null) && (person.getPassword().equals(enterPass))){
                 request.getSession().setAttribute(USER_ID,person.getId());
                 request.getSession().setAttribute(PERSON,person);
                 request.getSession().setAttribute(USER_ROLE,person.getRole().toString());
                 return true;
-            }
         }
         return false;
     }
