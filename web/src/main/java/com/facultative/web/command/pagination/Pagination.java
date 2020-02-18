@@ -39,17 +39,17 @@ public class Pagination {
             cursorPosition = pageNumberForCursor*scale;
         }
 
-        if(request.getParameter(PARAMETER_MOVE)!=null){
-            String move=request.getParameter(PARAMETER_MOVE);
-            if(move.equals(PREVIOUS)){
-                pageNumber--;
-                cursorPosition=cursorPosition-scale;
-            }
-            if(move.equals((NEXT))){
-                pageNumber++;
-                cursorPosition=cursorPosition+scale;
-            }
-        }
+//        if(request.getParameter(PARAMETER_MOVE)!=null){
+//            String move=request.getParameter(PARAMETER_MOVE);
+//            if(move.equals(PREVIOUS)){
+//                pageNumber--;
+//                cursorPosition=cursorPosition-scale;
+//            }
+//            if(move.equals((NEXT))){
+//                pageNumber++;
+//                cursorPosition=cursorPosition+scale;
+//            }
+//        }
 
         int count=0;
 
