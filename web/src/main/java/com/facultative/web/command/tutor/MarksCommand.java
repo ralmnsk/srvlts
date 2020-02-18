@@ -22,7 +22,6 @@ public class MarksCommand implements ActionCommand {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
 
         if(request.getSession().getAttribute(USER_ID) != null){
-
             long userId = (long)request.getSession().getAttribute(USER_ID);
 
             int pageNumber = Pagination.getPageNumberTutorMarks(request,userId);

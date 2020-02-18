@@ -23,8 +23,15 @@ public class EditMarkCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG, EDIT_MARK);
 
-        if (request.getParameter(MARK_ID) != null){
-            long markId = Long.parseLong(request.getParameter(MARK_ID));
+        long markId = 0;
+        if (request.getParameter(MARK_ID) != null) {      //when command lang is executed markId(Parameter) in request will be 0;
+            markId = Long.parseLong(request.getParameter(MARK_ID));     //and error page will not be returned
+            request.getSession().setAttribute(MARK_ID, markId);
+        } else if (request.getSession().getAttribute(MARK_ID) != null){
+            markId = (long)request.getSession().getAttribute(MARK_ID);
+        }
+
+        if (markId > 0){
             Mark mark = markService.get(markId);
             if(mark != null){
 

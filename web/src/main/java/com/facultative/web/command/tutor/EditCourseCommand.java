@@ -19,8 +19,15 @@ public class EditCourseCommand implements ActionCommand {
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,EDIT_COURSE);
 
-        if (request.getParameter(EDIT_ID) != null){
-            long editId = Long.parseLong(request.getParameter(EDIT_ID));
+        long editId = 0;
+        if (request.getParameter(EDIT_ID) != null) {      //when command lang is executed editId(Parameter) in request will be 0;
+            editId = Long.parseLong(request.getParameter(EDIT_ID));     //and error page will not be returned
+            request.getSession().setAttribute(EDIT_ID, editId);
+        } else if (request.getSession().getAttribute(EDIT_ID) != null){
+            editId = (long)request.getSession().getAttribute(EDIT_ID);
+        }
+
+        if (editId > 0){
             Course editCourse = service.get(editId);
             if (editCourse != null ){
                 if(request.getSession().getAttribute(USER_ID) != null){

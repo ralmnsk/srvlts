@@ -174,16 +174,16 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         )
         {
                 int startCourse=(pageNumber-1)*scale;
-                int countCourses=scale;
+
             if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
                 statement.setLong(1,tutorId);
                 if(pageNumber != ALL_MARKS){
                     statement.setInt(2,startCourse);
-                    statement.setLong(3,countCourses);
+                    statement.setLong(3,scale);
                 }
             } else{
                 statement.setInt(1,startCourse);
-                statement.setLong(2,countCourses);
+                statement.setLong(2,scale);
             }
             rs = statement.executeQuery();
             while(rs.next()){

@@ -62,11 +62,12 @@ public class Controller extends HttpServlet {
             String oldCommand = INDEX;
             String action = req.getParameter(COMMAND);
             switch (action){
-                case DO_ADD_MARK: oldCommand = VIEW_MARK; break;
+                case DO_ADD_MARK: oldCommand = VIEW_MARK; break;  //oldCommand - command before language command
                 case DEL_MARK: oldCommand = VIEW_MARK; break;
                 case DELETE_COURSE: oldCommand = VIEW_COURSE; break;
                 case DO_CREATE_COURSES: oldCommand = VIEW_COURSE; break;
                 case DO_EDIT_MARK: oldCommand = MARKS; break;
+                case DO_DEL_MARK: oldCommand = VIEW_MARK; break;
                 case UPDATE_COURSE: oldCommand = VIEW_COURSE; break;
                 case LOGIN:
                     if(req.getSession().getAttribute(PERSON) !=null){

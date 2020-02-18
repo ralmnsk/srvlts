@@ -178,7 +178,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
             statement.execute();
             logger.info("Person was deleted: person id:" +id);
         } catch (SQLException ex) {
-            logger.error("Problem executing person delte", ex);
+            logger.error("Problem executing person delete", ex);
         }
     }
 }

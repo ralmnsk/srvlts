@@ -1,15 +1,12 @@
 package com.facultative.tag;
 
 import com.facultative.model.Person;
-import com.facultative.model.UserType;
-import com.facultative.service.messages.MessageManager;
 
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
-import static com.facultative.service.constants.Constants.NONE_STRING;
 import static com.facultative.service.constants.Constants.SPACE;
 
 public class MyTag extends TagSupport {

@@ -20,9 +20,9 @@ class LoginLogicTest {
 
     private LoginLogic loginLogic = new LoginLogic();
     private Person person;
-    HttpServletRequest request;
-    HttpSession session;
-    IPersonService<Person> service;
+    private HttpServletRequest request;
+    private HttpSession session;
+    private IPersonService<Person> service;
 
     @BeforeEach
     void setLoginLogic(){

@@ -34,7 +34,6 @@ public class DoCreateCourseCommand implements ActionCommand {
 
         if(tutor !=null ){
             course.setTutor(tutor);
-
             course.setName(courseName);
             course.setDescription(description);
 

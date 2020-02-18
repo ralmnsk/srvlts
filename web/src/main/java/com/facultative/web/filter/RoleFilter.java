@@ -1,14 +1,12 @@
 package com.facultative.web.filter;
-import com.facultative.model.UserType;
-import com.facultative.service.config.ConfigurationManager;
 
+import com.facultative.model.UserType;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,10 +16,8 @@ import static com.facultative.service.constants.Constants.*;
 public class RoleFilter implements Filter {
     private Set<String> commandSet = new HashSet<>();
 
-    private RequestDispatcher dispatcher;
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         commandSet.add(LOGIN);               // commands that can be accessed by guests
         commandSet.add(TO_LOGIN);
         commandSet.add(INDEX);
@@ -37,7 +33,7 @@ public class RoleFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-    private boolean authorization(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+    private boolean authorization(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();

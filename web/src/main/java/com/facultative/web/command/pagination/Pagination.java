@@ -11,6 +11,7 @@ import static com.facultative.service.constants.Constants.*;
 
 
 public class Pagination {
+
     public static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
         return getPageNumber(request,userId,PAGE_COURSE_TUTOR_NUMBER);
     }
@@ -28,8 +29,8 @@ public class Pagination {
     }
 
     public static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
-        int pageNumber = 1;
-        int cursorPosition = 1;
+        int pageNumber;
+        int cursorPosition;
 
         cursorPosition = getCursorPosition(request, page_person_number);
         int scale = getScale(request);//20 items on the page
@@ -38,18 +39,6 @@ public class Pagination {
             int pageNumberForCursor = Integer.parseInt(request.getParameter(PAGE_NUMBER));
             cursorPosition = pageNumberForCursor*scale;
         }
-
-//        if(request.getParameter(PARAMETER_MOVE)!=null){
-//            String move=request.getParameter(PARAMETER_MOVE);
-//            if(move.equals(PREVIOUS)){
-//                pageNumber--;
-//                cursorPosition=cursorPosition-scale;
-//            }
-//            if(move.equals((NEXT))){
-//                pageNumber++;
-//                cursorPosition=cursorPosition+scale;
-//            }
-//        }
 
         int count=0;
 
@@ -105,7 +94,7 @@ public class Pagination {
 
     public static int getCursorPosition(HttpServletRequest request, String page_person_number) {
         int cursorPosition = 1;
-        String cursorPositionAttribute=new String("");
+        String cursorPositionAttribute=new String(EMPTY_STRING);
 
         if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
             cursorPositionAttribute = "cursorPositionMark";
@@ -132,7 +121,7 @@ public class Pagination {
 
     public static boolean setCursorPosition(HttpServletRequest request, String page_person_number, int cursorPosition) {
 
-        String cursorPositionAttribute=new String("");
+        String cursorPositionAttribute=new String(EMPTY_STRING);
 
         if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
             cursorPositionAttribute = "cursorPositionMark";

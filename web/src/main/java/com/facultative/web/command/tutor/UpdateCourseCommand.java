@@ -6,10 +6,8 @@ import com.facultative.service.ICourseService;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
-import com.facultative.web.command.pagination.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 import static com.facultative.service.constants.Constants.*;
 
