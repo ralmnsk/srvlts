@@ -21,6 +21,7 @@ public class DoAddMarkCommand implements ActionCommand {
 
     private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
+    private Pagination pagination = new Pagination();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -36,7 +37,7 @@ public class DoAddMarkCommand implements ActionCommand {
                 mark.setStudent(student);
                 mark.setCourse(course);
 
-                int scale=Pagination.getScale(request);
+                int scale=pagination.getScale(request);
 
                 if(!isEnrolled(mark,studentId, scale) && student.getRole() == UserType.STUDENT){
                     markService.save(mark);

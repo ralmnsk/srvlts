@@ -16,15 +16,16 @@ import static com.facultative.service.constants.Constants.*;
 public class ViewCourseCommand implements ActionCommand {
 
     private ICourseService<Course> service = CourseServiceImpl.getInstance();
+    private Pagination pagination = new Pagination();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
 
-        int scale = Pagination.getScale(request);
+        int scale = pagination.getScale(request);
         if (request.getSession().getAttribute(USER_ID) != null){
             long userId = (long)request.getSession().getAttribute(USER_ID);
-            int pageNumber= Pagination.getPageNumberTutorCourses(request,userId);
+            int pageNumber= pagination.getPageNumberTutorCourses(request,userId);
             List<Course> list=service.getCoursesByTutorId(userId,pageNumber,scale);//number of the page to go
             request.setAttribute(LIST_JSP,list);
 

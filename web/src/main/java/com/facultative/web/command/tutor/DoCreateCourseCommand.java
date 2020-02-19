@@ -22,6 +22,7 @@ public class DoCreateCourseCommand implements ActionCommand {
 
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
     private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
+    private Pagination pagination = new Pagination();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -37,7 +38,7 @@ public class DoCreateCourseCommand implements ActionCommand {
             course.setName(courseName);
             course.setDescription(description);
 
-            int scale = Pagination.getScale(request);
+            int scale = pagination.getScale(request);
             if(!isExist(userId, course, scale) && (tutor.getRole() == UserType.TUTOR)){
                 courseService.save(course);
                 return "/controller?command=viewcourse";

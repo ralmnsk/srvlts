@@ -69,6 +69,10 @@ public class Constants {
     public static final String TO_LOGIN = "tologin";
     public static final String OLD_COMMAND = "oldCommand";
     public static final String DO_DEL_MARK = "dodelmark";
+    //Pagination
+    public static final String CURSOR_POSITION_MARK = "cursorPositionMark";
+    public static final String CURSOR_POSITION_COURSE_YOURS = "cursorPositionCourseYours";
+    public static final String CURSOR_POSITION_COURSE_AVAILABLE = "cursorPositionCourseAvailable";
     //DaoPerson
     public static final String SQL_QUERY_PERSON_GET_BY_LOGIN="select * from mydb.user where login=?";
     public static final String SQL_QUERY_PERSON_SAVE="insert into mydb.user (surname, name, login, password, role) values (?, ?, ?, ?, ?)";

@@ -12,23 +12,23 @@ import static com.facultative.service.constants.Constants.*;
 
 public class Pagination {
 
-    public static int getPageNumberTutorCourses(HttpServletRequest request, long userId){
+    public int getPageNumberTutorCourses(HttpServletRequest request, long userId){
         return getPageNumber(request,userId,PAGE_COURSE_TUTOR_NUMBER);
     }
 
-    public static int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
+    public  int getPageNumberTutorMarks(HttpServletRequest request, long userId) {
         return getPageNumber(request,userId,PAGE_MARK_TUTOR_NUMBER);
     }
 
-    public static int getPageNumberStudentCourses(HttpServletRequest request, long studentId) {
+    public  int getPageNumberStudentCourses(HttpServletRequest request, long studentId) {
         return getPageNumber(request,studentId,PAGE_MARK_STUDENT_NUMBER);
     }
 
-    public static int getPageNumberAllCourses(HttpServletRequest request) {
+    public  int getPageNumberAllCourses(HttpServletRequest request) {
         return getPageNumber(request,NO_NUMBER,PAGE_ALL_COURSES_NUMBER);
     }
 
-    public static int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
+    public  int getPageNumber(HttpServletRequest request, long userId, String page_person_number) {
         int pageNumber;
         int cursorPosition;
 
@@ -85,28 +85,28 @@ public class Pagination {
             pagesCount = 1;
         }
         //set pagination parameters in session
-        setCursorPosition(request,page_person_number,cursorPosition);
+        setCursorPosition(request,page_person_number,cursorPosition); //cursor for each entity in the database
         request.getSession().setAttribute(SCALE,scale);
         request.getSession().setAttribute(page_person_number,pageNumber);
         request.getSession().setAttribute(PAGES_COUNT,pagesCount);
         return pageNumber;
     }
 
-    private static int getCursorPosition(HttpServletRequest request, String page_person_number) {
+    private  int getCursorPosition(HttpServletRequest request, String page_person_number) {
         int cursorPosition = 1;
         String cursorPositionAttribute=new String(EMPTY_STRING);
 
-        if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionMark";
+        if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER) ||
+                page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
+            cursorPositionAttribute = CURSOR_POSITION_MARK;
         }
+
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourseYours";
+            cursorPositionAttribute = CURSOR_POSITION_COURSE_YOURS;
         }
-        if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
-            cursorPositionAttribute = "cursorPositionMark";
-        }
+
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourseAvailable";
+            cursorPositionAttribute = CURSOR_POSITION_COURSE_AVAILABLE;
         }
         if (!cursorPositionAttribute.equals(NONE_STRING)){
             if (request.getSession().getAttribute(cursorPositionAttribute) != null){
@@ -119,21 +119,20 @@ public class Pagination {
         return cursorPosition;
     }
 
-    private static boolean setCursorPosition(HttpServletRequest request, String page_person_number, int cursorPosition) {
+    private  boolean setCursorPosition(HttpServletRequest request, String page_person_number, int cursorPosition) {
 
         String cursorPositionAttribute=new String(EMPTY_STRING);
 
-        if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionMark";
+        if(page_person_number.equals(PAGE_MARK_TUTOR_NUMBER) ||
+                page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
+            cursorPositionAttribute = CURSOR_POSITION_MARK;
         }
         if(page_person_number.equals(PAGE_COURSE_TUTOR_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourseYours";        //Your courses (Tutor)
+            cursorPositionAttribute = CURSOR_POSITION_COURSE_YOURS;        //Your courses (Tutor)
         }
-        if(page_person_number.equals(PAGE_MARK_STUDENT_NUMBER)){
-            cursorPositionAttribute = "cursorPositionMark";
-        }
+
         if(page_person_number.equals(PAGE_ALL_COURSES_NUMBER)){
-            cursorPositionAttribute = "cursorPositionCourseAvailable";       //Available courses
+            cursorPositionAttribute = CURSOR_POSITION_COURSE_AVAILABLE;       //Available courses
         }
         if (!cursorPositionAttribute.equals("")){
             request.getSession().setAttribute(cursorPositionAttribute, cursorPosition);
@@ -143,7 +142,7 @@ public class Pagination {
         return false;
     }
 
-    public static int getScale(HttpServletRequest request) {
+    public  int getScale(HttpServletRequest request) { //get count of items on a page
         int scale = ITEMS_ON_PAGE;
         if(request.getSession().getAttribute(SCALE) != null){
             scale = (int)request.getSession().getAttribute(SCALE);

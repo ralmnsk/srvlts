@@ -20,13 +20,14 @@ public class AllCoursesCommand implements ActionCommand {
 
     private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
+    private Pagination pagination = new Pagination();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
 
-        int pageNumber = Pagination.getPageNumberAllCourses(request);
-        List<Course> list=courseService.getCourses(pageNumber,Pagination.getScale(request)); //scale = items on the page
+        int pageNumber = pagination.getPageNumberAllCourses(request);
+        List<Course> list=courseService.getCourses(pageNumber,pagination.getScale(request)); //scale = items on the page
         for (Course course:list){
             long userId=course.getTutor().getId();
             Person tutor=personService.get(userId);

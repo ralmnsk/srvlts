@@ -15,6 +15,7 @@ import static com.facultative.service.constants.Constants.*;
 public class ViewMarkCommand implements ActionCommand {
 
     private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
+    private Pagination pagination = new Pagination();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -23,8 +24,8 @@ public class ViewMarkCommand implements ActionCommand {
         if (request.getSession().getAttribute(USER_ID) != null){
             long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-            int pageNumber = Pagination.getPageNumberStudentCourses(request,studentId);
-            int scale = Pagination.getScale(request);
+            int pageNumber = pagination.getPageNumberStudentCourses(request,studentId);
+            int scale = pagination.getScale(request);
             List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
             request.setAttribute(LIST_JSP,list);
 
