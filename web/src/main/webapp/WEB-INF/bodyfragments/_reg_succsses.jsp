@@ -11,5 +11,7 @@
             <fmt:message key="message.success.registration" bundle="${messages}"/>
             <br/>
             <a href="${pageContext.request.contextPath}/toregister"><fmt:message key="message.return.registration" bundle="${messages}"/></a>
+            <br/>
+            <a href="${pageContext.request.contextPath}/controller?command=tologin"><fmt:message key="message.enter" bundle="${messages}"/></a>
         </div>
 

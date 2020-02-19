@@ -84,7 +84,7 @@ public class Pagination {
         if(pagesCount <= 0){
             pagesCount = 1;
         }
-
+        //set pagination parameters in session
         setCursorPosition(request,page_person_number,cursorPosition);
         request.getSession().setAttribute(SCALE,scale);
         request.getSession().setAttribute(page_person_number,pageNumber);
@@ -92,7 +92,7 @@ public class Pagination {
         return pageNumber;
     }
 
-    public static int getCursorPosition(HttpServletRequest request, String page_person_number) {
+    private static int getCursorPosition(HttpServletRequest request, String page_person_number) {
         int cursorPosition = 1;
         String cursorPositionAttribute=new String(EMPTY_STRING);
 
@@ -119,7 +119,7 @@ public class Pagination {
         return cursorPosition;
     }
 
-    public static boolean setCursorPosition(HttpServletRequest request, String page_person_number, int cursorPosition) {
+    private static boolean setCursorPosition(HttpServletRequest request, String page_person_number, int cursorPosition) {
 
         String cursorPositionAttribute=new String(EMPTY_STRING);
 

@@ -1,12 +1,10 @@
 package com.facultative.web.controller;
 
-import com.facultative.model.Person;
-import com.facultative.model.UserType;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.ActionFactory;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
-
+import com.facultative.web.command.saver.Saver;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,35 +56,7 @@ public class Controller extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + page);
         }
         //Language
-        if(req.getParameter(COMMAND) !=null){
-            String oldCommand = INDEX;
-            String action = req.getParameter(COMMAND);
-            switch (action){
-                case DO_ADD_MARK: oldCommand = VIEW_MARK; break;  //oldCommand - command before language command
-                case DEL_MARK: oldCommand = VIEW_MARK; break;
-                case DELETE_COURSE: oldCommand = VIEW_COURSE; break;
-                case DO_CREATE_COURSES: oldCommand = VIEW_COURSE; break;
-                case DO_EDIT_MARK: oldCommand = MARKS; break;
-                case DO_DEL_MARK: oldCommand = VIEW_MARK; break;
-                case UPDATE_COURSE: oldCommand = VIEW_COURSE; break;
-                case LOGIN:
-                    if(req.getSession().getAttribute(PERSON) !=null){
-                        Person person = (Person)req.getSession().getAttribute(PERSON);
-                        if (person.getRole() == UserType.STUDENT){
-                            oldCommand = STUDENT;
-                        } else if (person.getRole() == UserType.TUTOR){
-                            oldCommand = TUTOR;
-                        } else {
-                            oldCommand = LOGIN;
-                        }
-                    }
-                    break;
-                case REGISTER:
-                         oldCommand = TO_REGISTER;
-                    break;
-                default: oldCommand = action; break;
-            }
-            req.getSession().setAttribute(OLD_COMMAND,oldCommand);
-        }
+        Saver saver = new Saver(req);
+        saver.save();
     }
 }

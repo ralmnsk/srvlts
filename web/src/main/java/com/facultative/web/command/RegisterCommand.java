@@ -39,7 +39,7 @@ public class RegisterCommand implements ActionCommand {
                 registration.register(person);
                 page = ConfigurationManager.getProperty("path.page.regsuccsses");
                 return page;
-            } else{
+            } else{                                 //find where user mistake during registration
                 if (!validator.validateLogin(person.getLogin())) request.setAttribute(LOGIN_ERROR,MessageManager.getProperty("message.login.error"));
                 if (!validator.validatePassword(person.getPassword())) request.setAttribute(PASSWORD_ERROR,MessageManager.getProperty("message.password.error"));
                 if (!validator.validateSurname(person.getSurname())) request.setAttribute(SURNAME_ERROR,MessageManager.getProperty("message.surname.error"));
