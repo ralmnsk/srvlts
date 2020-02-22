@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 import static com.facultative.service.constants.Constants.OLD_COMMAND;
 
-public class Saver {
+public class Saver {    //saves oldCommand in Session
 
     private HttpServletRequest req;
 

@@ -11,6 +11,7 @@ import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
+import com.facultative.web.command.pagination.Scale;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -21,21 +22,14 @@ public class AllCoursesCommand implements ActionCommand {
     private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
     private Pagination pagination = new Pagination();
+    private Scale scaleFinder = new Scale();
 
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,VIEW_COURSE);
 
-        int pageNumber = pagination.getPageNumberAllCourses(request);
-        List<Course> list=courseService.getCourses(pageNumber,pagination.getScale(request)); //scale = items on the page
-        for (Course course:list){
-            long userId=course.getTutor().getId();
-            Person tutor=personService.get(userId);
-
-            if(tutor != null){
-                course.setTutor(tutor);
-            }
-        }
+        int pageNumber = pagination.getPageNumber(request,NO_NUMBER,PAGE_ALL_COURSES_NUMBER);
+        List<Course> list=courseService.getCourses(pageNumber,scaleFinder.getScale(request)); //scale = items on the page
 
         if (request.getSession().getAttribute(PERSON) !=null){
             Person user=(Person)request.getSession().getAttribute(PERSON);

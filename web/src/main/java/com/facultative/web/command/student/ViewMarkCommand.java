@@ -7,6 +7,8 @@ import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.web.command.pagination.Pagination;
+import com.facultative.web.command.pagination.Scale;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class ViewMarkCommand implements ActionCommand {
 
     private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
     private Pagination pagination = new Pagination();
+    private Scale scaleFinder = new Scale();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -24,8 +27,8 @@ public class ViewMarkCommand implements ActionCommand {
         if (request.getSession().getAttribute(USER_ID) != null){
             long studentId = (long)request.getSession().getAttribute(USER_ID);
 
-            int pageNumber = pagination.getPageNumberStudentCourses(request,studentId);
-            int scale = pagination.getScale(request);
+            int pageNumber = pagination.getPageNumber(request,studentId,PAGE_MARK_STUDENT_NUMBER);
+            int scale = scaleFinder.getScale(request);
             List<Mark> list = markService.getMarksByStudentId(studentId,pageNumber, scale);
             request.setAttribute(LIST_JSP,list);
 

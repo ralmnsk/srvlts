@@ -70,6 +70,7 @@ public class Constants {
     public static final String OLD_COMMAND = "oldCommand";
     public static final String DO_DEL_MARK = "dodelmark";
     //Pagination
+    public static final String CURSOR_POSITION = "cursorPosition";
     public static final String CURSOR_POSITION_MARK = "cursorPositionMark";
     public static final String CURSOR_POSITION_COURSE_YOURS = "cursorPositionCourseYours";
     public static final String CURSOR_POSITION_COURSE_AVAILABLE = "cursorPositionCourseAvailable";

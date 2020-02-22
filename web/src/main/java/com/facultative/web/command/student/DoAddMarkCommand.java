@@ -8,7 +8,7 @@ import com.facultative.service.*;
 import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
-import com.facultative.web.command.pagination.Pagination;
+import com.facultative.web.command.pagination.Scale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +21,7 @@ public class DoAddMarkCommand implements ActionCommand {
 
     private IMarkService<Mark> markService = MarkServiceImpl.getInstance();
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
-    private Pagination pagination = new Pagination();
+    private Scale scaleFinder = new Scale();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -37,7 +37,7 @@ public class DoAddMarkCommand implements ActionCommand {
                 mark.setStudent(student);
                 mark.setCourse(course);
 
-                int scale=pagination.getScale(request);
+                int scale=scaleFinder.getScale(request);
 
                 if(!isEnrolled(mark,studentId, scale) && student.getRole() == UserType.STUDENT){
                     markService.save(mark);

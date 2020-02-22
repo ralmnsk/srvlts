@@ -8,7 +8,7 @@
     <uri>customtags</uri>
     <tag>
         <name>person</name>
-        <tag-class>com.facultative.tag.MyTag</tag-class>
+        <tag-class>com.facultative.tag.PersonTag</tag-class>
         <body-content>scriptless</body-content>
         <attribute>
             <name>rows</name>

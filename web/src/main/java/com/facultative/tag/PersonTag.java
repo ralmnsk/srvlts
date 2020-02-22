@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static com.facultative.service.constants.Constants.SPACE;
 
-public class MyTag extends TagSupport {
+public class PersonTag extends TagSupport {
 
     private String head;
     private int rows;

@@ -24,10 +24,8 @@ public class RegisterCommand implements ActionCommand {
         String name= request.getParameter(NAME);
         UserType userType=UserType.valueOf(request.getParameter(SELECT_TYPE).toUpperCase());
 
-        String page;
-        page = ConfigurationManager.getProperty("path.page.registration");
-        boolean isRegistered = registration.isRegistered(login);
-        if(!isRegistered){
+        String page = ConfigurationManager.getProperty("path.page.registration");
+        if(!registration.isRegistered(login)){
             Person person=new Person();
             person.setLogin(login);
             person.setPassword(password);
@@ -37,8 +35,7 @@ public class RegisterCommand implements ActionCommand {
 
             if(validator.isValid(person)){
                 registration.register(person);
-                page = ConfigurationManager.getProperty("path.page.regsuccsses");
-                return page;
+                return ConfigurationManager.getProperty("path.page.regsuccsses");
             } else{                                 //find where user mistake during registration
                 if (!validator.validateLogin(person.getLogin())) request.setAttribute(LOGIN_ERROR,MessageManager.getProperty("message.login.error"));
                 if (!validator.validatePassword(person.getPassword())) request.setAttribute(PASSWORD_ERROR,MessageManager.getProperty("message.password.error"));

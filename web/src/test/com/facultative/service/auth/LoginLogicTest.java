@@ -58,4 +58,67 @@ class LoginLogicTest {
         assertFalse(check);
 
     }
+
+    @Test
+    void checkLoginDb(){
+        Person person = new Person();
+        person.setRole(UserType.STUDENT);
+        person.setPassword("123");
+        person.setLogin("TestLogin");
+        person.setName("TestName");
+        person.setSurname("TestSurname");
+
+        IPersonService<Person> personService = PersonServiceImpl.getInstance();
+        person = personService.save(person);
+
+        when(request.getSession()).thenReturn(session);
+
+        LoginLogic loginLogic = new LoginLogic();
+        boolean check = loginLogic.checkLogin("TestLogin", "123", request);
+        assertTrue(check);
+
+        personService.delete(person.getId());
+    }
+
+    @Test
+    void checkLoginDbFalseLogin(){
+        Person person = new Person();
+        person.setRole(UserType.STUDENT);
+        person.setPassword("123");
+        person.setLogin("TestLogin");
+        person.setName("TestName");
+        person.setSurname("TestSurname");
+
+        IPersonService<Person> personService = PersonServiceImpl.getInstance();
+        person = personService.save(person);
+
+        when(request.getSession()).thenReturn(session);
+
+        LoginLogic loginLogic = new LoginLogic();
+        boolean check = loginLogic.checkLogin("TestLogin1", "123", request);
+        assertFalse(check);
+
+        personService.delete(person.getId());
+    }
+
+    @Test
+    void checkLoginDbFalsePass(){
+        Person person = new Person();
+        person.setRole(UserType.STUDENT);
+        person.setPassword("123");
+        person.setLogin("TestLogin");
+        person.setName("TestName");
+        person.setSurname("TestSurname");
+
+        IPersonService<Person> personService = PersonServiceImpl.getInstance();
+        person = personService.save(person);
+
+        when(request.getSession()).thenReturn(session);
+
+        LoginLogic loginLogic = new LoginLogic();
+        boolean check = loginLogic.checkLogin("TestLogin", "1231", request);
+        assertFalse(check);
+
+        personService.delete(person.getId());
+    }
 }

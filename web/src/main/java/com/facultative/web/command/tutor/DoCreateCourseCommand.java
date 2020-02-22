@@ -10,8 +10,7 @@ import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import com.facultative.model.Course;
-import com.facultative.web.command.pagination.Pagination;
-
+import com.facultative.web.command.pagination.Scale;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ public class DoCreateCourseCommand implements ActionCommand {
 
     private IPersonService<Person> personService = PersonServiceImpl.getInstance();
     private ICourseService<Course> courseService = CourseServiceImpl.getInstance();
-    private Pagination pagination = new Pagination();
+    private Scale scaleFinder = new Scale();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -31,14 +30,14 @@ public class DoCreateCourseCommand implements ActionCommand {
         long userId=(long)request.getSession().getAttribute(USER_ID);
 
         Person tutor = personService.get(userId);
-        Course course=new Course();
 
         if(tutor !=null ){
+            Course course=new Course();
             course.setTutor(tutor);
             course.setName(courseName);
             course.setDescription(description);
 
-            int scale = pagination.getScale(request);
+            int scale = scaleFinder.getScale(request);
             if(!isExist(userId, course, scale) && (tutor.getRole() == UserType.TUTOR)){
                 courseService.save(course);
                 return "/controller?command=viewcourse";

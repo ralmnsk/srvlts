@@ -35,7 +35,7 @@
     <jsp-config>
         <taglib>
             <taglib-uri>customtags</taglib-uri>
-            <taglib-location>/WEB-INF/tld/my.tld</taglib-location>
+            <taglib-location>/WEB-INF/tld/person.tld</taglib-location>
         </taglib>
     </jsp-config>
 

@@ -7,7 +7,6 @@ import com.facultative.service.config.ConfigurationManager;
 import com.facultative.service.messages.MessageManager;
 import com.facultative.web.command.ActionCommand;
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class DoEditMarkCommand implements ActionCommand {
@@ -17,7 +16,7 @@ public class DoEditMarkCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute(PROCESS_FLAG,MARKS_VIEW);
-        int markInt = Integer.parseInt(request.getParameter(MARK));//Mark.getMark() == markInt
+        int markInt = Integer.parseInt(request.getParameter(MARK));//int Mark.getMark() == markInt
         String review = request.getParameter(REVIEW);
 
         if (request.getSession().getAttribute(MARK) != null){
