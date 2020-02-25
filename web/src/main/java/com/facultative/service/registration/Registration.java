@@ -14,10 +14,7 @@ public class Registration implements IRegistration{
     @Override
     public boolean isRegistered(String login) {
         Person personByLogin = service.getByLogin(login);
-        if ((personByLogin != null) &&(personByLogin.getLogin() != null) && (personByLogin.getLogin().equals(login))){
-            return true;
-        }
-        return  false ;
+            return ((personByLogin != null) &&(personByLogin.getLogin() != null) && (personByLogin.getLogin().equals(login)));
     }
 
     @Override

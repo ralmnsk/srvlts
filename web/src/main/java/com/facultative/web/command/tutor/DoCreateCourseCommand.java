@@ -43,6 +43,7 @@ public class DoCreateCourseCommand implements ActionCommand {
                 return "/controller?command=viewcourse";
             } else{
                 request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
+                return ConfigurationManager.getProperty("path.page.error");
             }
         }
             request.setAttribute(NULL_PAGE,MessageManager.getProperty("message.error.person"));

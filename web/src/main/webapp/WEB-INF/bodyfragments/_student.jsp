@@ -36,13 +36,7 @@
                         <tr>
                                 <td>${element.id}</td>
                                 <td>
-<%--                                        <c:if test="${(userRole == 'TUTOR')}">--%>
                                                 ${element.name}
-<%--                                        </c:if>--%>
-<%--                                        <c:if test="${(userRole == 'STUDENT')}">--%>
-<%--&lt;%&ndash;                                                <a href="${pageContext.request.contextPath}/controller?command=addmark&courseid=${element.id}"> ${element.name}</a>&ndash;%&gt;--%>
-<%--                                        </c:if>--%>
-
                                 </td>
                                 <td>${element.description}</td>
                                 <td>${element.tutor.surname} ${element.tutor.name}</td>
@@ -52,12 +46,6 @@
                                                 <form name="enrollCourseForm" method="POST" action="controller">
                                                         <input type="hidden" name="command" value="addmark" />
                                                         <input type="hidden" name="courseid" value="${element.id}" />
-<%--                                                        <p><fmt:message key="message.course.name" bundle="${messages}"/>:<br/></p>--%>
-<%--                                                        <p>${course.name}</p>--%>
-<%--                                                        <br/>--%>
-<%--                                                        <p><fmt:message key="message.description" bundle="${messages}"/>:<br/></p>--%>
-<%--                                                        <p>${course.description}</p>--%>
-<%--                                                        <br/>--%>
                                                         <input class="btn btn-primary" type="submit" value=<fmt:message key="message.enroll" bundle="${messages}"/>>
                                                 </form>
                                         </div>
@@ -117,7 +105,6 @@
                                 <tr>
                                         <td>${element.course.id}</td>
                                         <td>
-<%--                                                <a href="${pageContext.request.contextPath}/controller?command=delmark&markid=${element.id}"> ${element.course.name}</a>--%>
                                                         ${element.course.name}
                                         </td>
                                         <td>${element.course.description}</td>
@@ -139,7 +126,6 @@
                                 </tr>
                         </c:forEach>
                 </table
-                        ${enrollErrorMessage}
         </c:if>
 </p>
 

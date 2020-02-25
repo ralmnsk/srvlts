@@ -4,7 +4,7 @@ import com.facultative.model.Person;
 import com.facultative.model.UserType;
 import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
-import static com.facultative.service.constants.Constants.OLD_COMMAND;
+
 
 public class Saver {    //saves oldCommand in Session
 

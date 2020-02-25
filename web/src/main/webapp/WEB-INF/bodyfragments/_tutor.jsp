@@ -137,7 +137,6 @@
         </div>
     </c:if>
 
-</p>
         </div>
 
 <%--PAGINATION--%>

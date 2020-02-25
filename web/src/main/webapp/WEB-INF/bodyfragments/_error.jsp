@@ -36,5 +36,11 @@
             <c:if test="${wrongAction != null}">
                 <h3>${wrongAction}<fmt:message key="message.wrongaction" bundle="${messages}"/></h3>
             </c:if>
+            <c:if test="${courseExists != null }">
+                ${courseExists}
+            </c:if>
+            <c:if test="${markExists != null }">
+                ${markExists}
+            </c:if>
 
         </div>

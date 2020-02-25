@@ -22,6 +22,7 @@ public class Constants {
     public static final String COURSE_ID="courseid";
     public static final String COMMAND="command";
     public static final String COURSE_EXISTS="courseExists";
+    public static final String MARK_EXISTS="markExists";
     public static final String CREATE_COURSE="createcourse";
     public static final String DEL_MARK="delmark";
     public static final String EDIT_MARK="edit_mark";
@@ -110,7 +111,7 @@ public class Constants {
             "surname,name, id_mark,mark,review,id_student" +
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
             "join mydb.user on mydb.user.id=mydb.course.id_tutor " +
-            "where id_student=? limit ?,?";
+            "where id_student=? order by id_mark desc limit ?,?";
     public static final String SQL_QUERY_MARK_ALL_BY_STUDENT_ID="SELECT mydb.course.id_course, name_course,  description, mydb.course.id_tutor, " +
             "surname,name, id_mark,mark,review,id_student" +
             " FROM mydb.course join mydb.mark on mydb.course.id_course=mydb.mark.id_course " +
