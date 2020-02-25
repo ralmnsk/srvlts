@@ -27,7 +27,6 @@ public class Constants {
     public static final String EDIT_MARK="edit_mark";
     public static final String EDIT_ID="editid";
     public static final String ENCODING="encoding";
-    public static final String EMPTY_STRING="";
     public static final String LOGIN="login";
     public static final String LIST_JSP="list";
     public static final String MARKS_VIEW="marks_view";
@@ -53,7 +52,6 @@ public class Constants {
     public static final String SURNAME_ERROR="surnameError";
     public static final String NAME_ERROR="nameError";
     public static final String ERROR_REG_MESSAGE="errorRegistrationMessage";
-    public static final String NONE_STRING="";
     public static final String SPACE=" ";
     public static final String INDEX = "index";
     public static final String DO_ADD_MARK = "doaddmark";

@@ -2,9 +2,7 @@ package com.facultative.web.command;
 
 import com.facultative.model.UserType;
 import com.facultative.service.config.ConfigurationManager;
-
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.USER_ROLE;
 
 public class ErrorCommand implements ActionCommand {

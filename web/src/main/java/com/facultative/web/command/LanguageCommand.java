@@ -2,9 +2,7 @@ package com.facultative.web.command;
 
 import com.facultative.model.Person;
 import com.facultative.model.UserType;
-
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class LanguageCommand implements ActionCommand {

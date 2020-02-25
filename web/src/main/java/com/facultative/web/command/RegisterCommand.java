@@ -6,9 +6,7 @@ import com.facultative.service.messages.MessageManager;
 import com.facultative.service.registration.Registration;
 import com.facultative.service.validator.PersonValidator;
 import com.facultative.model.Person;
-
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class RegisterCommand implements ActionCommand {

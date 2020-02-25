@@ -4,7 +4,6 @@ import com.facultative.service.IPersonService;
 import com.facultative.service.PersonServiceImpl;
 import com.facultative.model.Person;
 import static com.facultative.service.constants.Constants.*;
-
 import javax.servlet.http.HttpServletRequest;
 
 public class LoginLogic {

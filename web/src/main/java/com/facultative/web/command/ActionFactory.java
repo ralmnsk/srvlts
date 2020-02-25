@@ -1,7 +1,6 @@
 package com.facultative.web.command;
 
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.COMMAND;
 
 /**
@@ -30,7 +29,7 @@ public class ActionFactory {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCurrentCommand();
         } catch (IllegalArgumentException e) {
-            request.setAttribute("wrongAction", action.toString());
+            request.setAttribute("wrongAction", action);
             return new ErrorCommand();
         }
         return current;
