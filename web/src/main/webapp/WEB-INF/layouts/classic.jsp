@@ -16,6 +16,7 @@
             }
             td{
                 vertical-align: top;
+
             }
             body{
                 min-height: 100%;

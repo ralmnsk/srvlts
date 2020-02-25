@@ -33,10 +33,10 @@
             <form name="courseForm" method="POST" action="controller">
                 <input type="hidden" name="command" value="updatecourse" />
                 <fmt:message key="message.course.name" bundle="${messages}"/>:<br/>
-                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course">${editCourse.name}</textarea>
+                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="course" maxlength="99">${editCourse.name}</textarea>
                 <br/>
                 <fmt:message key="message.description" bundle="${messages}"/>:<br/>
-                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="description">${editCourse.description}</textarea>
+                <textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="description" maxlength="999">${editCourse.description}</textarea>
                 <br/>
 
                 <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
@@ -50,7 +50,7 @@
 
     <c:if test="${processFlag == 'viewcourse'}">
         <p><fmt:message key="message.edit.courses" bundle="${messages}"/></p>
-            <table border=1 cellpadding=5>
+            <table border=1 cellpadding=5 >
                 <tr>
                     <th><fmt:message key="message.course.number" bundle="${messages}"/></th>
                     <th><fmt:message key="message.course.name" bundle="${messages}"/></th>
@@ -58,7 +58,7 @@
                     <th><fmt:message key="message.edit.courses" bundle="${messages}"/></th>
                 </tr>
                 <c:forEach var="element" items="${list}">
-                    <tr>
+                    <tr >
                         <td>${element.id}</td>
                         <td>
 <%--                            <a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a>--%>
@@ -130,7 +130,7 @@
                 <p><fmt:message key="message.rate" bundle="${messages}"/>:
                     <input type="number" min="1" max="10" name="mark" value="${mark.mark}"/></p>
                 <p><fmt:message key="message.review" bundle="${messages}"/>:</p>
-                <p><textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="review">${mark.review}</textarea></p>
+                <p><textarea type="text" aria-label="With textarea" class="form-control" rows="5" name="review" maxlength="999">${mark.review}</textarea></p>
                 <br/>
                 <input type="submit" class="btn btn-primary" value=<fmt:message key="message.save" bundle="${messages}"/>>
             </form>

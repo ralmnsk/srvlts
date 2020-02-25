@@ -43,7 +43,7 @@
     </c:if>
 
         <nav aria-label="Page navigation example">
-          <ul autofocus class="pagination justify-content-center" vertical-align="bottom">
+          <ul autofocus class="pagination justify-content-center" vertical-align="bottom" horiz-align="left">
 
             <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&pageNumber=1"> <fmt:message key="message.first" bundle="${messages}"/> </a></li>
 <%--            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/controller?command=${process}&move=previous"> << </a></li>--%>

@@ -9,7 +9,9 @@
 <fmt:setBundle basename = "messages" var = "messages"/>
 
         <div class="container">
-            <h2><fmt:message key="message.error" bundle="${messages}"/></h2>
+            <c:if test="${pageContext.exception != null}">
+                <h2><fmt:message key="message.error" bundle="${messages}"/></h2>
+            </c:if>
             <c:if test="${pageContext.errorData.requestURI != null}">
                 Request from ${pageContext.errorData.requestURI} is failed
                 <br/>
@@ -18,7 +20,7 @@
                 Servlet name: ${pageContext.errorData.servletName}
                 <br/>
             </c:if>
-            <c:if test="${pageContext.errorData.statusCode != null}">
+            <c:if test="${pageContext.errorData.statusCode != null and pageContext.errorData.statusCode != 0}">
                 Status code: ${pageContext.errorData.statusCode}
                 <br/>
             </c:if>

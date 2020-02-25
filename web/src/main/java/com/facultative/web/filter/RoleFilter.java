@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-
 import static com.facultative.service.constants.Constants.*;
 
 @WebFilter({"/*"})
