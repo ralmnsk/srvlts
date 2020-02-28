@@ -56,6 +56,7 @@
         </table>
         </c:if>
 
+<%--ADD MARK--%>
         <c:if test="${processFlag == 'addmark'}">
                 <div class="form-group">
                         <form name="courseForm" method="POST" action="controller">
@@ -71,6 +72,7 @@
                 </div>
         </c:if>
 
+<%--DELETE MARK--%>
         <c:if test="${processFlag == 'delmark'}">
                 <div class="form-group">
                         <form name="courseForm" method="POST" action="controller">
@@ -86,6 +88,7 @@
                 </div>
         </c:if>
 
+<%--        VIEW MARK--%>
         <c:if test="${processFlag == 'viewmark'}">
                 <fmt:message key="message.enroll.course.you" bundle="${messages}"/>
                 <br/>

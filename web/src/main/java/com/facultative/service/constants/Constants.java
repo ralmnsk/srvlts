@@ -42,6 +42,8 @@ public class Constants {
     public static final String VIEW_COURSE="viewcourse";
     public static final String VIEW_MARK="viewmark";
     public static final String DESCRIPTION = "description";
+    //pages, commands
+    public static final String CONTROLLER_COMMAND_VIEW_COURSE="/controller?command=viewcourse";
     //internationalization, messages
     public static final String CONFIGURATION_MANAGER_FILE_BASE_NAME="config";
     public static final String MESSAGE_MANAGER_FILE_BASE_NAME="messages";

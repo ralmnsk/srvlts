@@ -32,7 +32,7 @@ public class DeleteCourseCommand implements ActionCommand {
                             service.delete(editCourseId);
                             request.getSession().removeAttribute(EDIT_COURSE);
 
-                            return "/controller?command=viewcourse";
+                            return CONTROLLER_COMMAND_VIEW_COURSE;
                         }
                     }
                 }

@@ -9,8 +9,9 @@
 
 <div class="container">
         <h2><fmt:message key="message.tutor.page" bundle="${messages}"/></h2>
-            ${courseExists}
             <jsp:include page="_info.jsp"/>
+
+<%--    CREATE COURSE --%>
 <p>
    <c:if test="${processFlag == 'createcourse'}">
         <div class="form-group">
@@ -27,6 +28,7 @@
         </div>
    </c:if>
 
+<%--    EDIT COURSE--%>
     <c:if test="${processFlag == 'editCourse'}">
         <fmt:message key="message.edit.courses" bundle="${messages}"/>:
         <div class="form-group">
@@ -48,6 +50,7 @@
         </div>
     </c:if>
 
+<%--    VIEW COURSE--%>
     <c:if test="${processFlag == 'viewcourse'}">
         <p><fmt:message key="message.edit.courses" bundle="${messages}"/></p>
             <table border=1 cellpadding=5 >
@@ -61,7 +64,6 @@
                     <tr >
                         <td>${element.id}</td>
                         <td>
-<%--                            <a href="${pageContext.request.contextPath}/controller?command=editcourse&editid=${element.id}"> ${element.name}</a>--%>
                                 ${element.name}
                         </td>
                         <td>${element.description}</td>
@@ -80,6 +82,7 @@
             </table>
     </c:if>
 
+<%--VIEW MARKS BY TUTOR--%>
     <c:if test="${processFlag == 'marks_view'}">
         <p><fmt:message key="message.edit.rate" bundle="${messages}"/></p>
         <table border=1 cellpadding=5>
@@ -95,7 +98,6 @@
                 <tr>
                     <td>${element.course.id}</td>
                     <td>
-<%--                        <a href="${pageContext.request.contextPath}/controller?command=edit_mark&markid=${element.id}"> ${element.course.name}</a>--%>
                         ${element.course.name}
                     </td>
                     <td>${element.student.surname} ${element.student.name}</td>
@@ -118,6 +120,7 @@
         </table>
     </c:if>
 
+<%--    EDIT MARK BY TUTOR--%>
     <c:if test="${processFlag == 'edit_mark'}">
         <fmt:message key="message.grading" bundle="${messages}"/>
         <div class="form-group">
