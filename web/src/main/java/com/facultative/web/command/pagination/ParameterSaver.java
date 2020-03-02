@@ -1,7 +1,6 @@
 package com.facultative.web.command.pagination;
 
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.PAGES_COUNT;
 import static com.facultative.service.constants.Constants.SCALE;
 

@@ -1,10 +1,13 @@
 package com.facultative.web.command.pagination;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
-
 import static com.facultative.service.constants.Constants.*;
 
 public class CursorPosition {
+
+    private static Logger logger= LoggerFactory.getLogger(CursorPosition.class);
 
     public  int getCursorPosition(HttpServletRequest request, String pagePersonNumber, int scale) {
         int cursorPosition = 1;
@@ -14,6 +17,7 @@ public class CursorPosition {
                 try {
                     cursorPosition = (int) request.getSession().getAttribute(cursorPositionAttribute);
                 } catch (NumberFormatException e){
+                    logger.error("Problem getCursorPosition setting. Default cursorPosition was set 1.", e);
                     cursorPosition = 1;
                 }
             }
@@ -27,6 +31,7 @@ public class CursorPosition {
                 try {
                     pageNumberForCursor = Integer.parseInt(request.getParameter(PAGE_NUMBER));
                 } catch (NumberFormatException e){
+                    logger.error("Problem pageNumberForCursor setting. Default pageNumberForCursor was set 1.", e);
                     pageNumberForCursor = 1;
                 }
                 cursorPosition = pageNumberForCursor*scale;

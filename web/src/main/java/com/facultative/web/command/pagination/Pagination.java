@@ -12,14 +12,14 @@ public class Pagination {
             cursorPosition = 1;
         }
 
-        int pagesCount = count/scale;// 44/20    44 - items in database
-        if(count%scale > 0){             // 44%20>0
-            pagesCount++;               // 2+1=3 pages
+        int pagesCount = count/scale;// 44 / 20    44 - items in database, 20 - item scale on the page
+        if(count%scale > 0){             // 44 % 20 > 0
+            pagesCount++;               // 2 + 1 = 3 pages
         }
 
-        int pageNumber = cursorPosition / scale; //1/20 = 0
-        if(cursorPosition%scale > 0){           //1 >0
-            pageNumber++;                   //0 + 1 = 1
+        int pageNumber = cursorPosition / scale; // 1 / 20 = 0
+        if(cursorPosition%scale > 0){           // 1 % 20 = 1 >0
+            pageNumber++;                   // 0 + 1 = 1
         }
 
         if (pageNumber > pagesCount){
