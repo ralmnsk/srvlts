@@ -44,10 +44,10 @@ public class Controller extends HttpServlet {
         String page = command.execute(req);
         if (page != null) {
             if(req.getParameter(LANG) != null){                         //if language was pressed
-                resp.sendRedirect(req.getContextPath() + page); //send to last page
+                resp.sendRedirect(req.getContextPath() + page); //send to last saved command(page)
             }else{
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-                dispatcher.forward(req, resp);
+                dispatcher.forward(req, resp); 
             }
         } else {
             page = ConfigurationManager.getProperty("path.page.error");
@@ -55,8 +55,8 @@ public class Controller extends HttpServlet {
                     MessageManager.getProperty("message.nullpage"));
             resp.sendRedirect(req.getContextPath() + page);
         }
-        //Language
+        //Language           When lang=ru/en is pressed language is changed and last (oldCommand) is executed.
         Saver saver = new Saver(req);
-        saver.save();
+        saver.save(); //last command save
     }
 }

@@ -20,11 +20,11 @@ public class ActionFactory {
         if (request.getAttribute(COMMAND) != null){
             action = (String)request.getAttribute(COMMAND); //this is a command from RoleFilter
         }                                                   //that sets attribute COMMAND if user has
-        if (action == null || action.isEmpty()) {           //GUEST role
+        if (action == null || action.isEmpty()) {           //a GUEST role
             return current;
         }
 
-// get object according to the command
+// get ActionCommand according to the action (parameter or attribute COMMAND)
         try {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCurrentCommand();

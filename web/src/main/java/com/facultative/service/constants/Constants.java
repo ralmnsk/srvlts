@@ -70,6 +70,8 @@ public class Constants {
     public static final String TO_LOGIN = "tologin";
     public static final String OLD_COMMAND = "oldCommand";
     public static final String DO_DEL_MARK = "dodelmark";
+    public static final String CONTROLLER_COMMAND_TUTOR = "/controller?command=tutor";
+    public static final String CONTROLLER_COMMAND_STUDENT = "/controller?command=student";
     //Pagination
     public static final String CURSOR_POSITION = "cursorPosition";
     public static final String CURSOR_POSITION_MARK = "cursorPositionMark";

@@ -15,6 +15,9 @@ public class Saver {    //saves oldCommand in Session
     }
 
     public void save(){
+        if(req.getSession().getAttribute(OLD_COMMAND) == null){
+            req.getSession().setAttribute(OLD_COMMAND,INDEX);
+        }
         if(req.getParameter(COMMAND) !=null){
             String oldCommand = INDEX;
             String action = req.getParameter(COMMAND);
@@ -43,7 +46,9 @@ public class Saver {    //saves oldCommand in Session
                     break;
                 default: oldCommand = action; break;
             }
-            req.getSession().setAttribute(OLD_COMMAND,oldCommand);
+            if(!oldCommand.equals(LANG)){
+                req.getSession().setAttribute(OLD_COMMAND,oldCommand);
+            }
         }
     }
 }

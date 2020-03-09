@@ -18,7 +18,7 @@ public class RoleFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
         commandSet.add(LOGIN);               // commands that can be accessed by guests
-        commandSet.add(TO_LOGIN);
+        commandSet.add(TO_LOGIN);              //without redirection
         commandSet.add(INDEX);
         commandSet.add(REGISTER);
         commandSet.add(TO_REGISTER);
@@ -32,13 +32,15 @@ public class RoleFilter implements Filter {
         chain.doFilter(request, response);
     }
 
+    //sets command 'index' as attribute of the request if user is a guest
+    //command is executed in Controller
     private boolean authorization(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
 
         String action = INDEX;
-        if (req.getParameter(COMMAND) != null){
+        if (req.getParameter(COMMAND) != null){ //get command from parameter!
             action = req.getParameter(COMMAND);
         }
 

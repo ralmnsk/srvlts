@@ -11,7 +11,7 @@
 
    <ul class="my" >
 
-           <li><a href="${pageContext.request.contextPath}/"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
+           <li><a href="${pageContext.request.contextPath}/controller?command=index"><fmt:message key="message.main.page" bundle="${messages}"/></a></li>
 
             <c:if test="${(userRole == 'STUDENT')}">
                 <br/>

@@ -17,10 +17,10 @@ public class LanguageCommand implements ActionCommand {
         if (request.getSession().getAttribute(PERSON) !=null){
             Person person = (Person)request.getSession().getAttribute(PERSON);
             if(person.getRole() == UserType.TUTOR){
-                return "/controller?command=tutor";
+                return CONTROLLER_COMMAND_TUTOR;
             }
             if(person.getRole() == UserType.STUDENT){
-                return "/controller?command=student";
+                return CONTROLLER_COMMAND_STUDENT;
             }
         }
         return "/controller";
