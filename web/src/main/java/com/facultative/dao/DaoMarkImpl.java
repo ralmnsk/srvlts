@@ -19,7 +19,7 @@ public class DaoMarkImpl implements IDaoMark<Mark> {
 
 
     /**
-     * Gets instance.
+     * Gets instance. IDaoMark instance is a singleton.
      *
      * @return the instance
      */

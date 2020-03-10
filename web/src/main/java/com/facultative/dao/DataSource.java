@@ -39,7 +39,7 @@ public class DataSource {
     }
 
     /**
-     * Get instance data source.
+     * Get instance data source. The data source instance is a singleton.
      *
      * @return the data source
      */

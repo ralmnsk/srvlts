@@ -11,26 +11,42 @@
                 <div class="form-group">
                     <form name="registrationForm" method="POST" action="controller">
                         <input type="hidden" name="command" value="register" />
-                    <br/><fmt:message key="message.login" bundle="${messages}"/><br/>
-                    <input type="text" required minlength="3" maxlength="30" name="login" value=""/>
-                    <br/><fmt:message key="message.password" bundle="${messages}"/><br/>
-                    <input type="password" required minlength="3" maxlength="20" name="password" value=""/>
-                    <br/><fmt:message key="message.surname" bundle="${messages}"/><br/>
-                    <input type="text" required minlength="2" maxlength="30" name="surname" value=""/>
-                    <br/><fmt:message key="message.name" bundle="${messages}"/><br/>
-                    <input type="text" required minlength="2" maxlength="30" name="name" value=""/>
-                    <br/>
-                        <fmt:message key="message.choose" bundle="${messages}"/>
-                    <br/>
-                        <select name="selectType">
-                            <option value="student"> <fmt:message key="message.student" bundle="${messages}"/>
-                            </option>
-                            <option value="tutor"> <fmt:message key="message.tutor" bundle="${messages}"/>
-                            </option>
-                        </select>
-                    <br/>
-                        <input class="btn btn-primary" type="submit" value=<fmt:message key="message.registration" bundle="${messages}"/>>
+
+                        <br/><fmt:message key="message.login" bundle="${messages}"/><br/>
+                        <input type="text" required minlength="3" maxlength="30" pattern="[a-zA-Zа-яА-Я0-9]{3,30}" name="login" value=""/>
+
+                        <br/><fmt:message key="message.password" bundle="${messages}"/><br/>
+                        <input type="password" required minlength="3" maxlength="20" pattern="[a-zA-Zа-яА-Я0-9]{3,20}" name="password" value=""/>
+
+                        <br/><fmt:message key="message.surname" bundle="${messages}"/><br/>
+                        <input type="text" required minlength="2" pattern="[a-zA-Zа-яА-Я-]{2,30}" maxlength="30" name="surname" value=""/>
+
+                        <br/><fmt:message key="message.name" bundle="${messages}"/><br/>
+                        <input type="text" required minlength="2" pattern="[a-zA-Zа-яА-Я-]{2,30}" maxlength="30" name="name" value=""/>
+
+                        <br/>
+                            <fmt:message key="message.choose" bundle="${messages}"/>
+                        <br/>
+                            <select name="selectType">
+                                <option value="student"> <fmt:message key="message.student" bundle="${messages}"/>
+                                </option>
+                                <option value="tutor"> <fmt:message key="message.tutor" bundle="${messages}"/>
+                                </option>
+                            </select>
+                        <br/>
+                            <input class="btn btn-primary" type="submit" value=<fmt:message key="message.registration" bundle="${messages}"/>>
                     </form>
+
+<%--                    REGISTRATION DATA DESCRIPTION   --%>
+                        <br/>
+                            <fmt:message key="message.registration.description" bundle="${messages}"/>
+                        <br/>
+                            <fmt:message key="message.login" bundle="${messages}"/>: [a-zA-Zа-яА-Я0-9]{3,30}
+                        <br/>
+                            <fmt:message key="message.password" bundle="${messages}"/>: [a-zA-Zа-яА-Я0-9]{3,20}
+                        <br/>
+                            <fmt:message key="message.name" bundle="${messages}"/>, <fmt:message key="message.surname" bundle="${messages}"/>: [a-zA-Zа-яА-Я-]{2,30}
+                        <br/>
                 </div>
             <hr/>
             <br/>

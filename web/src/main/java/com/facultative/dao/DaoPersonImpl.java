@@ -17,7 +17,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
     private static volatile IDaoPerson<Person> instance;
 
     /**
-     * Gets instance.
+     * Gets instance. IDaoPerson instance is a singleton.
      *
      * @return the instance
      */

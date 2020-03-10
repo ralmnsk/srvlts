@@ -5213,3 +5213,39 @@ java.lang.NumberFormatException: For input string: "z"
 2020-03-10 11:41:28 INFO  DaoCourseImpl:65 - Course was created:142
 2020-03-10 11:41:36 INFO  DaoCourseImpl:65 - Course was created:143
 2020-03-10 11:41:46 INFO  DaoCourseImpl:65 - Course was created:144
+2020-03-10 11:43:47 INFO  DaoCourseImpl:65 - Course was created:145
+2020-03-10 11:43:54 INFO  DaoCourseImpl:65 - Course was created:146
+2020-03-10 11:44:03 INFO  DaoCourseImpl:65 - Course was created:147
+2020-03-10 11:44:12 INFO  DaoCourseImpl:65 - Course was created:148
+2020-03-10 11:57:20 INFO  DaoCourseImpl:65 - Course was created:149
+2020-03-10 11:58:21 INFO  DaoCourseImpl:152 - Course was deleted: id:149
+2020-03-10 12:04:27 INFO  DaoMarkImpl:62 - Mark was created:99
+2020-03-10 12:08:47 INFO  DaoMarkImpl:62 - Mark was created:100
+2020-03-10 12:08:57 INFO  DaoMarkImpl:62 - Mark was created:101
+2020-03-10 12:09:12 INFO  DaoMarkImpl:62 - Mark was created:102
+2020-03-10 12:17:26 INFO  DaoPersonImpl:98 - Person was created:47 login: tutor2
+2020-03-10 12:18:18 INFO  DaoCourseImpl:65 - Course was created:150
+2020-03-10 12:18:31 INFO  DaoCourseImpl:65 - Course was created:151
+2020-03-10 12:18:40 INFO  DaoCourseImpl:65 - Course was created:152
+2020-03-10 12:18:50 INFO  DaoCourseImpl:65 - Course was created:153
+2020-03-10 12:19:00 INFO  DaoCourseImpl:65 - Course was created:154
+2020-03-10 12:22:15 INFO  DaoCourseImpl:65 - Course was created:155
+2020-03-10 12:25:47 INFO  DaoCourseImpl:65 - Course was created:156
+2020-03-10 12:27:35 INFO  DaoCourseImpl:65 - Course was created:157
+2020-03-10 12:35:39 INFO  DaoCourseImpl:65 - Course was created:158
+2020-03-10 14:26:24 INFO  TilesAccess:88 - Removing TilesContext for context: org.apache.tiles.request.servlet.wildcard.WildcardServletApplicationContext
+2020-03-10 14:27:11 INFO  TilesAccess:93 - Publishing TilesContext for context: org.apache.tiles.request.servlet.wildcard.WildcardServletApplicationContext
+2020-03-10 14:32:35 INFO  MLog:80 - MLog clients using log4j logging.
+2020-03-10 14:32:35 INFO  C3P0Registry:204 - Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+2020-03-10 14:32:36 INFO  AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 2, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgekn7a81ifysd81nn3lin|3e112f0d, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.cj.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgekn7a81ifysd81nn3lin|3e112f0d, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 10, maxStatements -> 180, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+2020-03-10 14:32:41 INFO  DaoPersonImpl:98 - Person was created:48 login: student2
+2020-03-10 14:36:49 INFO  DaoMarkImpl:62 - Mark was created:103
+2020-03-10 14:37:06 INFO  DaoMarkImpl:62 - Mark was created:104
+2020-03-10 14:37:12 INFO  DaoMarkImpl:62 - Mark was created:105
+2020-03-10 14:37:20 INFO  DaoMarkImpl:62 - Mark was created:106
+2020-03-10 14:37:39 INFO  DaoMarkImpl:62 - Mark was created:107
+2020-03-10 14:37:45 INFO  DaoMarkImpl:62 - Mark was created:108
+2020-03-10 14:37:56 INFO  DaoMarkImpl:62 - Mark was created:109
+2020-03-10 14:38:05 INFO  DaoMarkImpl:62 - Mark was created:110
+2020-03-10 14:38:13 INFO  DaoMarkImpl:155 - Mark was deleted: id:110
+2020-03-10 14:46:15 INFO  TilesAccess:88 - Removing TilesContext for context: org.apache.tiles.request.servlet.wildcard.WildcardServletApplicationContext

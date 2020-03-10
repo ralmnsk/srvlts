@@ -21,7 +21,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
 
 
     /**
-     * Gets instance.
+     * Gets instance. IDaoCourse instance is a singleton.
      *
      * @return the instance
      */
