@@ -4,6 +4,7 @@ import com.facultative.model.Person;
 import com.facultative.model.UserType;
 import com.facultative.service.IPersonService;
 import com.facultative.service.PersonServiceImpl;
+import com.facultative.web.password.generator.PasswordGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.util.reflection.FieldSetter;
@@ -34,7 +35,7 @@ class LoginLogicTest {
         person=new Person("Вальдемар","Троецкий");
         person.setId(1L);
         person.setLogin("Valdemar");
-        person.setPassword("123");
+        person.setPassword(PasswordGenerator.createPassword("123"));
         person.setRole(UserType.STUDENT);
     }
 
@@ -63,7 +64,7 @@ class LoginLogicTest {
     void checkLoginDb(){
         Person person = new Person();
         person.setRole(UserType.STUDENT);
-        person.setPassword("123");
+        person.setPassword(PasswordGenerator.createPassword("123"));
         person.setLogin("TestLogin");
         person.setName("TestName");
         person.setSurname("TestSurname");
@@ -84,7 +85,7 @@ class LoginLogicTest {
     void checkLoginDbFalseLogin(){
         Person person = new Person();
         person.setRole(UserType.STUDENT);
-        person.setPassword("123");
+        person.setPassword(PasswordGenerator.createPassword("123"));
         person.setLogin("TestLogin");
         person.setName("TestName");
         person.setSurname("TestSurname");
@@ -105,7 +106,7 @@ class LoginLogicTest {
     void checkLoginDbFalsePass(){
         Person person = new Person();
         person.setRole(UserType.STUDENT);
-        person.setPassword("123");
+        person.setPassword(PasswordGenerator.createPassword("123"));
         person.setLogin("TestLogin");
         person.setName("TestName");
         person.setSurname("TestSurname");
