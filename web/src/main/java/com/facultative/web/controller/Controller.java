@@ -43,8 +43,8 @@ public class Controller extends HttpServlet {
 
         String page = command.execute(req);
         if (page != null) {
-            if(req.getParameter(LANG) != null){                         //if language was pressed
-                resp.sendRedirect(req.getContextPath() + page); //send to last saved command(page)
+            if((req.getParameter(LANG) != null) || ((req.getAttribute("sendRedirect") != null) && ((boolean)req.getAttribute("sendRedirect")))){                         //if language was pressed
+                resp.sendRedirect(req.getContextPath() + page); //send to last saved command(page) or redirect after create/delete/edit command
             }else{
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
                 dispatcher.forward(req, resp); 

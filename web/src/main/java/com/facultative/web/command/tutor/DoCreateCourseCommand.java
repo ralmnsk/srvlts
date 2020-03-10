@@ -40,6 +40,7 @@ public class DoCreateCourseCommand implements ActionCommand {
             int scale = scaleFinder.getScale(request);
             if(!isExist(userId, course, scale) && (tutor.getRole() == UserType.TUTOR)){
                 courseService.save(course);
+                request.setAttribute("sendRedirect",true);
                 return "/controller?command=viewcourse";
             } else{
                 request.setAttribute(COURSE_EXISTS,MessageManager.getProperty("message.course.exists"));
