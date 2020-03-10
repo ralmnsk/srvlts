@@ -6,6 +6,8 @@ import com.facultative.service.messages.MessageManager;
 import com.facultative.service.registration.Registration;
 import com.facultative.service.validator.PersonValidator;
 import com.facultative.model.Person;
+import com.facultative.web.password.generator.PasswordGenerator;
+
 import javax.servlet.http.HttpServletRequest;
 import static com.facultative.service.constants.Constants.*;
 
@@ -26,17 +28,18 @@ public class RegisterCommand implements ActionCommand {
         if(!registration.isRegistered(login)){
             Person person=new Person();
             person.setLogin(login);
-            person.setPassword(password);
+            String passwordHash = PasswordGenerator.createPassword(password);
+            person.setPassword(passwordHash);
             person.setSurname(surname);
             person.setName(name);
             person.setRole(userType);
 
-            if(validator.isValid(person)){
+            if(validator.isValid(person,password)){
                 registration.register(person);
                 return ConfigurationManager.getProperty("path.page.regsuccsses");
             } else{                                 //find where user mistake during registration
                 if (!validator.validateLogin(person.getLogin())) request.setAttribute(LOGIN_ERROR,MessageManager.getProperty("message.login.error"));
-                if (!validator.validatePassword(person.getPassword())) request.setAttribute(PASSWORD_ERROR,MessageManager.getProperty("message.password.error"));
+                if (!validator.validatePassword(password)) request.setAttribute(PASSWORD_ERROR,MessageManager.getProperty("message.password.error"));
                 if (!validator.validateSurname(person.getSurname())) request.setAttribute(SURNAME_ERROR,MessageManager.getProperty("message.surname.error"));
                 if (!validator.validateSurname(person.getName())) request.setAttribute(NAME_ERROR,MessageManager.getProperty("message.name.error"));
                 return page;

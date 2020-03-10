@@ -15,7 +15,7 @@ import static com.facultative.service.constants.Constants.*;
 public class DaoMarkImpl implements IDaoMark<Mark> {
 
     private static Logger logger= LoggerFactory.getLogger(DaoMarkImpl.class);
-    private static volatile IDaoMark<Mark> instance;
+    private static volatile IDaoMark<Mark> instance; //get actual instance because one servlet object is used by many threads
 
 
     /**

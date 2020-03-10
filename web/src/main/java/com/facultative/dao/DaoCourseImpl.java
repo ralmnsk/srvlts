@@ -169,13 +169,12 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         ResultSet rs=null;
         try (
                 Connection connection = getConnection();
-                PreparedStatement statement = connection.prepareStatement
-                        (param)
+                PreparedStatement statement = connection.prepareStatement(param);
         )
         {
                 int startCourse=(pageNumber-1)*scale;
 
-            if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){
+            if(tutorId!=IN_COURSE_ALL_NO_TUTOR_ID){ //to view all courses tutorId should be 0L
                 statement.setLong(1,tutorId);
                 if(pageNumber != ALL_MARKS){
                     statement.setInt(2,startCourse);
@@ -236,7 +235,7 @@ public class DaoCourseImpl implements IDaoCourse<Course> {
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement
-                        (SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID)
+                        (SQL_QUERY_COURSE_COUNT_BY_TUTOR_ID);
         )
         {
             statement.setLong(1,tutorId);

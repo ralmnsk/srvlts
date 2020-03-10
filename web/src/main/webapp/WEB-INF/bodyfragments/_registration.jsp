@@ -14,7 +14,7 @@
                     <br/><fmt:message key="message.login" bundle="${messages}"/><br/>
                     <input type="text" required minlength="3" maxlength="30" name="login" value=""/>
                     <br/><fmt:message key="message.password" bundle="${messages}"/><br/>
-                    <input type="password" required minlength="3" maxlength="30" name="password" value=""/>
+                    <input type="password" required minlength="3" maxlength="20" name="password" value=""/>
                     <br/><fmt:message key="message.surname" bundle="${messages}"/><br/>
                     <input type="text" required minlength="2" maxlength="30" name="surname" value=""/>
                     <br/><fmt:message key="message.name" bundle="${messages}"/><br/>

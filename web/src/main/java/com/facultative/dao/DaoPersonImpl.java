@@ -67,7 +67,7 @@ public class DaoPersonImpl implements IDaoPerson<Person> {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    logger.error("Problem executing getByLogin.ResultSet close", e);
+                    logger.error("Problem executing getByLogin. ResultSet close", e);
                 }
             }
         }

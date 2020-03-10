@@ -2,6 +2,7 @@ package com.facultative.service.validator;
 
 import com.facultative.model.Person;
 import com.facultative.model.UserType;
+import com.facultative.web.password.generator.PasswordGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,42 +14,48 @@ class PersonValidatorTest {
     private Person person;
     private Person incorrectPersonName;
     private Person incorrectLoginPassword;
+    private String password;
+    private String passwordHash;
+    private String incorrectPassHash;
 
     @BeforeEach
     private void set(){
         person = new Person("Вальдемар","Троецкий");
         person.setId(1L);
         person.setLogin("Valdemar");
-        person.setPassword("123");
+        password = "123";
+        passwordHash = PasswordGenerator.createPassword("123");
+        person.setPassword(passwordHash);
         person.setRole(UserType.STUDENT);
 
         incorrectPersonName = new Person("В","Т");
         incorrectPersonName.setId(1L);
         incorrectPersonName.setLogin("Valdemar");
-        incorrectPersonName.setPassword("123");
+        incorrectPersonName.setPassword(passwordHash);
         incorrectPersonName.setRole(UserType.STUDENT);
 
-        incorrectLoginPassword = new Person("Витя","Томилин");
+        incorrectLoginPassword = new Person("Виктор","Томилин");
         incorrectLoginPassword.setId(1L);
         incorrectLoginPassword.setLogin("Va");
-        incorrectLoginPassword.setPassword("12");
+        incorrectPassHash = PasswordGenerator.createPassword("12");
+        incorrectLoginPassword.setPassword(incorrectPassHash);
         incorrectLoginPassword.setRole(UserType.STUDENT);
     }
 
     @Test
     void isValidCorrect() {
-        validator.isValid(person);
-        assertTrue(validator.isValid(person));
+        validator.isValid(person,password);
+        assertTrue(validator.isValid(person,password));
     }
 
     @Test
     void isValidIncorrectName() {
-        assertFalse(validator.isValid(incorrectPersonName));
+        assertFalse(validator.isValid(incorrectPersonName,incorrectPassHash));
     }
 
     @Test
     void isValidIncorrectLoginPass() {
-        assertFalse(validator.isValid(incorrectPersonName));
+        assertFalse(validator.isValid(incorrectPersonName,incorrectPassHash));
     }
 
     @Test

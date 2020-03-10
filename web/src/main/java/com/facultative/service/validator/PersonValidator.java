@@ -27,7 +27,7 @@ public class PersonValidator {
      * @return the boolean
      */
     public boolean validatePassword(String password) {
-        String regex="[a-zA-Zа-яА-Я0-9]{3,30}";
+        String regex="[a-zA-Zа-яА-Я0-9]{3,20}";
         return password !=null && password.matches(regex);
     }
 
@@ -49,10 +49,10 @@ public class PersonValidator {
      * @param person the person
      * @return the boolean
      */
-    public boolean isValid(Person person) {
+    public boolean isValid(Person person,String password) {
         if( person !=null){
             boolean isLoginNormal=validateLogin(person.getLogin());
-            boolean isPasswordNormal=validatePassword(person.getPassword());
+            boolean isPasswordNormal=validatePassword(password);
             boolean isSurnameNormal=validateSurname(person.getSurname());
             boolean isNameNormal=validateSurname(person.getName());
 
