@@ -21,8 +21,8 @@ public class ParameterSaver {
     }
 
     public void save(){
-        request.getSession().setAttribute(SCALE,scale);
-        request.getSession().setAttribute(pagePersonNumber,pageNumber);
-        request.getSession().setAttribute(PAGES_COUNT,pagesCount);
+        request.getSession().setAttribute(SCALE,scale);                //scale is the one for all types of entity
+        request.getSession().setAttribute(pagePersonNumber,pageNumber); //current page number for an actual entity
+        request.getSession().setAttribute(PAGES_COUNT,pagesCount);      // pages count for an actual entity
     }
 }

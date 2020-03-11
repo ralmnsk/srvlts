@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 import static com.facultative.service.constants.Constants.MESSAGE_MANAGER_FILE_BASE_NAME;
 
 /**
- * The type Message manager.
+ * The type Message manager. It gets messages from property file.
  */
 public class MessageManager {
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGE_MANAGER_FILE_BASE_NAME, Locale.getDefault());
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle(MESSAGE_MANAGER_FILE_BASE_NAME);
     private MessageManager() { }
 
     /**
@@ -20,5 +20,14 @@ public class MessageManager {
      */
     public static String getProperty(String key) {
         return resourceBundle.getString(key);
+    }
+
+    /**
+     * Set locale.
+     *
+     * @param locale the locale
+     */
+    public static void setLocale(Locale locale){
+        resourceBundle = ResourceBundle.getBundle(MESSAGE_MANAGER_FILE_BASE_NAME,locale);
     }
 }

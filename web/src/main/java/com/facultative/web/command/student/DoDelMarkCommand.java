@@ -28,9 +28,9 @@ public class DoDelMarkCommand implements ActionCommand {
                         if (userId == studentIdFromMark){
                             markService.delete(markId);
                             request.getSession().removeAttribute(MARK_ID);
-                            request.setAttribute("sendRedirect",true);
+                            request.setAttribute(SEND_REDIRECT,true);
 
-                            return "/controller?command=viewmark";
+                            return CONTROLLER_COMMAND_VIEW_MARKS;
                         }
                     }
                 }

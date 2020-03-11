@@ -24,7 +24,7 @@ public class Scale {
             scale = ITEMS_ON_PAGE;
         }
         if((scale != 10) && (scale != 20) && (scale != 50)){
-            scale = 10; //in case of incorrect scale happened than set scale value equals 10
+            scale = 10; //in case of incorrect scale happened set scale value equals 10
         }
         return scale;
     }

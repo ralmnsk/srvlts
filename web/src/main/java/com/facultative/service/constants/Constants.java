@@ -43,7 +43,10 @@ public class Constants {
     public static final String VIEW_MARK="viewmark";
     public static final String DESCRIPTION = "description";
     //pages, commands
-    public static final String CONTROLLER_COMMAND_VIEW_COURSE="/controller?command=viewcourse";
+    public static final String CONTROLLER_COMMAND_VIEW_COURSE = "/controller?command=viewcourse";
+    public static final String CONTROLLER_COMMAND_VIEW_MARKS = "/controller?command=viewmark";
+    public static final String SEND_REDIRECT = "sendRedirect";
+    public static final String CONTROLLER_COMMAND_MARKS = "/controller?command=marks";
     //internationalization, messages
     public static final String CONFIGURATION_MANAGER_FILE_BASE_NAME="config";
     public static final String MESSAGE_MANAGER_FILE_BASE_NAME="messages";

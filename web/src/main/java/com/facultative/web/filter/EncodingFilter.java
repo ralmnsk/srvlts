@@ -1,5 +1,7 @@
 package com.facultative.web.filter;
 
+import com.facultative.service.messages.MessageManager;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
@@ -28,7 +30,9 @@ public class EncodingFilter implements Filter {
         if(request.getParameter(LANG) != null ){
             String lang=request.getParameter(LANG);
             if(lang.equals(LANG_EN) || lang.equals(LANG_RU)) {
-                Locale.setDefault(new Locale(lang));
+                Locale locale = new Locale(lang);
+                Locale.setDefault(locale);
+                MessageManager.setLocale(locale);
             }
         }
 

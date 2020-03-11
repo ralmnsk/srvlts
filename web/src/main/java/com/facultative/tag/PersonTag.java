@@ -14,6 +14,7 @@ public class PersonTag extends TagSupport {
     private String head;
     private int rows;
 
+
     public void setHead (String head) {
         this. head = head;
     }
@@ -34,7 +35,7 @@ public class PersonTag extends TagSupport {
         } catch (IOException e) {
             throw new JspTagException(e.getMessage());
         }
-        return EVAL_BODY_INCLUDE;
+        return SKIP_BODY;
     }
 
     @Override

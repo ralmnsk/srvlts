@@ -39,10 +39,12 @@ public class DoAddMarkCommand implements ActionCommand {
 
                 if(!isEnrolled(mark,studentId, scale) && student.getRole() == UserType.STUDENT){
                     markService.save(mark);
-                    request.setAttribute("sendRedirect",true);
-                    return "/controller?command=viewmark";
+                    request.setAttribute(SEND_REDIRECT,true);
+
+                    return CONTROLLER_COMMAND_VIEW_MARKS;
                 } else {
                     request.setAttribute(MARK_EXISTS,MessageManager.getProperty("message.mark.exists"));
+
                     return ConfigurationManager.getProperty("path.page.error");
                 }
             }

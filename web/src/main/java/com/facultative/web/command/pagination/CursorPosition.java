@@ -9,6 +9,8 @@ public class CursorPosition {
 
     private static Logger logger= LoggerFactory.getLogger(CursorPosition.class);
 
+    //pagePersonNumber is a flag for choosing one of the three cursor positions: mark, tutor courses, all courses
+    //scale - is an count of items on a page
     public  int getCursorPosition(HttpServletRequest request, String pagePersonNumber, int scale) {
         int cursorPosition = 1;
         String cursorPositionAttribute = getCursorPositionAttribute(pagePersonNumber);

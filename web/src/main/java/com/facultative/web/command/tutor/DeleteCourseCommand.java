@@ -31,7 +31,7 @@ public class DeleteCourseCommand implements ActionCommand {
                         if(user.getId() == editCourse.getTutor().getId()){
                             service.delete(editCourseId);
                             request.getSession().removeAttribute(EDIT_COURSE);
-                            request.setAttribute("sendRedirect",true);
+                            request.setAttribute(SEND_REDIRECT,true);
 
                             return CONTROLLER_COMMAND_VIEW_COURSE;
                         }

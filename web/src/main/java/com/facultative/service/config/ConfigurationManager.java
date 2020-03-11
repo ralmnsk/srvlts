@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import static com.facultative.service.constants.Constants.CONFIGURATION_MANAGER_FILE_BASE_NAME;
 
 /**
- * The type Configuration manager.
+ * The type Configuration manager. It returns page path.
  */
 public class ConfigurationManager {
     private final static ResourceBundle resourceBundle = ResourceBundle.getBundle(CONFIGURATION_MANAGER_FILE_BASE_NAME, Locale.getDefault());
@@ -17,7 +17,7 @@ public class ConfigurationManager {
      * Gets property.
      *
      * @param key the key
-     * @return the property
+     * @return the property (page path)
      */
     public static String getProperty(String key) {
         return resourceBundle.getString(key);

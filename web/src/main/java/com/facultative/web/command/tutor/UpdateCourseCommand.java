@@ -24,7 +24,7 @@ public class UpdateCourseCommand implements ActionCommand {
             editCourse.setDescription(request.getParameter(DESCRIPTION));
             service.update(editCourse);
 
-            return "/controller?command=viewcourse";
+            return CONTROLLER_COMMAND_VIEW_COURSE;
         }
 
         request.setAttribute(NULL_PAGE, MessageManager.getProperty("message.error.edit"));

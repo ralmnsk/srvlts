@@ -51,11 +51,11 @@ public class Pagination {
         IItemCounter counter = itemCounterFactory.getCounter(pagePersonNumber);
         int count = counter.getItemCount(userId);
 
-        //get pagination parameter that returns  cursorPosition, pageNumber, pagesCount
+        //get pagination parameter that returns  cursorPosition, pageNumber=count, pagesCount=scale
         Parameter parameter = getParameter(cursorPosition,count,scale);
 
         //set pagination parameters in session
-        cursorPositionFinder.setCursorPosition(request,pagePersonNumber,cursorPosition); //cursor for each entity in the database
+        cursorPositionFinder.setCursorPosition(request,pagePersonNumber,cursorPosition); //cursor for each type of entity in the database
         ParameterSaver saver = new ParameterSaver(request,scale,pagePersonNumber, parameter.getPageNumber(), parameter.getPagesCount());
         saver.save();
 

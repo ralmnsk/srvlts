@@ -7,10 +7,21 @@ import com.facultative.web.password.generator.PasswordGenerator;
 import static com.facultative.service.constants.Constants.*;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Login logic.
+ */
 public class LoginLogic {
 
     private IPersonService service = PersonServiceImpl.getInstance();
 
+    /**
+     * Check login boolean.
+     *
+     * @param enterLogin the enter login
+     * @param enterPass  the enter pass
+     * @param request    the request
+     * @return the boolean
+     */
     public boolean checkLogin(String enterLogin, String enterPass, HttpServletRequest request) {
         Person person=(Person)service.getByLogin(enterLogin);
         if((person.getLogin() != null) && (person.getPassword() != null)

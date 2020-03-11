@@ -30,8 +30,9 @@ public class DoEditMarkCommand implements ActionCommand {
                 if (tutorIdFromMark == userId){
                     markService.update(mark);
                     request.getSession().removeAttribute(MARK);
-                    request.setAttribute("sendRedirect",true);
-                    return "/controller?command=marks";
+                    request.setAttribute(SEND_REDIRECT,true);
+
+                    return CONTROLLER_COMMAND_MARKS;
                 }
             }
         }
